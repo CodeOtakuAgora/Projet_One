@@ -1,0 +1,292 @@
+/*************MAIN*************/
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+/************NAVBAR************/
+.leftnav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.leftnav div {
+    padding: 10px;
+}
+
+.logonav {
+    padding: 0;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+.nav {
+    height: 70px;
+    line-height: 70px;
+    background-color: #EFEBD6;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.menunav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.txtnav {
+    text-align: right;
+    padding: 0;
+    margin: 0;
+}
+
+.txtnav a {
+    clear: right;
+    text-decoration: none;
+    font-family: acumin-pro;
+    color: black;
+    font-size: 18px;
+    margin: 0;
+    line-height: 70px;
+    padding: 10px;
+}
+
+.registerbutton {
+    background-color: #29A8D0;
+    border-radius: 25px;
+    color: white;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+label {
+    padding: 0 10px 0 0;
+    font-size: 26px;
+    line-height: 70px;
+    display: none;
+    width: 26px;
+    float: right;
+}
+
+#toggle {
+    display: none;
+}
+
+.search {
+    padding: 0;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+.search form {
+    display: flex;
+    flex-direction: row;
+}
+
+.search form input[type=submit] {
+    background-color: white;
+}
+
+.search form input[type=text] {
+    padding: 2px;
+    padding-left: 5px;
+    margin: 0px;
+    border-style: none;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    font-family: acumin-pro;
+    font-size: 18px;
+    background-color: #fff;
+}
+
+.search form button {
+    border-style: none;
+    background-color: white;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.icosrch {
+    padding: 5px;
+    margin: auto;
+    width: 15px;
+    height: 15px;
+}
+
+.navv {
+    z-index: 1;
+}
+
+.content {
+    z-index: -1;
+    width: 100%;
+    margin-top: 70px;
+}
+
+
+@media only screen and (max-width: 925px) {
+    label {
+        display: block;
+        cursor: pointer;
+    }
+
+    .menunav {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .txtnav {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        left: 0;
+        right: 0;
+        display: none;
+        padding: 0;
+    }
+
+    .txtnav a {
+        display: block;
+        border-bottom: 1px solid #EAEAEB;
+        background-color: white;
+    }
+
+    #toggle:checked + .menunav .txtnav {
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+    .search {
+        display: none;
+    }
+}
+
+/************POLICE************/
+
+h1 {
+    font-family: Roboto;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
+}
+
+h2 {
+    font-family: Roboto;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
+}
+
+h3 {
+    font-family: Roboto;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    font-family: Roboto;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
+}
+
+/**********FORMLOGIN**********/
+.pageconnection {
+    width: 50%;
+    margin: auto;
+    margin-top: 70px;
+}
+
+input[type=text], input[type=password] {
+    background-color: #CBCBCB;
+    color: white;
+    border-style: none;
+    padding: 10px;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    color: black;
+    background-color: #E1E1E1;
+    /* Firefox */
+    -moz-transition: all 0.5s ease-in;
+    /* WebKit */
+    -webkit-transition: all 0.5s ease-in;
+    /* Opera */
+    -o-transition: all 0.5s ease-in;
+    /* Standard */
+    transition: all 0.5s ease-in;
+    transition: all 0.5s ease-out;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    outline: none;
+}
+
+input[type=submit] {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 10px;
+}
+
+input[type=submit]:hover {
+    background-color: #0098FF;
+    /* Firefox */
+    -moz-transition: all 0.2s ease-in;
+    /* WebKit */
+    -webkit-transition: all 0.2s ease-in;
+    /* Opera */
+    -o-transition: all 0.2s ease-in;
+    /* Standard */
+    transition: all 0.2s ease-in;
+}
+
+input {
+    font-family: Roboto;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.logform {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.logform input, a {
+    margin: 5px;
+}
+
+.forgotadminn {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/**********FORMREGISTERR**********/
+.registerr {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.registerr input, h1, h2 {
+    margin: 5px;
+}
+
+input {
+    width: 100%;
+    margin: 5px;
+}
+
+.container {
+    width: 50%;
+    margin: auto;
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="ProjetOne">
+    <serverData>
+      <paths name="ProjetOne">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="C:\wamp64\www\Projets\PPE\hwear\projet00" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
