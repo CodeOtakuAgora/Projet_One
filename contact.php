@@ -26,7 +26,7 @@
         <h1>Contactez Moi :</h1>
 
         <form id="formulaire" method="post" enctype="text/plain"
-              action="mailto:arthur.boutonnet@gmail.com,hfief1806@gmail.com,bastian.peire@gmail.com">
+              action="mailto:yourmail@gmail.com">
             <div class="form-group">
                 <input type="text" class="form-control" id="nom" name="nom" placeholder="Votre nom et prénom">
             </div>
