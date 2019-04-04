@@ -1,9 +1,9 @@
 <?php
-require_once("db.php");
-$sql = "SELECT * FROM users ORDER BY id DESC";
-$result = mysqli_query($conn,$sql);
+    require_once("db.php");
+    $sql = "SELECT * FROM users ORDER BY id DESC";
+    $result = mysqli_query($conn, $sql);
 ?>
-<html>  
+<html>
     <head>
         <title>Users List</title>
         <link rel="stylesheet" type="text/css" href="styles.css" />
@@ -50,68 +50,61 @@ $result = mysqli_query($conn,$sql);
                 </form>
             </div>
         <?php
-        $result = mysqli_query($conn,$sql);
-        echo "Liste Noms : ";
-        while ($row = mysqli_fetch_array($result))
-        {
-            echo $row['nom'];
-            echo "\t";
-        }
-        echo "<br/>";
+            $result = mysqli_query($conn, $sql);
+            echo "Liste Noms : ";
+            while ($row = mysqli_fetch_array($result)) {
+                echo $row['nom'];
+                echo "\t";
+            }
+            echo "<br/>";
 
-        $result = mysqli_query($conn,$sql);
-        echo "Liste Prénom : ";
-        while ($row = mysqli_fetch_array($result))
-        {
-            echo $row['prenom'];
-            echo "\t";
-        }
-        echo "<br/>";
-        $result = mysqli_query($conn,$sql);
-        echo "Liste Mails : ";
-        while ($row = mysqli_fetch_array($result))
-        {
-            echo $row['mail'];
-            echo "\t";
-        }
-        echo "<br/>";
+            $result = mysqli_query($conn, $sql);
+            echo "Liste Prénom : ";
+            while ($row = mysqli_fetch_array($result)) {
+                echo $row['prenom'];
+                echo "\t";
+            }
+            echo "<br/>";
+            $result = mysqli_query($conn, $sql);
+            echo "Liste Mails : ";
+            while ($row = mysqli_fetch_array($result)) {
+                echo $row['mail'];
+                echo "\t";
+            }
+            echo "<br/>";
 
-        $result = mysqli_query($conn,$sql);
-        echo "Liste Rue : ";
-        while ($row = mysqli_fetch_array($result))
-        {
-            echo $row['rue'];
-            echo "\t";
-        }
-        echo "<br/>";
+            $result = mysqli_query($conn, $sql);
+            echo "Liste Rue : ";
+            while ($row = mysqli_fetch_array($result)) {
+                echo $row['rue'];
+                echo "\t";
+            }
+            echo "<br/>";
 
-        $result = mysqli_query($conn,$sql);
-        echo "Liste Code Postal : ";
-        while ($row = mysqli_fetch_array($result))
-        {
-            echo $row['code_postal'];
-            echo "\t";
-        }
+            $result = mysqli_query($conn, $sql);
+            echo "Liste Code Postal : ";
+            while ($row = mysqli_fetch_array($result)) {
+                echo $row['code_postal'];
+                echo "\t";
+            }
 
-        echo "<br/>";
+            echo "<br/>";
 
-        $result = mysqli_query($conn,$sql);
-        echo "Listes Villes : ";
-        while ($row = mysqli_fetch_array($result))
-        {
-            echo $row['ville'];
-            echo "\t";
-        }
+            $result = mysqli_query($conn, $sql);
+            echo "Listes Villes : ";
+            while ($row = mysqli_fetch_array($result)) {
+                echo $row['ville'];
+                echo "\t";
+            }
 
-        echo "<br/>";
+            echo "<br/>";
 
-        $result = mysqli_query($conn,$sql);
-        echo "Liste téléphones : ";
-        while ($row = mysqli_fetch_array($result))
-        {
-            echo $row['telephone'];
-            echo "\t";
-        }
-        echo'<br/><br/><a href="../admin.php">RETOUR</a>';
+            $result = mysqli_query($conn, $sql);
+            echo "Liste téléphones : ";
+            while ($row = mysqli_fetch_array($result)) {
+                echo $row['telephone'];
+                echo "\t";
+            }
+            echo '<br/><br/><a href="../admin.php">RETOUR</a>';
         ?>
     </body></html>

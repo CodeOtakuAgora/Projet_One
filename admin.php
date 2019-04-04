@@ -1,27 +1,24 @@
 <?php
 
-require_once('include/session.php');
-require_once('include/db.php');
-require_once('include/infos.php');
-require_once('include/header.php');
+    $titleAdmin = "Tableau de Bord";
 
-if (isset($_SESSION['login'])) {
-    function nbclients($bdd)
-    {
-        $request = $bdd->query('SELECT COUNT(*) AS nbclients FROM `users`');
-        $nbclients = $request->fetch();
-        return $nbclients;
-    }
+    require_once('include/require.php');
 
-    echo '<br/><br/><br/><br/>';
-    echo '
+    if (isset($_SESSION['login'])) {
+        function nbclients()
+        {
+            $request = Bdd::getInstance()->conn->query('SELECT COUNT(*) AS nbclients FROM `users`');
+            $nbclients = $request->fetch();
+            return $nbclients;
+        }
+
+        echo ' <div class=""content">
 		<div style="display:flex;justify-content:center;">
 		<a style="color:red;font-size:25px;" href="deconnection.php">SE DECONNECTER</a>
 		</div>
-	';;
-    echo '<html>
-	<body>
-	<div class="contenupage">
+	';
+        echo
+        '<div class="contenupage">
 		<div class="container">
 			<div class="row">
 			<h1 align="center">Espace administration<h1><br/>
@@ -32,24 +29,23 @@ if (isset($_SESSION['login'])) {
 				<a href="gescommande.php">Gerer les commandes en attente</a> </br>
 				<a href="gesclient.php">Gerer les comptes clients</a> </br> </br> </br>
 				Il y a ';
-    $nbclients = nbclients($bdd);
-    echo $nbclients['nbclients'], ' clients dans la base.
+        $nbclients = nbclients();
+        echo $nbclients['nbclients'], ' clients dans la base.
 				</p>
 				</div>
 			</div>	
 		</div>			
 	</div>
-		</body>';
+		</div>';
 
-} else {
-    echo '<br/><br/><br/><br/>
+    } else {
+        echo '<div class="content">
 		<div style="display:flex;justify-content:center;">
 		<a style="color:red;font-size:25px;" href="login.php">
 		VEUILLEZ VOUS CONNECTER</a>
-		</div>
+		</div> </div>
 	';
-}
+    }
 
-require_once('include/footer.php');
-
+    require_once("include/footer.php");
 ?>

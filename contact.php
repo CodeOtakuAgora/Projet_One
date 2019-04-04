@@ -1,8 +1,7 @@
 <!-- on définis notre titre dynamique de la page -->
 
 <?php $titleContact = "Page Contact"; ?>
-<?php require_once('include/session.php'); ?>
-<?php require_once("include/infos.php"); ?>
+<?php require_once('include/require.php'); ?>
 
 <style>
     input[type=email] {
@@ -14,10 +13,6 @@
     }
 </style>
 
-<body>
-
-<?php require_once("include/header.php"); ?>
-
 <div class="content">
 
 
@@ -26,7 +21,7 @@
         <h1>Contactez Moi :</h1>
 
         <form id="formulaire" method="post" enctype="text/plain"
-              action="mailto:yourmail@gmail.com">
+              action="mailto:arthur.boutonnet@gmail.com,hfief1806@gmail.com,bastian.peire@gmail.com">
             <div class="form-group">
                 <input type="text" class="form-control" id="nom" name="nom" placeholder="Votre nom et prénom">
             </div>
@@ -51,7 +46,3 @@
 </div>
 
 <?php require_once("include/footer.php"); ?>
-
-
-</body>
-</html>

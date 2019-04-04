@@ -1,3 +1,4 @@
+<html>
 <head>
     <meta charset="utf-8">
     <link rel="icon" type="image/icon" href="ressources/favicon.ico"/>
@@ -6,7 +7,7 @@
     <link type="text/css" rel="stylesheet" href="include/style.css">
 
 
-    <?php if (isset($titleRegister) || isset($titleLogin) || isset($titleConnectAdmin)) {
+    <?php if (isset($titleRegister) || isset($titleLogin) || isset($titleAdminConnect)) {
         ?>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js">
         </script>
@@ -14,6 +15,31 @@
         <?php
     }
     ?>
+
+    <title><?php
+            if (isset($titleIndex)) {
+                echo $titleIndex;
+            } elseif (isset($titleContact)) {
+                echo $titleContact;
+            } elseif (isset($titleRegister)) {
+                echo $titleRegister;
+            } elseif (isset($titleLogin)) {
+                echo $titleLogin;
+            } elseif (isset($titleAdminConnect)) {
+                echo $titleAdminConnect;
+            } elseif (isset($titleProduits)) {
+                echo $titleProduits;
+            } elseif (isset($titleArticles)) {
+                echo $titleArticles;
+            } elseif (isset($titlePanier)) {
+                echo $titlePanier;
+            } elseif (isset($titleAdmin)) {
+                echo $titleAdmin;
+            } elseif (isset($titleUser)) {
+                echo $titleUser;
+            }
+        ?>
+    </title>
 
 
 </head>
