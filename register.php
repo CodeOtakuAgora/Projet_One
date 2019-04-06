@@ -2,15 +2,7 @@
 
     $titleRegister = "Page d'Inscription";
     // on inclut la connection de la session
-    require_once('include/session.php');
-    // On inclut la connexion à la bdd en PDO
-    require_once("include/db.php");
-
-
-    // On inclut les head
-    require_once("include/infos.php");
-    // On inclut le header
-    require_once("include/header.php");
+    require_once('include/require.php');
 
     /********ON VERIFIE SI TOUT A ETE BIEN REMPLIS ET QUE TOUT EST CORRECT********/
     /*****SINON ON AFFECTE LA VARIABLE D'ERREUR*****/
@@ -178,42 +170,36 @@
 
 
 ?>
-<html>
-<body>
 
-<?php require_once('include/header.php'); ?>
-<!-- Le formulaire de création de compte -->
-<div class="content">
-    <div class="contenupage">
-        <div class="container">
-            <div class="row">
-                <div class="formulaireinscription">
-                    <form class="registerr" action="register.php" id="myForm" method="POST"
-                          enctype="multipart/form-data">
-                        <h1 style="text-align:center;">Inscription</h1>
-                        <h2>Paramètres d'inscription</h2>
-                        <input name="email" type="text" value="" size="30" placeholder="Adresse Mail"/>
-                        <input name="password" type="password" value="" size="30"
-                               placeholder="Mot de Passe"/>
-                        <input name="confirm" type="password" value="" size="30" placeholder="Confirmation"/>
-                        <h2>Coordonnées personnelles</h2>
-                        <input name="nom" type="text" value="" size="30" placeholder="Nom*"/>
-                        <input name="prenom" type="text" value="" size="30" placeholder="Prénom*"/>
-                        <input name="rue" type="text" value="" size="30" placeholder="Adresse*"/>
-                        <input name="cp" type="text" value="" size="30"
-                               placeholder="Code Postal*"/>
-                        <input name="ville" type="text" value="" size="30" placeholder="Ville*"/>
-                        <input name="telportable" type="text" value="" size="30" placeholder="Téléphone Portable*"/>
-                        <input name="bouton" type="submit" id="sinscrire" value="Valider"
-                               onclick="document.forms[\'myForm\'].submit();"/>
-                    </form>
+    <!-- Le formulaire de création de compte -->
+    <div class="content">
+        <div class="contenupage">
+            <div class="container">
+                <div class="row">
+                    <div class="formulaireinscription">
+                        <form class="registerr" action="register.php" id="myForm" method="POST"
+                              enctype="multipart/form-data">
+                            <h1 style="text-align:center;">Inscription</h1>
+                            <h2>Paramètres d'inscription</h2>
+                            <input name="email" type="text" value="" size="30" placeholder="Adresse Mail"/>
+                            <input name="password" type="password" value="" size="30"
+                                   placeholder="Mot de Passe"/>
+                            <input name="confirm" type="password" value="" size="30" placeholder="Confirmation"/>
+                            <h2>Coordonnées personnelles</h2>
+                            <input name="nom" type="text" value="" size="30" placeholder="Nom*"/>
+                            <input name="prenom" type="text" value="" size="30" placeholder="Prénom*"/>
+                            <input name="rue" type="text" value="" size="30" placeholder="Adresse*"/>
+                            <input name="cp" type="text" value="" size="30"
+                                   placeholder="Code Postal*"/>
+                            <input name="ville" type="text" value="" size="30" placeholder="Ville*"/>
+                            <input name="telportable" type="text" value="" size="30" placeholder="Téléphone Portable*"/>
+                            <input name="bouton" type="submit" id="sinscrire" value="Valider"
+                                   onclick="document.forms['myForm'].submit();"/>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 <?php require_once('include/footer.php'); ?>
-
-</body>
-</html>

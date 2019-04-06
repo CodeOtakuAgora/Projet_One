@@ -54,22 +54,23 @@
         </div>
     </div>
 </div>
+<div class="content">
 
-<?php
-    if (isset($_GET['search']) AND !empty($_GET['search'])) {
-        if ($produits->rowCount() > 0) { ?>
-            <br/><br/><br/><br/><br/>
-            <div align="center">
-                <?php while ($articleTrouve = $produits->fetch()) { ?>
-                    <a style="text-decoration: none;" href="articles.php?id=<?php echo $articleTrouve['id'] ?>">
-                        <img src="ressources/vetements/<?php echo $articleTrouve['logo'] ?>"
-                             title="<?php echo $articleTrouve['nom'] ?>"
-                             width="80" height="55">
-                    </a>
-                <?php } ?>
-            </div>
-        <?php } else {
-            echo '<br/><br/><br/><br/> Aucun résultat pour : ' . $search;
-        }
-    } ?>
+    <?php
+        if (isset($_GET['search']) AND !empty($_GET['search'])) {
+            if ($produits->rowCount() > 0) { ?>
+                <div align="center">
+                    <?php while ($articleTrouve = $produits->fetch()) { ?>
+                        <a style="text-decoration: none;" href="articles.php?id=<?php echo $articleTrouve['id'] ?>">
+                            <img src="ressources/vetements/<?php echo $articleTrouve['logo'] ?>"
+                                 title="<?php echo $articleTrouve['nom'] ?>"
+                                 width="80" height="55">
+                        </a>
+                    <?php } ?>
+                </div>
+            <?php } else {
+                echo ' Aucun résultat pour : ' . $search;
+            }
+        } ?>
 
+</div>

@@ -81,7 +81,7 @@
                            href="adminConnect.php">Espace Admin</a>
                     </div>
                     <input name="bouton" type="submit" id="seconnecter" value="Connexion"
-                           onclick="document.forms[\'myform\'].submit();"/>
+                           onclick="document.forms['myform'].submit();"/>
                 </form>
             </div>
         </div>

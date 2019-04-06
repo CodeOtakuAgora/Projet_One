@@ -6,33 +6,33 @@
 
     if (!isset($_SESSION['login']) && empty($_SESSION['login'])) {
         echo '
-	<br/><br/><br/><br/>
-	<div class="contenupage">
-			<div class="container">
-				<div class="row formulaireconnect">
-					<table width="100%">
-						<thead>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									<div class="connexion">
-										<h1>Administraion</h1>
-										<form  action="" id="myform" method="POST" enctype="multipart/form-data">
-											<p>Login:</p>
-											<input name="login" type="text" value="" size="30"/><br><br>
-											<p>Password:</p>
-											<input name="password" type="password" value="" size="30"/><br><br>
-											<input name="bouton" type="submit" id="seconnecter" value="Connexion" onclick="document.forms[\'myform\'].submit();"/><br/><br/>
-										</form>
-									</div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					<br>				
-				</div>
-			</div>		
+	    <div class="content"
+            <div class="contenupage">
+                <div class="container">
+                    <div class="row formulaireconnect">
+                        <table width="100%">
+                            <thead>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="connexion">
+                                            <h1>Administraion</h1>
+                                            <form  action="" id="myform" method="POST" enctype="multipart/form-data">
+                                                <p>Login:</p>
+                                                <input name="login" type="text" value="" size="30"/>
+                                                <p>Password:</p>
+                                                <input name="password" type="password" value="" size="30"/>
+                                                <input name="bouton" type="submit" id="seconnecter" value="Connexion" onclick="document.forms[\'myform\'].submit();"/>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>				
+                    </div>
+                </div>		
+            </div>
 		</div>';
     }
     require_once('include/footer.php');
