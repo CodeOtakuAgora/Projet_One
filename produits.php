@@ -8,10 +8,6 @@
     $products = Bdd::getInstance()->conn->prepare('SELECT * FROM produits WHERE id_sous_categorie = ? AND confirme = 1 ORDER BY id');
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> ab6009c9324172ecbf15d2b61aacdbe92bbbfc3c
 ?>
 
     <div class="content">

@@ -51,7 +51,6 @@
 ?>
     <div class="content">
         <table align="center" border="10px">
-<<<<<<< HEAD
             <tr>
                 <th>Logo</th>
                 <th>Nom</th>
@@ -97,48 +96,6 @@
                 <td onclick="payment()" align="center" colspan="3">
                     <a href="panier.php?action=sup&id=<?php echo $article->id; ?>">Payer</a>
                 </td>
-=======
-            <tr>
-                <th>Logo</th>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Prix Unitaire</th>
-                <th>Prix</th>
-                <th>Quantité</th>
-                <th>Validation</th>
-                <th>Action</th>
-            </tr>
-            <?php foreach ($produits as $produit) { ?>
-                <?php $article = Bdd::getInstance()->conn->query(sprintf('SELECT * FROM `produits`, `panier_produit` WHERE `id` = %s', $produit['id_produit']))->fetchObject(); ?>
-                <tr>
-                    <td><img src="ressources/vetements/<?php echo $article->logo ?>"
-                             width=40 heigh=35>
-                    </td>
-                    <td><?php echo $article->nom ?></td>
-                    <td><?php echo $article->description ?></td>
-                    <td><?php echo number_format($article->prix, 2, '.', '') . ' € ' ?></td>
-                    <?php
-                        $prix = $article->prix * $produit['quantity'];
-                        $total = $total + $prix;
-                    ?>
-                    <td><?php echo number_format($prix, 2, '.', '') . ' € ' ?></td>
-                    <td>
-                        <input id="quantity<?php echo $article->id ?>" style="width:50" type="number"
-                               value="<?php echo $produit['quantity'] ?>" min=1>
-                    </td>
-                    <td name="validator">
-                        <a href="#" id="<?php echo $article->id ?>" quantityValid="quantity<?php echo $article->id ?>">Valider</a>
-                    </td>
-                    <td>
-                        <a href="panier.php?action=del&id=<?php echo $article->id; ?>">Retirer du Panier</a>
-                    </td>
-                </tr>
-            <?php } ?>
-            <tr>
-                <td align="center" colspan="4">Prix Total</td>
-                <td><?php echo number_format($total, 2, '.', '') . ' € ' ?></td>
-                <td onclick="payment()" align="center" colspan="3">Payer</td>
->>>>>>> ab6009c9324172ecbf15d2b61aacdbe92bbbfc3c
             </tr>
         </table>
     </div>

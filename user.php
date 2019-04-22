@@ -1,7 +1,6 @@
 <?php
     $titleUser = "Page Profil";
     require_once('include/require.php');
-<<<<<<< HEAD
     $image = '';
     $imagePath = '';
     $imageExtension = '';
@@ -10,8 +9,6 @@
         $imagePath = 'ressources/vetements/' . basename($image);
         $imageExtension = pathinfo($imagePath, PATHINFO_EXTENSION);
     }
-=======
->>>>>>> ab6009c9324172ecbf15d2b61aacdbe92bbbfc3c
 
     if (!isset($_REQUEST['nom']) || trim($_REQUEST['nom']) === '') {
         if (isset($erreur)) {
@@ -28,7 +25,6 @@
         }
     }
 
-<<<<<<< HEAD
     if (!isset($_REQUEST['prix']) || trim($_REQUEST['prix']) === '') {
         if (isset($erreur)) {
             $erreur = $erreur . " \\n Le prix est manquant";
@@ -112,22 +108,6 @@
 	<script type="text/javascript">
 	sweetAlert("Echec","' . $erreur . '","error");
 	</script>';
-=======
-    if (isset($_SESSION['login'])) {
-        echo ' <div class=""content>
-		<div style="display: flex;justify-content: center;">
-		<a style="color:red;font-size:25px;"
-		href="deconnection.php">SE DECONNECTER</a>
-		</div> </div>
-		';
-    } else {
-        echo ' <div class="content">
-		<div style="display:flex;justify-content:center;color:red">
-		<a style="color:red;font-size:25px;"
-		href="login.php">VEUILLEZ VOUS CONNECTER</a>
-		</div> </div>
-	';
->>>>>>> ab6009c9324172ecbf15d2b61aacdbe92bbbfc3c
     }
     echo ' <div class=""content>
 <div style="display: flex;justify-content: center;">
