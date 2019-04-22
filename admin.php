@@ -44,6 +44,8 @@
 	';
     echo
     '<div class="content">
+        echo
+        '<div class="content">
             <div class="contenupage">
 		        <div class="container">
 			        <div class="row">
@@ -55,6 +57,8 @@
 				                    Il y a ';
     $nbclients = nbclients();
     echo $nbclients['nbclients'], ' clients dans la base.
+        $nbclients = nbclients();
+        echo $nbclients['nbclients'], ' clients dans la base.
 				</p>
 				</div>
 			</div>	
@@ -96,6 +100,14 @@
         </tr>
     </table>
 <?php
+    } else {
+        echo '<div class="content">
+		<div style="display:flex;justify-content:center;">
+		<a style="color:red;font-size:25px;" href="login.php">
+		VEUILLEZ VOUS CONNECTER</a>
+		</div> </div> </div>
+	';
+    }
 
     require_once("include/footer.php");
 ?>
