@@ -19,6 +19,9 @@
             $this->conn = new PDO('mysql:host=localhost;dbname=hwear;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         }
 
+        /**
+         * @return null
+         */
         public static function getInstance()
         {
             if (!static::$_instance) {

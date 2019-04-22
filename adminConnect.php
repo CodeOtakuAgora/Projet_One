@@ -6,33 +6,33 @@
 
     if (!isset($_SESSION['login']) && empty($_SESSION['login'])) {
         echo '
-	<br/><br/><br/><br/>
-	<div class="contenupage">
-			<div class="container">
-				<div class="row formulaireconnect">
-					<table width="100%">
-						<thead>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									<div class="connexion">
-										<h1>Administraion</h1>
-										<form  action="" id="myform" method="POST" enctype="multipart/form-data">
-											<p>Login:</p>
-											<input name="login" type="text" value="" size="30"/><br><br>
-											<p>Password:</p>
-											<input name="password" type="password" value="" size="30"/><br><br>
-											<input name="bouton" type="submit" id="seconnecter" value="Connexion" onclick="document.forms[\'myform\'].submit();"/><br/><br/>
-										</form>
-									</div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					<br>				
-				</div>
-			</div>		
+	    <div class="content"
+            <div class="contenupage">
+                <div class="container">
+                    <div class="row formulaireconnect">
+                        <table width="100%">
+                            <thead>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="connexion">
+                                            <h1>Administraion</h1>
+                                            <form  action="" id="myform" method="POST" enctype="multipart/form-data">
+                                                <p>Login:</p>
+                                                <input name="login" type="text" value="" size="30"/>
+                                                <p>Password:</p>
+                                                <input name="password" type="password" value="" size="30"/>
+                                                <input name="bouton" type="submit" id="seconnecter" value="Connexion" onclick="document.forms[\'myform\'].submit();"/>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>				
+                    </div>
+                </div>		
+            </div>
 		</div>';
     }
     require_once('include/footer.php');
@@ -42,13 +42,12 @@
 
 
 <?php
-    if (!isset($_REQUEST['login'])) {
+    if (!isset($_REQUEST['login']) || trim($_REQUEST['login']) === '') {
         if (isset($erreur)) {
-            $erreur = $erreur . " \\n L'email n'est pas au bon format";
+            $erreur = $erreur . " \\n Le login est manquant";
         } else {
-            $erreur = "L'email n'est pas au bon format";
+            $erreur = "Le login est manquant";
         }
-
     }
 
     if (!isset($_REQUEST['password']) || trim($_REQUEST['password']) === '') {
@@ -82,7 +81,6 @@
                 <?php
             } else {
                 $erreur = " \\n Couple login/mot de passe erroné";
-
             }
         }
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 28 mars 2019 à 11:21
+-- Généré le :  jeu. 11 avr. 2019 à 15:58
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -153,23 +153,31 @@ CREATE TABLE IF NOT EXISTS `commentaires` (
 DROP TABLE IF EXISTS `panier`;
 CREATE TABLE IF NOT EXISTS `panier` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user` int(11) NOT NULL,
+  `statut` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `panier`
 --
 
-INSERT INTO `panier` (`id`) VALUES
-(1),
-(2),
-(3),
-(4),
-(5),
-(6),
-(7),
-(8),
-(9);
+INSERT INTO `panier` (`id`, `id_user`, `statut`) VALUES
+(1, 1, 1),
+(2, 2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `panier_produit`
+--
+
+DROP TABLE IF EXISTS `panier_produit`;
+CREATE TABLE IF NOT EXISTS `panier_produit` (
+  `id_panier` int(11) NOT NULL,
+  `id_produit` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -184,29 +192,30 @@ CREATE TABLE IF NOT EXISTS `produits` (
   `description` varchar(255) NOT NULL,
   `prix` float NOT NULL,
   `logo` varchar(25) NOT NULL,
+  `id_categorie` int(11) NOT NULL,
   `id_sous_categorie` int(11) NOT NULL,
   `id_admin` int(11) NOT NULL,
-  `id_panier` int(11) NOT NULL,
+  `confirme` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_produit_id_sous_categories` (`id_sous_categorie`),
-  KEY `FK_produit_id_admin` (`id_admin`),
-  KEY `FK_produit_id_panier` (`id_panier`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+  KEY `FK_produit_id_admin` (`id_admin`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `produits`
 --
 
-INSERT INTO `produits` (`id`, `nom`, `description`, `prix`, `logo`, `id_sous_categorie`, `id_admin`, `id_panier`) VALUES
-(1, 'T-shirt manche courte', 'couleur : blanc / Taille : M', 15.9, 'tshirt-blanc.png', 1, 1, 1),
-(2, 'T-shirt manche courte', 'couleur : noir, blanc / Taille : M ', 15.8, 'tshirt-blanc-noir.png', 1, 1, 2),
-(3, 'T-shirt manche courte', 'couleur : rouge / taille : M', 16.8, 'tshirt-rouge.png', 1, 1, 3),
-(4, 'Pull ', 'couleur : noire / taille : M', 14.9, 'pull-noir.png', 3, 1, 4),
-(5, 'Pull', 'couleur :  blanc / taille : M', 15.1, 'pull-blanc.png', 3, 1, 5),
-(6, 'Pull', 'couleur : jaune / taille : M', 14.5, 'pull-jaune.png', 3, 1, 6),
-(7, 'Pantalon jeans', 'couleur : gris foncé / taille : 42', 18.9, 'pantalon-gris-f.png', 2, 1, 7),
-(8, 'Pantalon jeans', 'couleur : gris clair / taille : 42', 19.8, 'pantalon-gris-c.jpg', 2, 1, 8),
-(9, 'Pantalon jeans', 'couleur : bleu ciel / taille : 42', 17.9, 'pantalon-bleu-c.jpg', 2, 1, 9);
+INSERT INTO `produits` (`id`, `nom`, `description`, `prix`, `logo`, `id_categorie`, `id_sous_categorie`, `id_admin`, `confirme`) VALUES
+(1, 'T-shirt manche courte-b', 'couleur : blanc / Taille : M', 15.9, 'tshirt-blanc.png', 1, 1, 1, 1),
+(2, 'T-shirt manche courte-bn', 'couleur : noir, blanc / Taille : M ', 15.8, 'tshirt-blanc-noir.png', 1, 1, 1, 1),
+(3, 'T-shirt manche courte-r', 'couleur : rouge / taille : M', 16.8, 'tshirt-rouge.png', 1, 1, 1, 1),
+(4, 'Pull-n', 'couleur : noire / taille : M', 14.9, 'pull-noir.png', 1, 3, 1, 1),
+(5, 'Pull-b', 'couleur :  blanc / taille : M', 15.1, 'pull-blanc.png', 1, 3, 1, 1),
+(6, 'Pull-j', 'couleur : jaune / taille : M', 14.5, 'pull-jaune.png', 1, 3, 1, 1),
+(7, 'Pantalon jeans-gf', 'couleur : gris foncé / taille : 42', 18.9, 'pantalon-gris-f.png', 1, 2, 1, 1),
+(8, 'Pantalon jeans-gc', 'couleur : gris clair / taille : 42', 19.8, 'pantalon-gris-c.jpg', 1, 2, 1, 1),
+(9, 'Pantalon jeans-bc', 'couleur : bleu ciel / taille : 42', 17.9, 'pantalon-bleu-c.jpg', 1, 2, 1, 1),
+(11, 'Hugo2', 'Un dev', 4, '0.jpg', 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -310,15 +319,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   `code_postal` varchar(255) NOT NULL,
   `ville` varchar(255) NOT NULL,
   `telephone` varchar(25) NOT NULL,
+  `approuve` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id`, `nom`, `prenom`, `mail`, `password`, `rue`, `code_postal`, `ville`, `telephone`) VALUES
-(1, 'test', 'test', 'test@gmail.com', '098f6bcd4621d373cade4e832627b4f6', 'autre', 'autre', 'autre', '0631134697');
+INSERT INTO `users` (`id`, `nom`, `prenom`, `mail`, `password`, `rue`, `code_postal`, `ville`, `telephone`, `approuve`) VALUES
+(1, 'test', 'test', 'test@gmail.com', '098f6bcd4621d373cade4e832627b4f6', 'autre', 'autre', 'autre', '0631134697', NULL),
+(2, 'user', 'user', 'user@gmail.com', 'ee11cbb19052e40b07aac0ca060c23ee', 'autre', 'autre', 'autre', '0631134698', NULL);
 
 --
 -- Contraintes pour les tables déchargées
@@ -354,7 +365,6 @@ ALTER TABLE `commentaires`
 --
 ALTER TABLE `produits`
   ADD CONSTRAINT `FK_produit_id_admin` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id`),
-  ADD CONSTRAINT `FK_produit_id_panier` FOREIGN KEY (`id_panier`) REFERENCES `panier` (`id`),
   ADD CONSTRAINT `FK_produit_id_sous_categories` FOREIGN KEY (`id_sous_categorie`) REFERENCES `sous_categories` (`id`);
 
 --

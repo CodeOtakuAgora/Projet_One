@@ -24,3 +24,13 @@
         $menuuser = false;
         $menuadmin = false;
     }
+
+    if (isset($titlePanier) || isset($titleUser) || isset($titleAdmin)) {
+        if (!isset($_SESSION['login'])) {
+            echo '
+	            <script type="text/javascript">
+		            location.href = \'login.php\';
+	            </script>';
+        }
+    }
+    
