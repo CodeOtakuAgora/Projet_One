@@ -3,45 +3,6 @@
     $titleAdminConnect = "Connection Admin";
     require_once('include/require.php');
 
-
-    if (!isset($_SESSION['login']) && empty($_SESSION['login'])) {
-        echo '
-	    <div class="content"
-            <div class="contenupage">
-                <div class="container">
-                    <div class="row formulaireconnect">
-                        <table width="100%">
-                            <thead>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="connexion">
-                                            <h1>Administraion</h1>
-                                            <form  action="" id="myform" method="POST" enctype="multipart/form-data">
-                                                <p>Login:</p>
-                                                <input name="login" type="text" value="" size="30"/>
-                                                <p>Password:</p>
-                                                <input name="password" type="password" value="" size="30"/>
-                                                <input name="bouton" type="submit" id="seconnecter" value="Connexion" onclick="document.forms[\'myform\'].submit();"/>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>				
-                    </div>
-                </div>		
-            </div>
-		</div>';
-    }
-    require_once('include/footer.php');
-?>
-
-
-
-
-<?php
     if (!isset($_REQUEST['login']) || trim($_REQUEST['login']) === '') {
         if (isset($erreur)) {
             $erreur = $erreur . " \\n Le login est manquant";
@@ -56,13 +17,12 @@
         } else {
             $erreur = "Le password est manquant";
         }
-
     }
 
     if (!isset($erreur)) {
         $result = Bdd::getInstance()->conn->query('SELECT * FROM `admin` WHERE `login` LIKE "' . $_REQUEST['login'] . '" AND `password` LIKE "' . md5($_REQUEST['password']) . '"');
         if ($result != "") {
-            while ($row = $result->fetch()) {
+            foreach ($result as $row) {
                 $_SESSION['login'] = $row['login'];
             }
 
@@ -92,5 +52,7 @@
 						sweetAlert("Echec","' . $erreur . '","error");
 					</script>';
     }
+
+    require_once('views/adminConnect.view.php');
 
 ?>

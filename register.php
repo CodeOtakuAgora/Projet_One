@@ -8,7 +8,7 @@
     /*****SINON ON AFFECTE LA VARIABLE D'ERREUR*****/
 
     // Vérification adresse mail
-    if ((isset($_REQUEST['email'])) && (trim($_REQUEST['email']) !== '') && (!filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL))){
+    if ((isset($_REQUEST['email'])) && (trim($_REQUEST['email']) !== '') && (!filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL))) {
         if (isset($erreur)) {
             $erreur = $erreur . " \\n Le champ email n'est pas au bon format";
         } else {
@@ -24,7 +24,7 @@
             $erreur = "L'email est manquant";
         }
     }
-    
+
     // Vérification mot de passe
     if (!isset($_REQUEST['password']) || trim($_REQUEST['password']) === '') {
         if (isset($erreur)) {
@@ -159,11 +159,11 @@
         $result = Bdd::getInstance()->conn->query('SELECT * FROM `users` WHERE `mail` LIKE "' . $emailbis . '" AND `password` LIKE "' . $mdpbis . '"');
 
         // Si c'est bon on crée une variable session
-        while ($row = $result->fetch()) {
+        foreach ($result as $row) {
             $_SESSION['login'] = $row['id'];
         }
 
-// Puis on redirige sur la page de connection
+        // Puis on redirige sur la page de connection
         ?>
         <script type="text/javascript">
             swal({
@@ -177,38 +177,6 @@
         <?php
     }
 
-
+    require_once('views/register.view.php');
 ?>
-
-    <!-- Le formulaire de création de compte -->
-    <div class="content">
-        <div class="contenupage">
-            <div class="container">
-                <div class="row">
-                    <div class="formulaireinscription">
-                        <form class="registerr" action="register.php" id="myForm" method="POST"
-                              enctype="multipart/form-data">
-                            <h1 style="text-align:center;">Inscription</h1>
-                            <h2>Paramètres d'inscription</h2>
-                            <input name="email" type="text" value="" size="30" placeholder="Adresse Mail"/>
-                            <input name="password" type="password" value="" size="30"
-                                   placeholder="Mot de Passe"/>
-                            <input name="confirm" type="password" value="" size="30" placeholder="Confirmation"/>
-                            <h2>Coordonnées personnelles</h2>
-                            <input name="nom" type="text" value="" size="30" placeholder="Nom*"/>
-                            <input name="prenom" type="text" value="" size="30" placeholder="Prénom*"/>
-                            <input name="rue" type="text" value="" size="30" placeholder="Adresse*"/>
-                            <input name="cp" type="text" value="" size="30"
-                                   placeholder="Code Postal*"/>
-                            <input name="ville" type="text" value="" size="30" placeholder="Ville*"/>
-                            <input name="telportable" type="text" value="" size="30" placeholder="Téléphone Portable*"/>
-                            <input name="bouton" type="submit" id="sinscrire" value="Valider"
-                                   onclick="document.forms['myForm'].submit();"/>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-<?php require_once('include/footer.php'); ?>
+    

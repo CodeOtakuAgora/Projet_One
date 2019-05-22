@@ -4,9 +4,11 @@ html, body {
     height: 100%;
     margin: 0;
 }
+
 a {
     text-decoration: none;
 }
+
 
 /************NAVBAR************/
 .leftnav {
@@ -199,6 +201,7 @@ p {
     margin: 0;
 }
 
+
 /**********FORMLOGIN**********/
 .pageconnection {
     width: 50%;
@@ -294,39 +297,115 @@ input {
     margin: auto;
 }
 
+/**********CRUD BACK OFFICE**********/
+
+.tblSaveForm {
+    border-top: 2px #999999 solid;
+    background-color: #f8f8f8;
+}
+
+.tableheader {
+    background-color: #fedc4d;
+}
+
+.tablerow {
+    background-color: #A7D6F1;
+    color: white;
+}
+
+.btnSubmit {
+    background-color: #fd9512;
+    padding: 5px;
+    border-color: #FF6600;
+    border-radius: 4px;
+    color: white;
+}
+
+.message {
+    color: #FF0000;
+    text-align: center;
+    width: 100%;
+}
+
+.txtField {
+    padding: 5px;
+    border: #fedc4d 1px solid;
+    border-radius: 4px;
+}
+
+.evenRow {
+    background-color: #E2EDF9;
+    font-size: 12px;
+    color: #101010;
+}
+
+.evenRow:hover {
+    background-color: #ffef46;
+}
+
+.oddRow {
+    background-color: #B3E8FF;
+    font-size: 12px;
+    color: #101010;
+}
+
+.oddRow:hover {
+    background-color: #ffef46;
+}
+
+.tblListForm {
+    border-top: 2px #999999 solid;
+}
+
+.listheader {
+    background-color: #fedc4d;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.link {
+    text-decoration: none;
+    color: #5e8fc7;
+    font-size: 11px;
+}
+
 /**********COOKIES**********/
 .cookie-alert {
-   position: fixed;
-   bottom: 20px;
-   right:20px;
-   border-radius: 10px;
-   background:#2f2f2f;
-   color:#fff;
-   padding:10px 15px;
-   width:280px;
-   z-index:100;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 10px;
+    background: #2f2f2f;
+    color: #fff;
+    padding: 10px 15px;
+    width: 280px;
+    z-index: 100;
 }
-.cookie-alert a { 
-   display:block;
-   text-align: center;
-   padding:5px 10px;
-   margin:8px auto 0 auto;
-   border-radius: 10px;
-   background:transparent;
-   border: 2px solid #46A2D9;
-   color:#46A2D9;
-   transition: all .3s ease;
+
+.cookie-alert a {
+    display: block;
+    text-align: center;
+    padding: 5px 10px;
+    margin: 8px auto 0 auto;
+    border-radius: 10px;
+    background: transparent;
+    border: 2px solid #46A2D9;
+    color: #46A2D9;
+    transition: all .3s ease;
 }
-   .cookie-alert a:hover {
-      background: #46A2D9;
-      color:#2f2f2f;
-   }
-@media only screen and (max-width:480px) {
-   .cookie-alert {
-      text-align: center;
-      left: 0; right: 0;;
+
+.cookie-alert a:hover {
+    background: #46A2D9;
+    color: #2f2f2f;
+}
+
+@media only screen and (max-width: 480px) {
+    .cookie-alert {
+        text-align: center;
+        left: 0;
+        right: 0;;
         margin: 0 auto;
-      max-width:700px;
-      padding:10px 30px;
-   }
+        max-width: 700px;
+        padding: 10px 30px;
+    }
 }

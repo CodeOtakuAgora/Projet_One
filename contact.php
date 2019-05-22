@@ -1,48 +1,42 @@
 <!-- on définis notre titre dynamique de la page -->
 
-<?php $titleContact = "Page Contact"; ?>
-<?php require_once('include/require.php'); ?>
+<?php 
+    $titleContact = "Page Contact"; 
+    require_once('include/require.php');
 
-<style>
-    input[type=email] {
-        background-color: lightgrey;
-    }
+	if(isset($_POST['mailform'])) {
+	   if(!empty($_POST['nom']) AND !empty($_POST['prenom']) AND !empty($_POST['mail']) AND !empty($_POST['message'])) {
+	      $header="MIME-Version: 1.0\r\n";
+	      $header.='From:"nom_d\'expediteur"<hwear@gmail.com>'."\n";
+	      $header.='Content-Type:text/html; charset="uft-8"'."\n";
+	      $header.='Content-Transfer-Encoding: 8bit';
+	      $message='
+	      <html>
+	         <body>
+	            <div align="center">
+	               <img src="http://www.primfx.com/mailing/banniere.png"/>
+	               <br />
+	               <u>Nom de l\'expediteur :</u>'.$_POST['nom'].'<br />
+	               <u>Prenom de l\'expediteur :</u>'.$_POST['prenom'].'<br />
+	               <u>Mail de l\'expediteur :</u>'.$_POST['mail'].'<br />
+	               <br />
+	               '.nl2br($_POST['message']).'
+	               <br />
+	               <img src="http://www.primfx.com/mailing/separation.png"/>
+	            </div>
+	         </body>
+	      </html>
+	      ';
+	      mail("mailto:arthur.boutonnet@gmail.com,hfief1806@gmail.com,bastian.peire@gmail.com", 
+	      	"Sujet du message", $message, $header);
+	      $msg="Votre message a bien été envoyé !";
+	   } else {
+	      $msg="Tous les champs doivent être complétés !";
+	   }
+	}
 
-    input[type=email]:focus {
-        background-color: #fff;
-    }
-</style>
+    require_once('views/contact.view.php'); 
 
-<div class="content">
+?>
 
 
-    <div class="container"
-         style="text-align: center; max-width: 40%;">
-        <h1>Contactez Moi :</h1>
-
-        <form id="formulaire" method="post" enctype="text/plain"
-              action="mailto:arthur.boutonnet@gmail.com,hfief1806@gmail.com,bastian.peire@gmail.com">
-            <div class="form-group">
-                <input type="text" class="form-control" id="nom" name="nom" placeholder="Votre nom et prénom">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Votre téléphone">
-            </div>
-            <div class="form-group">
-                <input type="email" class="form-control" id="email" name="email" placeholder="Votre email">
-            </div>
-            <div class="form-group">
-                <textarea class="form-control" rows="5" id="comment" name="comment"
-                          placeholder="Votre commentaire"></textarea>
-            </div>
-
-            <div>
-                <input type="submit" value="Envoyer" class="envoyer">
-            </div>
-            <p id="message"></p>
-        </form>
-    </div>
-
-</div>
-
-<?php require_once("include/footer.php"); ?>

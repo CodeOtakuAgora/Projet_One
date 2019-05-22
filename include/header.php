@@ -12,55 +12,90 @@
 ?>
 
 <body>
-<div class="nav">
-    <label for="toggle">&#9776;</label>
-    <input type="checkbox" id="toggle"/>
-    <div class="menunav">
-        <div class="leftnav">
-            <div class="logonav">
-                <img width="50px" src="ressources/logo.png">
-            </div>
-            <div class="search">
-                <form method="GET" class="search" style="margin:auto;">
-                    <input type="text" name="search" placeholder="Search">
-                    <button type="submit">
-                        <img class="icosrch" src="ressources/search.png">
-                    </button>
-                </form>
-            </div>
-        </div>
-        <div class="txtnav">
-            <a href="index.php">Home</a>
-            <a href="produits.php">Shop</a>
-            <a href="#">Community Shop</a>
-            <a href="contact.php">Contact</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+        <?php if(isset($titleAdminIndex) || isset($titleAdminEditUser) || isset($titleAdminAddUser)) { ?>
+                    <img width="30px" src="../ressources/logo.png" class="d-inline-block align-top" alt="">
+        <?php } else { ?> 
+                    <img width="30px" src="ressources/logo.png" class="d-inline-block align-top" alt="">
+        <?php } ?>
+        Hwear
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <?php if(isset($titleAdminIndex) || isset($titleAdminEditUser) || isset($titleAdminAddUser)) { ?>
+                    
+                <li class="nav-item active">
+                    <a class="nav-link" href="../index.php">Acceuil<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../produits.php">Articles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../contact.php">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../admin.php">Tableau de bord</a>
+                </li>
+
+            <?php } else { ?>
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.php">Acceuil<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="produits.php">Articles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.php">Contact</a>
+                </li>
+            
             <?php
                 if ($menuuser == true) {
                     echo '
-                            <a href="user.php">Mon Compte</a>
-                            <a href="panier.php">Panier</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="user.php">Mon Compte</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="panier.php">Panier</a>
+                            </li>
                         ';
                 } else if ($menuadmin == true) {
                     echo '
-                            <a href="admin.php">Tableau de Bord</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="admin.php">Tableau de bord</a>
+                            </li>
                         ';
                 } else {
-                    echo '<span class="nonlog">
-                            <a href="login.php">Login in</a>
-                            <a href="register.php"><span class="registerbutton">Register</span></a>
-                        </span>
+                    echo '
+                            <li class="nav-item">
+                                <a class="nav-link" href="login.php">Se connecter</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="register.php">Senregistrer</a>
+                            </li>
                         ';
-                } ?>
-        </div>
+                } 
+            } ?>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
     </div>
-</div>
+</nav>
 <div class="content">
 
     <?php
         if (isset($_GET['search']) AND !empty($_GET['search'])) {
             if ($produits->rowCount() > 0) { ?>
                 <div align="center">
-                    <?php while ($articleTrouve = $produits->fetch()) { ?>
+                    <?php foreach ($produits as $articleTrouve) { ?>
                         <a style="text-decoration: none;" href="articles.php?id=<?php echo $articleTrouve['id'] ?>">
                             <img src="ressources/vetements/<?php echo $articleTrouve['logo'] ?>"
                                  title="<?php echo $articleTrouve['nom'] ?>"

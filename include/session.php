@@ -18,15 +18,33 @@
         $menuuser = true;
     } /* sinon si l'utilisateur est loggé et qu'il est admin, on met menuchange à true pour afficher le menu administrateur.
 */
-    else if (isset($_SESSION['login']) && $_SESSION['login'] == 'admin') {
+    elseif (isset($_SESSION['login']) && $_SESSION['login'] == 'admin') {
         $menuadmin = true;
-    } else if (!isset($_SESSION['login'])) {
+    } elseif (!isset($_SESSION['login'])) {
         $menuuser = false;
         $menuadmin = false;
     }
 
     if (isset($titlePanier) || isset($titleUser) || isset($titleAdmin)) {
         if (!isset($_SESSION['login'])) {
+            echo '
+	            <script type="text/javascript">
+		            location.href = \'login.php\';
+	            </script>';
+        }
+    }
+
+    if (isset($titleAdmin)) {
+        if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
+            echo '
+	            <script type="text/javascript">
+		            location.href = \'adminConnect.php\';
+	            </script>';
+        }
+    }
+
+    if (isset($titlePanier) || isset($titleUser)) {
+        if (isset($_SESSION['login']) && $_SESSION['login'] == "admin") {
             echo '
 	            <script type="text/javascript">
 		            location.href = \'login.php\';

@@ -5,6 +5,25 @@
     </div>
 <?php endif; ?>
 
+<style type="text/css">
+.copyright{
+    position:absolute;
+    display: block;
+    bottom: 0;
+    color: white;
+    background-color: blue;
+    width: 100%;
+}
+</style>
+
+<footer>
+	<div class="copyright">
+ 	<p align="center">&copy; 2019 hwear.fr</p>
+ 	</div>
+
+</footer>
+
+
 
 </body>
 </html>

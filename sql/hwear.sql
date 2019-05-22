@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 11 avr. 2019 à 15:58
+-- Généré le :  mer. 22 mai 2019 à 13:29
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -21,6 +21,9 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `hwear`
 --
+DROP DATABASE IF EXISTS `hwear`;
+CREATE DATABASE `hwear` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `hwear`;
 
 -- --------------------------------------------------------
 
@@ -191,15 +194,15 @@ CREATE TABLE IF NOT EXISTS `produits` (
   `nom` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `prix` float NOT NULL,
-  `logo` varchar(25) NOT NULL,
+  `logo` varchar(255) NOT NULL,
   `id_categorie` int(11) NOT NULL,
   `id_sous_categorie` int(11) NOT NULL,
   `id_admin` int(11) NOT NULL,
-  `confirme` int(11) NOT NULL,
+  `confirme` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `FK_produit_id_sous_categories` (`id_sous_categorie`),
   KEY `FK_produit_id_admin` (`id_admin`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `produits`
@@ -212,10 +215,9 @@ INSERT INTO `produits` (`id`, `nom`, `description`, `prix`, `logo`, `id_categori
 (4, 'Pull-n', 'couleur : noire / taille : M', 14.9, 'pull-noir.png', 1, 3, 1, 1),
 (5, 'Pull-b', 'couleur :  blanc / taille : M', 15.1, 'pull-blanc.png', 1, 3, 1, 1),
 (6, 'Pull-j', 'couleur : jaune / taille : M', 14.5, 'pull-jaune.png', 1, 3, 1, 1),
-(7, 'Pantalon jeans-gf', 'couleur : gris foncé / taille : 42', 18.9, 'pantalon-gris-f.png', 1, 2, 1, 1),
+(7, 'Pantalon jeans-gf', 'couleur : gris fonce / taille : 42', 18.9, 'pantalon-gris-f.png', 1, 2, 1, 1),
 (8, 'Pantalon jeans-gc', 'couleur : gris clair / taille : 42', 19.8, 'pantalon-gris-c.jpg', 1, 2, 1, 1),
-(9, 'Pantalon jeans-bc', 'couleur : bleu ciel / taille : 42', 17.9, 'pantalon-bleu-c.jpg', 1, 2, 1, 1),
-(11, 'Hugo2', 'Un dev', 4, '0.jpg', 1, 1, 1, 1);
+(9, 'Pantalon jeans-bc', 'couleur : bleu ciel / taille : 42', 17.9, 'pantalon-bleu-c.jpg', 1, 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -319,7 +321,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `code_postal` varchar(255) NOT NULL,
   `ville` varchar(255) NOT NULL,
   `telephone` varchar(25) NOT NULL,
-  `approuve` int(11) DEFAULT NULL,
+  `approuve` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
@@ -328,8 +330,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `nom`, `prenom`, `mail`, `password`, `rue`, `code_postal`, `ville`, `telephone`, `approuve`) VALUES
-(1, 'test', 'test', 'test@gmail.com', '098f6bcd4621d373cade4e832627b4f6', 'autre', 'autre', 'autre', '0631134697', NULL),
-(2, 'user', 'user', 'user@gmail.com', 'ee11cbb19052e40b07aac0ca060c23ee', 'autre', 'autre', 'autre', '0631134698', NULL);
+(1, 'test', 'test', 'test@gmail.com', '098f6bcd4621d373cade4e832627b4f6', 'autre', 'autre', 'autre', '0631134697', 1),
+(2, 'user', 'user', 'user@gmail.com', 'ee11cbb19052e40b07aac0ca060c23ee', 'autre', 'autre', 'autre', '0631134698', 1);
 
 --
 -- Contraintes pour les tables déchargées

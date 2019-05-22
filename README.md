@@ -21,7 +21,7 @@ Arborescence du Projet :
 
 - Pour commencer aller dans le dossier doc qui contient la documentation d'utilisation du projet
 - Puis aller dans le dossier include et crud et modifier les 2 fichiers db.php si besoin
-- Et pour finir aller dans le dossier sql et importer la base de donn?s 
+- Et pour finir aller dans le dossier sql et importer la base de donnée 
 
 ***! Infos Utilisateur déjà créer !***
 - Adminsitrateur : username : admin / password : admin
