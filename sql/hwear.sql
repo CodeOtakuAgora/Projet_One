@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 22 mai 2019 à 15:22
+-- Généré le :  mer. 22 mai 2019 à 23:04
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -21,9 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `hwear`
 --
-DROP DATABASE IF EXISTS `hwear`;
-CREATE DATABASE `hwear` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `hwear`;
 
 -- --------------------------------------------------------
 
@@ -141,11 +138,12 @@ DROP TABLE IF EXISTS `commentaires`;
 CREATE TABLE IF NOT EXISTS `commentaires` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `message` text NOT NULL,
-  `date_creation` timestamp NOT NULL,
-  `id_users` int(11) NOT NULL,
+  `pseudo` varchar(255) NOT NULL,
+  `date_creation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `id_produit` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK_commentaires_id_users` (`id_users`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `FK_commentaires_id_users` (`id_produit`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -360,7 +358,7 @@ ALTER TABLE `commande`
 -- Contraintes pour la table `commentaires`
 --
 ALTER TABLE `commentaires`
-  ADD CONSTRAINT `FK_commentaires_id_users` FOREIGN KEY (`id_users`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `FK_commentaires_id_users` FOREIGN KEY (`id_produit`) REFERENCES `users` (`id`);
 
 --
 -- Contraintes pour la table `produits`

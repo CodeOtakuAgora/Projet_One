@@ -4,7 +4,7 @@
     padding: 45px;
     display: flex;
     flex-direction: row;
-    background-color: white;
+    background-color: #fff;
     margin:0px;
 }
 .part1 div{
