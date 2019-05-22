@@ -94,18 +94,23 @@
     <?php
         if (isset($_GET['search']) AND !empty($_GET['search'])) {
             if ($produits->rowCount() > 0) { ?>
-                <div align="center">
+                <div class="row" style="display: flex;justify-content: center;">
+                    <div class="card" style="width: 18rem;">
                     <?php foreach ($produits as $articleTrouve) { ?>
                         <a style="text-decoration: none;" href="articles.php?id=<?php echo $articleTrouve['id'] ?>">
-                            <img src="ressources/vetements/<?php echo $articleTrouve['logo'] ?>"
-                                 title="<?php echo $articleTrouve['nom'] ?>"
-                                 width="80" height="55">
+                            <img class="card-img-top" 
+                                src="ressources/vetements/<?php echo $articleTrouve['logo'] ?>"
+                                title="<?php echo $articleTrouve['nom'] ?>"
+                                width="250px" height="250px">
                         </a>
                     <?php } ?>
+                    </div>
                 </div>
-            <?php } else {
-                echo ' Aucun résultat pour : ' . $search;
-            }
+            <?php } else { ?>
+                <p style="color:red;" align="center">
+                    <b>Aucun résultat pour : <?php echo $search; ?></b>
+                </p>
+            <?php }
         } ?>
 
-</div>
+</div><hr>

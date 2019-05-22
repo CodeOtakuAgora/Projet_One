@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 22 mai 2019 à 13:29
+-- Généré le :  mer. 22 mai 2019 à 15:22
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -209,15 +209,15 @@ CREATE TABLE IF NOT EXISTS `produits` (
 --
 
 INSERT INTO `produits` (`id`, `nom`, `description`, `prix`, `logo`, `id_categorie`, `id_sous_categorie`, `id_admin`, `confirme`) VALUES
-(1, 'T-shirt manche courte-b', 'couleur : blanc / Taille : M', 15.9, 'tshirt-blanc.png', 1, 1, 1, 1),
-(2, 'T-shirt manche courte-bn', 'couleur : noir, blanc / Taille : M ', 15.8, 'tshirt-blanc-noir.png', 1, 1, 1, 1),
-(3, 'T-shirt manche courte-r', 'couleur : rouge / taille : M', 16.8, 'tshirt-rouge.png', 1, 1, 1, 1),
-(4, 'Pull-n', 'couleur : noire / taille : M', 14.9, 'pull-noir.png', 1, 3, 1, 1),
-(5, 'Pull-b', 'couleur :  blanc / taille : M', 15.1, 'pull-blanc.png', 1, 3, 1, 1),
-(6, 'Pull-j', 'couleur : jaune / taille : M', 14.5, 'pull-jaune.png', 1, 3, 1, 1),
-(7, 'Pantalon jeans-gf', 'couleur : gris fonce / taille : 42', 18.9, 'pantalon-gris-f.png', 1, 2, 1, 1),
-(8, 'Pantalon jeans-gc', 'couleur : gris clair / taille : 42', 19.8, 'pantalon-gris-c.jpg', 1, 2, 1, 1),
-(9, 'Pantalon jeans-bc', 'couleur : bleu ciel / taille : 42', 17.9, 'pantalon-bleu-c.jpg', 1, 2, 1, 1);
+(1, 'T-shirt blanc', 'Taille : M', 15.9, 'tshirt-blanc.png', 1, 1, 1, 1),
+(2, 'T-shirt noir et blanc', 'Taille : M ', 15.8, 'tshirt-blanc-noir.png', 1, 1, 1, 1),
+(3, 'T-shirt rouge', 'Taille : M', 16.8, 'tshirt-rouge.png', 1, 1, 1, 1),
+(4, 'Pull noir', 'Taille : M', 14.9, 'pull-noir.png', 1, 3, 1, 1),
+(5, 'Pull blanc', 'Taille : M', 15.1, 'pull-blanc.png', 1, 3, 1, 1),
+(6, 'Pull jaune', 'Taille : M', 14.5, 'pull-jaune.png', 1, 3, 1, 1),
+(7, 'Pantalon gris foncé', 'Taille : 42', 18.9, 'pantalon-gris-f.png', 1, 2, 1, 1),
+(8, 'Pantalon gris clair', 'Taille : 42', 19.8, 'pantalon-gris-c.jpg', 1, 2, 1, 1),
+(9, 'Pantalon bleu ciel', 'Taille : 42', 17.9, 'pantalon-bleu-c.jpg', 1, 2, 1, 1);
 
 -- --------------------------------------------------------
 

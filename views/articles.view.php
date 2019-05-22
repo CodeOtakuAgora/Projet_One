@@ -1,21 +1,22 @@
-<div class="content">
     <?php if ($article) { ?>
+        <div class="row" style="display: flex;justify-content: center;">
+        <div class="card" style="width: 18rem;">
         <form align="center" action="panier.php">
-            <img src="ressources/vetements/<?php echo $logo ?>" width="100" height="75">
-            <h1><?php echo $nom ?></h1>
-            <p><?php echo $description ?></p>
-            <p><?php echo "Prix : " . number_format($prix, 2, '.', '') . ' € ' ?></p>
+            <img class="card-img-top" src="ressources/vetements/<?php echo $logo ?>" 
+                width="250px" height="250px">
+        <div class="card-body">
+            <h1 class="card-title"><?php echo $nom ?></h1>
+            <p class="card-text"><?php echo $description ?>
+            <?php echo " / Prix : " . number_format($prix, 2, '.', '') . ' € ' ?>
             <?php if (isset($_SESSION['login'])) {
                 ?>
                 <a href="panier.php?action=add&id=<?php echo $get_id; ?>">Ajouter au Panier</a>
-                <?php
-            } else {
-                ?><a href="login.php">Ajouter au Panier</a><?php
-            } ?>
-
-            <button type="submit"><a style="text-decoration: none;color:black" href="produits.php">RETOUR</a></button>
+                <?php } else {
+                ?><a class="btn btn-primary" href="login.php">Ajouter au Panier</a>
+                <?php } ?>
+        </div>
         </form>
+    </div></div>
     <?php }
     require_once('include/footer.php');
     ?>
-</div>
