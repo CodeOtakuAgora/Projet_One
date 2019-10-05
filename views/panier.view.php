@@ -1,20 +1,29 @@
 <div class="content">
-    <table align="center" border="10px">
-        <tr>
-            <th>Logo</th>
-            <th>Nom</th>
-            <th>Description</th>
-            <th>Prix Unitaire</th>
-            <th>Prix</th>
-            <th>Quantité</th>
-            <th>Validation</th>
-            <th>Action</th>
-        </tr>
-
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Logo</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Description</th>
+                <th scope="col">Prix Unitaire</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Quantité</th>
+                <th scope="col">Validation</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>        
+        
+        <!-- on boucle sur chaque produits en l'affectant -->
+        <!-- à chaque tour de boucle à une variale temporaire -->
+        <!-- en utilisant number_format le nombre du prix sera formaté en un nombre décimal -->
         <?php foreach ($produits as $produit) { ?>
-            <?php $article = Bdd::getInstance()->conn->query(sprintf('SELECT * FROM `produits`, `panier_produit` WHERE `id` = %s', $produit['id_produit']))->fetchObject();
-            $compteur++;
+            <!-- on récupére tous les produits qui ont été ajouter au panier -->
+            <!-- et qui sont propre au user qui connecté -->
+            <?php 
+
+            $article = Bdd::getInstance()->conn->query(sprintf('SELECT * FROM `produits`, `panier_produit` WHERE `id` = %s', $produit['id_produit']))->fetchObject();
             ?>
+        <tbody>
             <tr>
                 <td><img src="ressources/vetements/<?php echo $article->logo ?>"
                          width=40 heigh=35>
@@ -28,39 +37,62 @@
                 ?>
                 <td><?php echo number_format($prix, 2, '.', '') . ' € ' ?></td>
                 <td>
-                    <input id="quantity<?php echo $article->id ?>" style="width:50px" type="number"
+                    <input name="number" id="quantity<?php echo $article->id ?>" style="width:50px" type="number"
                            value="<?php echo $produit['quantity'] ?>" min=1>
                 </td>
                 <td name="validator">
                     <a href="#" id="<?php echo $article->id ?>" quantityValid="quantity<?php echo $article->id ?>">Valider</a>
                 </td>
                 <td>
+                    <!-- on defini l'action del dans l'url ainsi que -->
+                    <!-- l'id de l'article concerner par l'action -->
+                    <!-- cela fera appel a plusieurs fonctions permettant -->
+                    <!-- d'effectuer la fonctionnalite -->
                     <a href="panier.php?action=del&id=<?php echo $article->id; ?>">Retirer du Panier</a>
                 </td>
             </tr>
 
-        <?php if ($article == null) { ?>
-            <script type="text/javascript">
-                maFonction();
-            </script>
-        <?php break;
-        } ?>
-        <?php if ($compteur > 1) { ?>
-
+        <?php } ?>
             <tr>
+                <!-- on propose au user d'acheter -->
+                <!-- et vider son panier -->
+
+                <!-- on defini l'action sup dans l'url ainsi que -->
+                <!-- l'id du user connecter qui est concerner par l'action -->
+                <!-- cela fera appel a plusieurs fonctions permettant -->
+                <!-- d'effectuer la fonctionnalite -->
                 <td align="center" colspan="3">
-                    <a href="panier.php?action=sup&id=<?php echo $article->id; ?>">Vider le Panier</a>
+                    <a href="panier.php?action=sup&id=<?php echo $user->id; ?>">Vider le Panier</a>
                 </td>
+                
                 <td align="center">Prix Total</td>
                 <td><?php echo number_format($total, 2, '.', '') . ' € ' ?></td>
+                
+                <!-- on defini l'action sup dans l'url ainsi que -->
+                <!-- l'id du user connecter qui est concerner par l'action -->
+                <!-- cela fera appel a plusieurs fonctions permettant -->
+                <!-- d'effectuer la fonctionnalite -->
                 <td onclick="payment()" align="center" colspan="3">
-                    <a href="panier.php?action=sup&id=<?php echo $article->id; ?>">Payer</a>
+                    <a href="panier.php?action=sup&id=<?php echo $user->id; ?>">Payer</a>
                 </td>
             </tr>
-        <?php }
-        } ?>
+            <tr>
+                <td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+        </tbody>
     </table>
 
+    <!-- petit script javascript afin de récupérer dans le DOM (document object model) -->
+    <!-- c'est à dire dire le récupérer grace au navigateur le valeur de la balise a -->
+    <!-- avec l'attribut quantityValid une fois que le user à clické sur valider -->
+    <!-- pour qu'ensuite cette valeur soit passer dans l'url -->
+    <!-- afin qu'on fasse une redirection vers le panier -->
+    <!-- en lui passant dans l'url l'action correspondante-->
+    <!-- pour que la quantite du produit selectionner soit modifiable -->
+    <!-- et mette à jour la prix total à payer et pour cela on definit l'action add --> 
+    <!-- ainsi que l'id du produit qui a ete clicker et la quantite defini -->
+    <!-- afin d'apeller la faire appel a plusieurs fonctions permettant --> 
+    <!-- d'effectuer la fonctionnalite --> 
     <script type="text/javascript">
         document.querySelectorAll('a[quantityValid]').forEach(function (el) {
             el.addEventListener('click', function (event) {
@@ -72,16 +104,32 @@
             });
         });
 
-        function payment() {
-            var x = document.getElementById("payment");
-            alert("Merci pour votre achat");
-        }
-
-        function maFonction() {
-            alert("Votre panier est vide");
-        }
+    // fonction qui retourne une alerte afin d'afficher un message 
+    //dans une boite de dialogue
+    // une fois que l'utilisateur à clické sur payer
+    function payment() {
+        var x = document.getElementById("payment");
+        alert("Merci pour votre achat");
+    }
+        
+    // fonction qui retourne une alerte afin d'afficher un message dans une boite de dialogue
+    // une fois que l'utilisateur à un panier qui est vide
+    function maFonction() {
+        alert("Votre panier est vide");
+    }
+    
     </script>
-
+    
+    
+    <!-- si le panier est vide on affiche une alerte dialogue puis on sort de la boucle-->
+    <?php if (!isset($article)) { ?>
+        <script type="text/javascript">
+            maFonction();
+        </script>
+    <?php } ?>
+        
+    
+    <!-- on inclut le footer du site tout à la fin car le but est de le charger en dernier-->
     <?php require_once('include/footer.php'); ?>
 
 </div>

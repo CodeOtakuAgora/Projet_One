@@ -16,6 +16,8 @@
 			<input name="logo" type="file" placeholder="logo du produit">
 			<select name="category">
 				<?php
+				// on boucle afin de récupérer toutes les catégories 
+				// afin de proposer à l'utilisateur de choisir la catégorie de son produit
 				foreach (Bdd::getInstance()->conn->query('SELECT * FROM categories') as $row) {
 					echo '<option value="' . $row['id'] . '">' . $row['nom'] . '</option>';;
 				}
@@ -23,6 +25,8 @@
 			</select>
 			<select name="souscategory">
 				<?php
+				// on boucle afin de récupérer toutes les sous catégories
+				// afin de proposer à l'utilisateur de choisir la sous catégorie de son produit
 				foreach (Bdd::getInstance()->conn->query('SELECT * FROM sous_categories') as $row) {
 					echo '<option value="' . $row['id'] . '">' . $row['nom'] . '</option>';;
 				}
@@ -31,7 +35,8 @@
 			<input name="bouton" type="submit" value="Valider">
 		</form>
 	</div>
-
+	
+	<!-- on inclut le footer du site tout à la fin car le but est de le charger en dernier-->
 	<?php require_once('include/footer.php'); ?>
 
 </div>

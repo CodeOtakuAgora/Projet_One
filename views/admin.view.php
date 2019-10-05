@@ -2,13 +2,8 @@
     <div style="display:flex;justify-content:center;padding-top: 50px;">
         <a style="color:red;font-size:25px;" href="deconnection.php">SE DECONNECTER</a>
     </div>
-
-    <div class="contenupage">
-        <div class="container">
-            <div class="row">
+            <div class="container">
                 <h1 align="center">Espace administration
-                    <div>
-                    </div>
                     <div class="paneladmin">
                         <h3><a href="crud/index.php">Accéder au CRUD des users</a></h3>
 
@@ -19,13 +14,12 @@
                         </p>
                     </div>
             </div>
-        </div>
-    </div>
 
     <table align="center" border="10px">
         <tr>
 
-
+            <!-- on boucle sur chaque users en l'affectant -->
+            <!-- à chaque tour de boucle à une variale temporaire -->
             <?php foreach ($users as $m) { ?>
                 <td><p align="center"><?php echo $m['id'] ?> : <?php echo $m['nom'] ?> (<?php echo $m['mail'] ?>
                         )<?php if ($m['approuve'] == 0) { ?> - <a
@@ -37,10 +31,13 @@
 
         <tr>
 
-
+            <!-- on boucle sur chaque produits en l'affectant -->
+            <!-- à chaque tour de boucle à une variale temporaire -->
+            <!-- en utilisant number_format le nombre du prix sera formaté en un nombre décimal -->
             <?php foreach ($produits as $c) { ?>
                 <td><p>
-                        <img src="ressources/vetements/<?php echo $c['logo']; ?>" width="50" height="25">
+                        <img src="ressources/vetements/<?php echo $c['logo']; ?>" 
+                        width="100" height="75">
                         : <b><?php echo $c['nom'] ?></b>
                         : <?php echo $c['description'] ?> (<?php echo number_format($c['prix'], 2, '.', '') . ' € ' ?>
                         )<?php if ($c['confirme'] == 0) { ?> - <a
@@ -51,7 +48,7 @@
 
         </tr>
 
-
+         <!-- on inclut le footer du site tout à la fin car le but est de le charger en dernier-->
         <?php require_once("include/footer.php"); ?>
 
 </div>

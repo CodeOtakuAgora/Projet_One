@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 22 mai 2019 à 23:04
+-- Généré le :  ven. 04 oct. 2019 à 09:28
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -22,19 +22,17 @@ SET time_zone = "+00:00";
 -- Base de données :  `hwear`
 --
 
--- --------------------------------------------------------
+-- Expliquation fichier sql de notre site de vente : 
+-- on vérifie si il y a pas déjà une base données hwear si c'est le cas elle sera alors détruite
+-- on créer ensuite la base données hwear
+-- puis on se postionne sur la base donnée hwear afin que les tables 
+-- qui seront crées soient propre à la base de données hwear
+-- et pour finir on crée toutes nos tables en insérant toutes les données nescessaires
+-- au fonctionnement du site 
 
---
--- Structure de la table `acheteur`
---
-
-DROP TABLE IF EXISTS `acheteur`;
-CREATE TABLE IF NOT EXISTS `acheteur` (
-  `id` int(11) NOT NULL,
-  `id_panier` int(11) NOT NULL,
-  PRIMARY KEY (`id`,`id_panier`),
-  KEY `FK_acheteur_id_panier` (`id_panier`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP DATABASE IF EXISTS `hwear`;
+CREATE DATABASE `hwear`;
+USE `hwear`;
 
 -- --------------------------------------------------------
 
@@ -56,20 +54,6 @@ CREATE TABLE IF NOT EXISTS `admin` (
 
 INSERT INTO `admin` (`id`, `login`, `password`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `barre_recherche`
---
-
-DROP TABLE IF EXISTS `barre_recherche`;
-CREATE TABLE IF NOT EXISTS `barre_recherche` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `url` varchar(255) NOT NULL,
-  `keywords` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -97,40 +81,6 @@ INSERT INTO `categories` (`id`, `nom`, `id_admin`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `commande`
---
-
-DROP TABLE IF EXISTS `commande`;
-CREATE TABLE IF NOT EXISTS `commande` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `date_commande` timestamp NOT NULL,
-  `date_envoi` date NOT NULL,
-  `date_livraison` date NOT NULL,
-  `prix_commande` float NOT NULL,
-  `id_users` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_commande_id_users` (`id_users`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `commander`
---
-
-DROP TABLE IF EXISTS `commander`;
-CREATE TABLE IF NOT EXISTS `commander` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_commande` int(11) NOT NULL,
-  `id_produit` int(11) NOT NULL,
-  `nom_produit` varchar(255) NOT NULL,
-  `quantite` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `commentaires`
 --
 
@@ -143,7 +93,14 @@ CREATE TABLE IF NOT EXISTS `commentaires` (
   `id_produit` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_commentaires_id_users` (`id_produit`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `commentaires`
+--
+
+INSERT INTO `commentaires` (`id`, `message`, `pseudo`, `date_creation`, `id_produit`) VALUES
+(1, 'Cet article est super, je vous le conseille', 'test', '2019-10-04 09:27:34', 1);
 
 -- --------------------------------------------------------
 
@@ -220,48 +177,6 @@ INSERT INTO `produits` (`id`, `nom`, `description`, `prix`, `logo`, `id_categori
 -- --------------------------------------------------------
 
 --
--- Structure de la table `recherche_produits`
---
-
-DROP TABLE IF EXISTS `recherche_produits`;
-CREATE TABLE IF NOT EXISTS `recherche_produits` (
-  `id` int(11) NOT NULL,
-  `id_barre_recherche` int(11) NOT NULL,
-  PRIMARY KEY (`id`,`id_barre_recherche`),
-  KEY `FK_recherche_produits_id_barre_recherche` (`id_barre_recherche`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `relation_bon_commande`
---
-
-DROP TABLE IF EXISTS `relation_bon_commande`;
-CREATE TABLE IF NOT EXISTS `relation_bon_commande` (
-  `id` int(11) NOT NULL,
-  `id_commander` int(11) NOT NULL,
-  PRIMARY KEY (`id`,`id_commander`),
-  KEY `FK_relation_bon_commande_id_commander` (`id_commander`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `relation_commande`
---
-
-DROP TABLE IF EXISTS `relation_commande`;
-CREATE TABLE IF NOT EXISTS `relation_commande` (
-  `id` int(11) NOT NULL,
-  `id_produit` int(11) NOT NULL,
-  PRIMARY KEY (`id`,`id_produit`),
-  KEY `FK_relation_commande_id_produit` (`id_produit`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `sous_categories`
 --
 
@@ -291,20 +206,6 @@ INSERT INTO `sous_categories` (`id`, `nom`, `id_categorie`, `id_admin`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `suppression_commentaires`
---
-
-DROP TABLE IF EXISTS `suppression_commentaires`;
-CREATE TABLE IF NOT EXISTS `suppression_commentaires` (
-  `id` int(11) NOT NULL,
-  `id_commentaires` int(11) NOT NULL,
-  PRIMARY KEY (`id`,`id_commentaires`),
-  KEY `FK_suppression_commentaires_id_commentaires` (`id_commentaires`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `users`
 --
 
@@ -321,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `telephone` varchar(25) NOT NULL,
   `approuve` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `users`
@@ -336,23 +237,10 @@ INSERT INTO `users` (`id`, `nom`, `prenom`, `mail`, `password`, `rue`, `code_pos
 --
 
 --
--- Contraintes pour la table `acheteur`
---
-ALTER TABLE `acheteur`
-  ADD CONSTRAINT `FK_acheteur_id` FOREIGN KEY (`id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `FK_acheteur_id_panier` FOREIGN KEY (`id_panier`) REFERENCES `panier` (`id`);
-
---
 -- Contraintes pour la table `categories`
 --
 ALTER TABLE `categories`
   ADD CONSTRAINT `FK_categories_id_admin` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id`);
-
---
--- Contraintes pour la table `commande`
---
-ALTER TABLE `commande`
-  ADD CONSTRAINT `FK_commande_id_users` FOREIGN KEY (`id_users`) REFERENCES `users` (`id`);
 
 --
 -- Contraintes pour la table `commentaires`
@@ -368,39 +256,11 @@ ALTER TABLE `produits`
   ADD CONSTRAINT `FK_produit_id_sous_categories` FOREIGN KEY (`id_sous_categorie`) REFERENCES `sous_categories` (`id`);
 
 --
--- Contraintes pour la table `recherche_produits`
---
-ALTER TABLE `recherche_produits`
-  ADD CONSTRAINT `FK_recherche_produits_id` FOREIGN KEY (`id`) REFERENCES `produits` (`id`),
-  ADD CONSTRAINT `FK_recherche_produits_id_barre_recherche` FOREIGN KEY (`id_barre_recherche`) REFERENCES `barre_recherche` (`id`);
-
---
--- Contraintes pour la table `relation_bon_commande`
---
-ALTER TABLE `relation_bon_commande`
-  ADD CONSTRAINT `FK_relation_bon_commande_id` FOREIGN KEY (`id`) REFERENCES `commande` (`id`),
-  ADD CONSTRAINT `FK_relation_bon_commande_id_commander` FOREIGN KEY (`id_commander`) REFERENCES `commander` (`id`);
-
---
--- Contraintes pour la table `relation_commande`
---
-ALTER TABLE `relation_commande`
-  ADD CONSTRAINT `FK_relation_commande_id` FOREIGN KEY (`id`) REFERENCES `commander` (`id`),
-  ADD CONSTRAINT `FK_relation_commande_id_produit` FOREIGN KEY (`id_produit`) REFERENCES `produits` (`id`);
-
---
 -- Contraintes pour la table `sous_categories`
 --
 ALTER TABLE `sous_categories`
   ADD CONSTRAINT `FK_sous_categories_id_admin` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id`),
   ADD CONSTRAINT `FK_sous_categories_id_categories` FOREIGN KEY (`id_categorie`) REFERENCES `categories` (`id`);
-
---
--- Contraintes pour la table `suppression_commentaires`
---
-ALTER TABLE `suppression_commentaires`
-  ADD CONSTRAINT `FK_suppression_commentaires_id` FOREIGN KEY (`id`) REFERENCES `admin` (`id`),
-  ADD CONSTRAINT `FK_suppression_commentaires_id_commentaires` FOREIGN KEY (`id_commentaires`) REFERENCES `commentaires` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
