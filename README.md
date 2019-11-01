@@ -31,22 +31,32 @@ Arborescence de la Base de donnée hwear :
 ---
 ## ! IMPORTANT CHOSES A SAVOIR : 
 - Etre connecté à internet avant de lancer le projet pour les import externes
-- Les mots de passe sont hashés (cryptés) en **md5** avant d'être envoyer dans la base de donnée pour sa simplicité 
-- Le site est sécurisé et est protéger contre les injections sql et les pages sont bien protéger 
+- Avant de supprimer un utilisateur vérifiez qu'il n'a pas de donnée à lui dans la table panier, panier_produit, commentaires
+- Les mots de passe sont hashés avec la fonction password_hash de php avant d'être envoyer dans la base de donnée
+- Toutes les pages du site sont sécurisé et sont protéger contre les injections sql
 - Pour la barre de recherche vous devez renter : 
 	* t-shirt / pull / pantalon => si vous voulez un catégorie de produit
 	* jaune / rouge / blanc => si vous voulez une couleur précise
-- Mettez l'intitulez complet du nom du produit pour une une recherche précise 
+ - Mettez l'intitulez complet du nom du produit pour une une recherche précise 
 	* tels que pull jaune ou t-shirt rouge
 	* si vous n'avez aucun résultat vérifiez simplement l'orthographe 
 	* car elle doit être en accord avec soit le nom ou la description du produit
-- identifiant connection base de donnée :
+- Identifiant connection base de donnée :
 	* utilisateur : root / mot de passe :    
 	* base de donnée : hwear / hôte : localhost
-- information nescessaire pour la base de donnée
+- Information nescessaire pour la base de donnée
  	* Un panier doit avoir comme champ statut 1
 	* Un produit doit avoir comme champ confirme 1
 	* Un utilisateur doit avoir comme champ approuve 1
+- Fonctionnalités à rajouter qui pourraient être demandé lors de l'épreuve e4
+    * Permettre à l'admin de pouvoir passer un utilisateur en admin afin qu'il ait accès au back office
+    * Obliger un visiteur qui s'incrit à avoir un mot de passe de plus de 8 charactères + un chiffre/majuscule/charactère spécial
+    * Permettre à l'admin de pouvoir intéragir avec les catégories, sous catégories, produits depuis le back office
+    * Corriger le problème avec l'envoi des mails qui sont bloqués par Google
+    * Mettre plusieurs images pour un même produit
+    * Permetre à un utilisateur de pouvoir modifier ses informations et de pouvoir avoir un avatar
+    * Rajouter une classe formulaire et utilisateur pour éviter le duplicate content
+    * Utiliser le Package VS Live Share pour travailler à plusieurs sur un même fichier
 
 --- 
 ## Commencement  
@@ -56,8 +66,7 @@ Arborescence de la Base de donnée hwear :
 
 ## ! Infos Utilisateur déjà créer !
 - Administrateur : username : admin / password : admin
-- User lambda : email : test@gmail.com / password : test
-- 2ème utilisateur : email : user@gmail.com / password : user
+- User lambda testeur : email : test@gmail.com / password : test
 
 ---
 
