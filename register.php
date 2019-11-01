@@ -7,7 +7,8 @@ require_once('include/require.php');
 
 // on check l'input pour le mail,password,password de confirmation,
 // nom,prenom,rue,code postal,ville,numéro de téléphone
-// si il y une erreur on affecte le problème dans le variable d'erreur 
+// si il y une erreur on affecte le problème dans la variable d'erreur 
+// qui s'occupe d'aficher dans une pop-up toutes les erreurs si il y en a
 if ((isset($_REQUEST['email'])) && (trim($_REQUEST['email']) !== '') && (!filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL))) {
     if (isset($erreur)) {
         $erreur = $erreur . " \\n Le champ email n'est pas au bon format";
@@ -127,12 +128,19 @@ if (isset($_POST['bouton'])) {
 // si il n'y a pas d'erreur et que le formulaire a été validé 
 if (isset($_POST['bouton']) && !isset($erreur)) {
 
-    // on passe dans des variables les valeurs rentré dand les input
+    // on passe dans des variables les valeurs rentré dand les inputs tout en rajouter une guillemet simple 
+    // au début et à la fin de la valeur renté afin d'éviter que mysql nous déclenche une erreur et 
+    // pour éviter php nous déclenche une erreur on met à chaque fois un antislash car sinon php va 
+    // l'interpreter comme une guillemet qui à pour but de concaténer une requête sql
     $email = '\'' . $_REQUEST['email'] . '\'';
     $emailbis = $_REQUEST['email'];
-    $password = '\'' . md5($_REQUEST['password']) . '\'';
-    $mdpbis = md5($_REQUEST['password']);
-    $confirm = md5($_REQUEST['confirm']) . '\'';
+
+    // on récupère la valeur du champ password, puis on le hash avec la fonction password_hash de php
+    // en utilisant une signature de 12 characteres afin d'éviter qu'un hacker puisse remonter 
+    // à son mot de passe en clair
+    $password = $_REQUEST['password'];
+    $hashPassword = password_hash($password, PASSWORD_BCRYPT, array('cost'=>12));
+    $hashedPassword = '\'' . $hashPassword . '\'';
 
     $nom = '\'' . $_REQUEST['nom'] . '\'';
     $prenom = '\'' . $_REQUEST['prenom'] . '\'';
@@ -144,10 +152,10 @@ if (isset($_POST['bouton']) && !isset($erreur)) {
 
     // on éxecute l'insert des données pour la création du compte
     Bdd::getInstance()->conn->exec('INSERT INTO users (nom,prenom,rue,code_postal,ville,mail,telephone,
-            password) VALUES (' . $nom . ',' . $prenom . ',' . $rue . ',' . $cp . ',' . $ville . ',' . $email . ',' . $portable . ',' . $password . ')');
+            password) VALUES (' . $nom . ',' . $prenom . ',' . $rue . ',' . $cp . ',' . $ville . ',' . $email . ',' . $portable . ',' . $hashedPassword . ')');
 
-    //On teste si le user à bien été inséré
-    $result = Bdd::getInstance()->conn->query('SELECT * FROM `users` WHERE `mail` LIKE "' . $emailbis . '" AND `password` LIKE "' . $mdpbis . '"');
+    //On vérifie que le user à bien été inséré dans la database
+    $result = Bdd::getInstance()->conn->query('SELECT * FROM `users` WHERE `mail` LIKE "' . $emailbis . '" AND `password` LIKE "' . $hashPassword . '"');
 
     // Si c'est bon on crée une variable session pour le user
     foreach ($result as $row) {

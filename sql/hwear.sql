@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 04 oct. 2019 à 09:28
+-- Généré le :  ven. 01 nov. 2019 à 16:13
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -31,8 +31,9 @@ SET time_zone = "+00:00";
 -- au fonctionnement du site 
 
 DROP DATABASE IF EXISTS `hwear`;
-CREATE DATABASE `hwear`;
+CREATE DATABASE IF NOT EXISTS `hwear`;
 USE `hwear`;
+
 
 -- --------------------------------------------------------
 
@@ -53,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 --
 
 INSERT INTO `admin` (`id`, `login`, `password`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
+(1, 'admin', '$2y$12$paMOABEnYs2h3DDIVsPPUe5iZIX/CYU3YxzlWuzfdKNPcpkJArrdC');
 
 -- --------------------------------------------------------
 
@@ -93,14 +94,7 @@ CREATE TABLE IF NOT EXISTS `commentaires` (
   `id_produit` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_commentaires_id_users` (`id_produit`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `commentaires`
---
-
-INSERT INTO `commentaires` (`id`, `message`, `pseudo`, `date_creation`, `id_produit`) VALUES
-(1, 'Cet article est super, je vous le conseille', 'test', '2019-10-04 09:27:34', 1);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -114,15 +108,14 @@ CREATE TABLE IF NOT EXISTS `panier` (
   `id_user` int(11) NOT NULL,
   `statut` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `panier`
 --
 
 INSERT INTO `panier` (`id`, `id_user`, `statut`) VALUES
-(1, 1, 1),
-(2, 2, 1);
+(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -222,15 +215,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `telephone` varchar(25) NOT NULL,
   `approuve` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`id`, `nom`, `prenom`, `mail`, `password`, `rue`, `code_postal`, `ville`, `telephone`, `approuve`) VALUES
-(1, 'test', 'test', 'test@gmail.com', '098f6bcd4621d373cade4e832627b4f6', 'autre', 'autre', 'autre', '0631134697', 1),
-(2, 'user', 'user', 'user@gmail.com', 'ee11cbb19052e40b07aac0ca060c23ee', 'autre', 'autre', 'autre', '0631134698', 1);
+(1, 'testeur', 'testeur', 'test@gmail.com', '$2y$12$Jwdgr8ejHjsKUFrsQ4XVe.jbx9bxBPwnL7A4H1uUWfG7dwysjcBGu', 'autre', 'autre', 'autre', '0623321122', 1);
 
 --
 -- Contraintes pour les tables déchargées

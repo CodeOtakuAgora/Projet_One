@@ -163,11 +163,20 @@ label {
     #toggle:checked + .menunav .txtnav {
         display: block;
     }
+
 }
 
 @media only screen and (max-width: 380px) {
     .search {
         display: none;
+    }
+
+    .contact-container {
+        max-width: 50% !important;
+    }
+
+    .pageconnection {
+        width: 100% !important;
     }
 }
 

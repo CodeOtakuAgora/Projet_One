@@ -9,7 +9,7 @@
 </style>
 
 <div class="content">
-    <div class="container"
+    <div class="container contact-container"
          style="text-align: center; max-width: 40%;">
         <h1>Contactez Moi :</h1>
 

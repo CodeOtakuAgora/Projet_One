@@ -1,5 +1,3 @@
-<!-- on définis notre titre dynamique de la page -->
-
 <?php
 // on définit notre balise title
 $titleContact = "Page Contact";
@@ -11,7 +9,7 @@ if (isset($_POST['mailform'])) {
     if (!empty($_POST['nom']) AND !empty($_POST['prenom']) AND !empty($_POST['mail']) AND !empty($_POST['message'])) {
     	// on définit l'entete du mail en spécifiant certains configuration 
         $header = "MIME-Version: 1.0\r\n";
-        $header .= 'From:"nom_d\'expediteur"<hwear@gmail.com>' . "\n";
+        $header .= 'From:"nom_d\'expediteur"hfief1806@gmail.com' . "\n";
         $header .= 'Content-Type:text/html; charset="uft-8"' . "\n";
         $header .= 'Content-Transfer-Encoding: 8bit';
         // on définit l'affichage du contenu du mail en affichant les valeurs 

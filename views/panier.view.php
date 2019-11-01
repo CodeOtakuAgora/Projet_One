@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content table-responsive">
     <table class="table">
         <thead class="thead-dark">
             <tr>
