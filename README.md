@@ -50,7 +50,7 @@ Arborescence de la Base de donnée hwear :
 	* Un utilisateur doit avoir comme champ approuve 1
 - Fonctionnalités à rajouter qui pourraient être demandé lors de l'épreuve e4
     * Permettre à l'admin de pouvoir passer un utilisateur en admin afin qu'il ait accès au back office
-    * Obliger un visiteur qui s'incrit à avoir un password supérieur à 8 charactères + un chiffre/majuscule/charactère spécial
+    * Pour l'inscription avoir un password supérieur à 8 charactères + chiffre/majuscule/charactère spéciaux
     * Permettre à l'admin de pouvoir intéragir avec les catégories, sous catégories, produits depuis le back office
     * Corriger le problème avec l'envoi des mails qui sont bloqués par Google
     * Mettre plusieurs images pour un même produit
