@@ -31,7 +31,7 @@ Arborescence de la Base de donnée hwear :
 ---
 ## ! IMPORTANT CHOSES A SAVOIR : 
 - Etre connecté à internet avant de lancer le projet pour les import externes
-- Avant de supprimer un utilisateur vérifiez qu'il n'a pas de donnée à lui dans la table panier, panier_produit, commentaires
+- Avant de supprimer un utilisateur vérifiez qu'il n'a pas de donnée à lui dans la table panier/panier_produit/commentaires
 - Les mots de passe sont hashés avec la fonction password_hash de php avant d'être envoyer dans la base de donnée
 - Toutes les pages du site sont sécurisé et sont protéger contre les injections sql
 - Pour la barre de recherche vous devez renter : 
@@ -50,7 +50,7 @@ Arborescence de la Base de donnée hwear :
 	* Un utilisateur doit avoir comme champ approuve 1
 - Fonctionnalités à rajouter qui pourraient être demandé lors de l'épreuve e4
     * Permettre à l'admin de pouvoir passer un utilisateur en admin afin qu'il ait accès au back office
-    * Obliger un visiteur qui s'incrit à avoir un mot de passe de plus de 8 charactères + un chiffre/majuscule/charactère spécial
+    * Obliger un visiteur qui s'incrit à avoir un password supérieur à 8 charactères + un chiffre/majuscule/charactère spécial
     * Permettre à l'admin de pouvoir intéragir avec les catégories, sous catégories, produits depuis le back office
     * Corriger le problème avec l'envoi des mails qui sont bloqués par Google
     * Mettre plusieurs images pour un même produit
