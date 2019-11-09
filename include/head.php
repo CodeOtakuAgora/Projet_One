@@ -32,7 +32,8 @@
     <!-- si l'une des ces 3 variables à été défini celà signifie que l'on se trouve -->
     <!-- sur l'une des pages du dossier crud il faut donc par conséquent sortir avec ../ -->
     <!-- du dossier crud afin d'être à la racine du projet -->
-    <?php if (isset($titleAdminIndex) || isset($titleAdminEditUser) || isset($titleAdminAddUser)) { ?>
+    <?php if (isset($titleAdminIndex) || isset($titleAdminEditUser) || isset($titleAdminAddUser) || 
+              isset($titleAdminAddProduit) || isset($titleAdminEditProduit)) { ?>
         <!-- on importe le le favicon ainsi que le logo -->
         <!-- On specifi qu'on charge un certain favicon en fonction de la taille de l'écran -->
         <link rel="apple-touch-icon" sizes="57x57" href="../ressources/favicon/apple-icon-57x57.png">
@@ -125,6 +126,10 @@
             echo $titleAdminEditUser;
         } elseif (isset($titleAdminAddUser)) {
             echo $titleAdminAddUser;
+        } elseif (isset($titleAdminAddProduit)) {
+            echo $titleAdminAddProduit;
+        } elseif ($titleAdminEditProduit) {
+            echo $titleAdminEditProduit;
         }
         ?>
     </title>

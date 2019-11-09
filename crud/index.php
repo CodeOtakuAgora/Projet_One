@@ -9,6 +9,8 @@ require_once("../include/require.php");
 $result = User::getAllUser();
 $result2 = Categorie::getAllCategories();
 $result3 = Categorie::getAllSousCategories();
+$result4 = Produit::getAllProduits();
+
 // on inclut la vue (partie visible => front) de la page
 require_once("views/index.view.php");
 ?>

@@ -1,3 +1,5 @@
+<style>label { display: block;padding: 0 100px 0 0; font-size: 18px; }</style>
+
 <div class="content">
     <form name="frmUser" method="post" action="">
         <div style="width:500px;">

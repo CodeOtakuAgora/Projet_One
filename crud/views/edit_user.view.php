@@ -1,3 +1,6 @@
+<style>label { display: block;padding: 0 100px 0 0; font-size: 18px; }</style>
+
+
 <div class="content">
 
     <form name="frmUser" method="post" action="">
@@ -22,9 +25,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label>Password</label></td>
-                    <td><input type="password" name="password" class="txtField" value="">
-                    </td>
+                <td><label>Password</label></td>
+                <td><input type="password" name="password" class="txtField" value="<?php echo $user->password; ?>">
+                </td>
                 </tr>
                 <td><label>Nom</label></td>
                 <td><input type="text" name="nom" class="txtField" value="<?php echo $user->nom; ?>"></td>

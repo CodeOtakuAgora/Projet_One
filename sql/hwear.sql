@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 01 nov. 2019 à 16:13
+-- Généré le :  sam. 09 nov. 2019 à 21:49
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -33,7 +33,6 @@ SET time_zone = "+00:00";
 DROP DATABASE IF EXISTS `hwear`;
 CREATE DATABASE IF NOT EXISTS `hwear`;
 USE `hwear`;
-
 
 -- --------------------------------------------------------
 
@@ -66,7 +65,7 @@ DROP TABLE IF EXISTS `categories`;
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
-  `id_admin` int(11) NOT NULL,
+  `id_admin` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `FK_categories_id_admin` (`id_admin`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
@@ -142,10 +141,10 @@ CREATE TABLE IF NOT EXISTS `produits` (
   `nom` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `prix` float NOT NULL,
-  `logo` varchar(255) NOT NULL,
+  `logo` varchar(255) NOT NULL DEFAULT 'default.png',
   `id_categorie` int(11) NOT NULL,
   `id_sous_categorie` int(11) NOT NULL,
-  `id_admin` int(11) NOT NULL,
+  `id_admin` int(11) NOT NULL DEFAULT '1',
   `confirme` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `FK_produit_id_sous_categories` (`id_sous_categorie`),
@@ -178,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `sous_categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(25) NOT NULL,
   `id_categorie` int(11) NOT NULL,
-  `id_admin` int(11) NOT NULL,
+  `id_admin` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `FK_sous_categories_id_categories` (`id_categorie`),
   KEY `FK_sous_categories_id_admin` (`id_admin`)

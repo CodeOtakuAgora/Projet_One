@@ -31,8 +31,9 @@ Arborescence de la Base de donnée hwear :
 ---
 ## ! IMPORTANT CHOSES A SAVOIR : 
 - Etre connecté à internet avant de lancer le projet pour les import externes
-- Avant de supprimer un utilisateur vérifiez qu'il n'a pas de donnée à lui dans la table panier/panier_produit/commentaires
-- Les mots de passe sont hashés avec la fonction password_hash de php avant d'être envoyer dans la base de donnée
+- Avant de supprimer un utilisateur vérifiez qu'il n'a pas de donnée à lui dans la table panier, panier_produit, commentaires
+- Les mots de passe sont hashés avec la fonction password_hash de php car c'est la méthode la plus sécurisée à l'heure actuelle
+- Pour accéder à notre base de données en PHP on utilise PDO car il est très complet et simple d'utilisation.
 - Toutes les pages du site sont sécurisé et sont protéger contre les injections sql
 - Pour la barre de recherche vous devez renter : 
 	* t-shirt / pull / pantalon => si vous voulez un catégorie de produit
@@ -50,8 +51,8 @@ Arborescence de la Base de donnée hwear :
 	* Un utilisateur doit avoir comme champ approuve 1
 - Fonctionnalités à rajouter qui pourraient être demandé lors de l'épreuve e4
     * Permettre à l'admin de pouvoir passer un utilisateur en admin afin qu'il ait accès au back office
-    * Pour l'inscription avoir un password supérieur à 8 charactères + chiffre/majuscule/charactère spéciaux
-    * Permettre à l'admin de pouvoir intéragir avec les catégories, sous catégories, produits depuis le back office
+    * Obliger un visiteur qui s'incrit à avoir un mot de passe de plus de 8 charactères et un chiffre, une majuscule et un charactère spécial
+    * Créer un bon de commande lorqu'un achat est effectué afin d'en garder la trace
     * Corriger le problème avec l'envoi des mails qui sont bloqués par Google
     * Mettre plusieurs images pour un même produit
     * Permetre à un utilisateur de pouvoir modifier ses informations et de pouvoir avoir un avatar
