@@ -1,7 +1,7 @@
 <?php
 
 // on définit notre balise title
-$titleAdminEditUser = "Edition du CRUD Sous Categorie";
+$titleAdminCrud = "Edition du CRUD Sous Categorie";
 // on inclut notre package (librairie) qui s'occupe de charger toutes les pages dont on a besoin
 require_once("../include/require.php");
 // on vérifie si le formulaire à été validé

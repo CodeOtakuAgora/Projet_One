@@ -29,7 +29,7 @@ if (isset($_GET['search']) AND !empty($_GET['search'])) {
             <!-- si l'une des ces 3 variables à été défini celà signifie que l'on se trouve -->
             <!-- sur l'une des pages du dossier crud il faut donc par conséquent sortir avec ../ -->
             <!-- du dossier crud afin d'être à la racine du projet -->
-            <?php if (isset($titleAdminIndex) || isset($titleAdminEditUser) || isset($titleAdminAddUser)) { ?>
+            <?php if (isset($titleAdminCrud)) { ?>
                 <img width="30px" src="../ressources/logo.png" class="d-inline-block align-top" alt="">
             <?php } else { ?>
                 <img width="30px" src="ressources/logo.png" class="d-inline-block align-top" alt="">
@@ -47,7 +47,7 @@ if (isset($_GET['search']) AND !empty($_GET['search'])) {
                 <!-- si l'une des ces 3 variables à été défini celà signifie que l'on se trouve -->
                 <!-- sur l'une des pages du dossier crud il faut donc par conséquent -->
                 <!-- sortir avec ../ du dossier crud afin d'être à la racine du projet -->
-                <?php if (isset($titleAdminIndex) || isset($titleAdminEditUser) || isset($titleAdminAddUser)) { ?>
+                <?php if (isset($titleAdminCrud)) { ?>
 
                     <li class="nav-item active">
                         <a class="nav-link" href="../index.php">Accueil
@@ -124,6 +124,7 @@ if (isset($_GET['search']) AND !empty($_GET['search'])) {
         </div>
     </nav>
 
+
 <?php
 // si l'input type search à bien été défini
 if (isset($_GET['search']) AND !empty($_GET['search'])) { ?>
@@ -134,14 +135,23 @@ if (isset($_GET['search']) AND !empty($_GET['search'])) { ?>
                 <div class="card" style="width: 18rem;">
                     <!-- on boucle sur chaque produits en l'affectant -->
                     <!-- à chaque tour de boucle à une variale temporaire -->
-                    <?php foreach ($produits as $articleTrouve) { ?>
-                        <a style="text-decoration: none;" href="articles.php?id=<?php echo $articleTrouve['id'] ?>">
-                            <img class="card-img-top"
-                                 src="ressources/vetements/<?php echo $articleTrouve['logo'] ?>"
-                                 title="<?php echo $articleTrouve['nom'] ?>"
-                                 width="250px" height="250px">
-                        </a>
-                    <?php } ?>
+                    <?php foreach ($produits as $articleTrouve) { 
+                        if(!isset($titleAdminCrud)) { ?>
+                            <a style="text-decoration: none;" href="articles.php?id=<?php echo $articleTrouve['id'] ?>">
+                                <img class="card-img-top"
+                                    src="ressources/vetements/<?php echo $articleTrouve['logo'] ?>"
+                                    title="<?php echo $articleTrouve['nom'] ?>"
+                                    width="250px" height="250px">
+                            </a>
+                        <?php } else { ?>
+                            <a style="text-decoration: none;" href="../articles.php?id=<?php echo $articleTrouve['id'] ?>">
+                                <img class="card-img-top"
+                                    src="../ressources/vetements/<?php echo $articleTrouve['logo'] ?>"
+                                    title="<?php echo $articleTrouve['nom'] ?>"
+                                    width="250px" height="250px">
+                            </a>
+                        
+                    <?php } } ?>
                 </div>
             </div>
         <?php } else { ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  sam. 09 nov. 2019 à 21:49
+-- Généré le :  lun. 11 nov. 2019 à 15:10
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -33,6 +33,7 @@ SET time_zone = "+00:00";
 DROP DATABASE IF EXISTS `hwear`;
 CREATE DATABASE IF NOT EXISTS `hwear`;
 USE `hwear`;
+
 
 -- --------------------------------------------------------
 
@@ -93,7 +94,14 @@ CREATE TABLE IF NOT EXISTS `commentaires` (
   `id_produit` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_commentaires_id_users` (`id_produit`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `commentaires`
+--
+
+INSERT INTO `commentaires` (`id`, `message`, `pseudo`, `date_creation`, `id_produit`) VALUES
+(1, 'ceci est un commentaire de test', 'test', '2019-11-11 15:07:15', 1);
 
 -- --------------------------------------------------------
 

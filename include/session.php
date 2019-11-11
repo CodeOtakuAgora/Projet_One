@@ -41,6 +41,24 @@ if (isset($titlePanier) || isset($titleUser) || isset($titleAdmin)) {
     }
 }
 
+if (isset($titleAdminCrud)) {
+    if (!isset($_SESSION['login'])) {
+        echo '
+                <script type="text/javascript">
+                    location.href = \'../login.php\';
+                </script>';
+    }
+}
+
+if (isset($titleAdminCrud)) {
+    if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
+        echo '
+                <script type="text/javascript">
+                    location.href = \'../login.php\';
+                </script>';
+    }
+}
+
 // si le user essaye d'accéder à la page admin 
 // qui est propre à l'administrateur à travers l'url 
 // alors on le redirige vers la page connection qui est propre à l'admin
@@ -48,7 +66,7 @@ if (isset($titleAdmin)) {
     if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
         echo '
 	            <script type="text/javascript">
-		            location.href = \'adminConnect.php\';
+		            location.href = \'login.php\';
 	            </script>';
     }
 }

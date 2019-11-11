@@ -3,7 +3,11 @@
     <div class="cookie-alert">
         <p>Mon site utilise des cookies pour vous offrir le meilleur service possible. En continuant votre navigation,
         vous en acceptez l'utilisation.
-        <a href="include/accept_cookie.php">OK</a></p>
+        <?php if(!isset($titleAdminCrud)) { ?>
+            <a href="include/accept_cookie.php">OK</a></p>
+        <?php } else { ?>
+            <a href="../include/accept_cookie.php">OK</a></p>
+        <?php } ?>
     </div>
 <!-- fin du if -->
 <?php endif;  ?>

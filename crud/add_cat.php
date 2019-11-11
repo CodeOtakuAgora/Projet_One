@@ -1,7 +1,7 @@
 <?php
 
 // on définit notre balise title
-$titleAdminAddUser = "Ajout du CRUD Catégorie";
+$titleAdminCrud = "Ajout du CRUD Catégorie";
 // on inclut notre package (librairie) qui s'occupe de charger toutes les pages dont on a besoin
 require_once("../include/require.php");
 

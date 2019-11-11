@@ -1,7 +1,7 @@
 <?php
 
 // on définit notre balise title
-$titleAdminEditProduit = "Edition du CRUD Produit";
+$titleAdminCrud = "Edition du CRUD Produit";
 // on inclut notre package (librairie) qui s'occupe de charger toutes les pages dont on a besoin
 require_once("../include/require.php");
 // on vérifie si le formulaire à été validé
