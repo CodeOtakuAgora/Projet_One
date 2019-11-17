@@ -6,7 +6,7 @@
                 <h1 align="center">Espace administration
                     <div class="paneladmin">
                         <h3><a href="crud/index.php">Accéder au CRUD des users</a></h3>
-
+                        <!-- on affiche le nombre d'utilisateurs présents dans la database -->
                         <p>
                             Il y a
                             <?php $nbclients = nbclients();
@@ -18,8 +18,8 @@
     <table align="center" border="10px">
         <tr>
 
-            <!-- on boucle sur chaque users en l'affectant -->
-            <!-- à chaque tour de boucle à une variale temporaire -->
+            <!-- on boucle sur chaque users qui à comme champ approuve 0 en l'affectant -->
+            <!-- à chaque tour de boucle à une variable temporaire -->
             <?php foreach ($users as $m) { ?>
                 <td><p align="center"><?php echo $m['id'] ?> : <?php echo $m['nom'] ?> (<?php echo $m['mail'] ?>
                         )<?php if ($m['approuve'] == 0) { ?> - <a
@@ -31,8 +31,8 @@
 
         <tr>
 
-            <!-- on boucle sur chaque produits en l'affectant -->
-            <!-- à chaque tour de boucle à une variale temporaire -->
+            <!-- on boucle sur chaque produits qui à comme champ confirme 0 en l'affectant -->
+            <!-- à chaque tour de boucle à une variable temporaire -->
             <!-- en utilisant number_format le nombre du prix sera formaté en un nombre décimal -->
             <?php foreach ($produits as $c) { ?>
                 <td><p>

@@ -12,6 +12,7 @@ if (count($_POST) > 0) {
     $user = User::updateUser($_POST["mail"], $_POST["password"], $_POST["nom"], $_POST["prenom"], $_POST["rue"], $_POST["code_postal"], $_POST["ville"], $_POST["telephone"], $_POST['id']);
 
     // on vérifie que le mail qui à été ajouté correspond bien au mail passé dans l'input
+    // et on affiche le message de succès ou d'echec
     if ($user->mail === $_POST["mail"]) {
         $message = "Record Modified Successfully";
     } else {
@@ -21,7 +22,7 @@ if (count($_POST) > 0) {
 
 }
 
-// on apelle la fonction updateUser qui appartient à la classe User 
+// on apelle la fonction getUser qui appartient à la classe User 
 // en lui passant l'id du user afin de mettre à jour uniquement le user selectionné
 $user = User::getUser($_GET["id"]);
 

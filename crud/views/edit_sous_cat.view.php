@@ -27,7 +27,7 @@
                 <select name="category">
                 <?php
                 // on boucle afin de récupérer toutes les catégories 
-                // afin de proposer à l'utilisateur de choisir la catégorie de son produit
+                // afin de proposer à l'utilisateur de choisir la catégorie de sa sous catégorie
                 foreach (Bdd::getInstance()->conn->query('SELECT * FROM categories') as $row) {
                     echo '<option value="' . $row['id'] . '">' . $row['nom'] . '</option>';;
                 }

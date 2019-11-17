@@ -1,6 +1,6 @@
 <?php
 // on définit notre balise title
-$titleRegister = "Page d'Inscription";
+$title = "Page d'Inscription";
 // on inclut notre package (librairie) qui s'occupe de charger toutes les pages dont on a besoin
 require_once('include/require.php');
 

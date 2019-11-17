@@ -8,7 +8,7 @@ class Produit extends Bdd
     
     // fonction publique (visible et utilisable partout dans le projet) 
     // statique (qui garde la meme signature partout dans le projet)
-    // qui retourne toutes les categories trier par id
+    // qui retourne tout les produits trier par id
     public static function getAllProduits()
     {
         return Bdd::getInstance()->conn->query('SELECT * FROM produits ORDER BY id')->fetchAll();
@@ -16,7 +16,7 @@ class Produit extends Bdd
 
     // fonction publique (visible et utilisable partout dans le projet) 
     // statique (qui garde la meme signature partout dans le projet)
-    // qui retourne tous les users ou l'id est égale à l'id passé en parametre
+    // qui retourne tout les produits ou l'id est égale à l'id passé en parametre
     public static function getProduit($idProduit)
     {
         return Bdd::getInstance()->conn->query('SELECT * FROM `produits` WHERE `id` = "' . $idProduit . '"')->fetchObject();
@@ -24,8 +24,8 @@ class Produit extends Bdd
 
     // fonction publique (visible et utilisable partout dans le projet) 
     // statique (qui garde la meme signature partout dans le projet)
-    // qui retourne tous les produits disponible à la vente avec la colonne confirme = 1 
-    // trier par sa sous catégorie et par son id  
+    // qui retourne tout les produits disponible à la vente avec la colonne confirme = 1 
+    // et qui sont trier par sa sous catégorie et par son id  
     public static function getProduitsByIdSousCategorie($id)
     {
         $sql = sprintf('SELECT * FROM produits WHERE id_sous_categorie = %d AND confirme = 1 ORDER BY id', $id);
@@ -35,7 +35,7 @@ class Produit extends Bdd
 
      // fonction publique (visible et utilisable partout dans le projet) 
     // statique (qui garde la meme signature partout dans le projet)
-    // qui retourne les categories qui viennent d'etre créer une fois la requete executé
+    // qui retourne les produits qui viennent d'etre créer une fois la requete executé
     public static function setProduit($nom, $description, $prix, $category, $souscategory) 
     {
         $prix = (float) $prix;
@@ -53,8 +53,8 @@ class Produit extends Bdd
 
     // fonction publique (visible et utilisable partout dans le projet) 
     // statique (qui garde la meme signature partout dans le projet)
-    // qui retourne le user dont les informations 
-    // viennent d'etre mis à jour une fois la requete executé
+    // qui retourne le produit dont les informations 
+    // viennent d'etre mise à jour une fois la requete executé
     public static function updateProduit($nom, $description, $prix, $category, $souscategory, $id)
     {
         $sql = "UPDATE `produits` SET `nom` = ?, `description` = ?, `prix` = ?, `id_categorie` = ?, 

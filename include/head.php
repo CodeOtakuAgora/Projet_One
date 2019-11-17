@@ -12,7 +12,7 @@
 ##     ##  ###  ###  ######## ##     ## ##     ## 
 
 ==============================================================
-==================== https://hwear.fr/ ==========
+==================== https://bit.ly/37bCzeU ==========
 ==============================================================
 -->
 
@@ -24,7 +24,7 @@
 
     <!-- IMPORT DE BOOTSTRAP POUR LE MENU RESPONSIVE -->
     <!-- afin d'avoir le style de bootstrap dans toutes les pages --> 
-    <!-- ainsi que le menu hamburger -->
+    <!-- ainsi que le menu hamburger fonctionnel -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
@@ -32,11 +32,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
     </script>
 
-    <!-- si l'une des ces 3 variables à été défini celà signifie que l'on se trouve -->
+    <!-- si cette variable à été défini celà signifie que l'on se trouve -->
     <!-- sur l'une des pages du dossier crud il faut donc par conséquent sortir avec ../ -->
     <!-- du dossier crud afin d'être à la racine du projet -->
     <?php if (isset($titleAdminCrud)) { ?>
-        <!-- on importe le le favicon ainsi que le logo -->
+        <!-- on importe le favicon qui est propre au logo hwear ainsi que le style.css -->
         <!-- On specifi qu'on charge un certain favicon en fonction de la taille de l'écran -->
         <link rel="apple-touch-icon" sizes="57x57" href="../ressources/favicon/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="../ressources/favicon/apple-icon-60x60.png">
@@ -59,8 +59,8 @@
         <link type="text/css" rel="stylesheet" href="../include/style.css">
 
     <!-- si on ne trouve pas dans dans le crud alors ce sera ce chemin la par défaut -->
-    <!-- on importe le le favicon ainsi que le logo -->
     <?php } else { ?>
+        <!-- on importe le favicon qui est propre au logo hwear ainsi que le style.css -->
         <!-- On specifi qu'on charge un certain favicon en fonction de la taille de l'écran -->
         <link rel="apple-touch-icon" sizes="57x57" href="ressources/favicon/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="ressources/favicon/apple-icon-60x60.png">
@@ -100,29 +100,17 @@
     <!-- on définit le titre de chaque page car en fait chaque page possede une variable -->
     <!-- qui se nomme générallement title  + le titre de la page en camelCase-->
     <!-- qui contient le titre de la page et donc on vérifit si elle est définit -->
-    <!-- et si c'est le cas le contenu de cette variable sera alors le contenu de la balise title ce qui nous permet -->
-    <!-- d'avoir un titre dynamique propre à chaque page -->
+    <!-- et si c'est le cas le contenu de cette variable sera alors le contenu de la balise title -->
+    <!-- ce qui nous permet d'avoir un titre dynamique propre à chaque page -->
     <title><?php
-        if (isset($titleIndex)) {
-            echo $titleIndex;
-        } elseif (isset($titleContact)) {
-            echo $titleContact;
-        } elseif (isset($titleRegister)) {
-            echo $titleRegister;
-        } elseif (isset($titleLogin)) {
-            echo $titleLogin;
-        } elseif (isset($titleAdminConnect)) {
-            echo $titleAdminConnect;
-        } elseif (isset($titleProduits)) {
-            echo $titleProduits;
-        } elseif (isset($titleArticles)) {
-            echo $titleArticles;
+        if (isset($title)) {
+            echo $title;
+        } elseif (isset($titleUser)) {
+            echo $titleUser;
         } elseif (isset($titlePanier)) {
             echo $titlePanier;
         } elseif (isset($titleAdmin)) {
             echo $titleAdmin;
-        } elseif (isset($titleUser)) {
-            echo $titleUser;
         } elseif (isset($titleAdminCrud)) {
             echo $titleAdminCrud;
         }

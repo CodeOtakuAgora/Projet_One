@@ -10,6 +10,7 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == "admin") {
 
     // si l'admin à clické sur le bouton approuver on met à jour le user 
     // avec le statut approuve = 1 en passant le type user dans l'url et en parametre
+    // en convertissant la valeur en int
     if (isset($_GET['type']) AND $_GET['type'] == 'users') {
         if (isset($_GET['approuve']) AND !empty($_GET['approuve'])) {
             $approuve = (int)$_GET['approuve'];
@@ -17,7 +18,8 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == "admin") {
             $req->execute(array($approuve));
         }
     // si l'admin à clické supprimmer on supprime le user selectionné 
-    // avec le statut approuve = 0   
+    // avec le statut approuve = 0
+    // en convertissant la valeur en int  
     if (isset($_GET['supprime']) AND !empty($_GET['supprime'])) {
         $supprime = (int)$_GET['supprime'];
         $req = Bdd::getInstance()->conn->prepare('DELETE FROM users WHERE id = ?');
@@ -25,6 +27,7 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == "admin") {
     }
     // si l'admin à clické sur le bouton confirmer on met à jour le produit 
     // avec le statut confirme = 1 en passant le type produit dans l'url et en parametre
+    // en convertissant la valeur en int
     } elseif (isset($_GET['type']) AND $_GET['type'] == 'produits') {
         if (isset($_GET['confirme']) AND !empty($_GET['confirme'])) {
             $confirme = (int)$_GET['confirme'];
@@ -32,14 +35,15 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == "admin") {
             $req->execute(array($confirme));
         }
     // si l'admin à clické supprimmer on supprime le produit selectionné 
-    // avec le statut confirme = 0   
+    // avec le statut confirme = 0
+    // en convertissant la valeur en int
     if (isset($_GET['supprime']) AND !empty($_GET['supprime'])) {
         $supprime = (int)$_GET['supprime'];
         $req = Bdd::getInstance()->conn->prepare('DELETE FROM produits WHERE id = ?');
         $req->execute(array($supprime));
     }
 }
-    // on récupère tout les user et produit présents dans la base données 
+    // on récupère tout les user et produit présents dans la base données qui ont comme champ approuve/confirme 0
     // et on les passe dans des variables
     $users = Bdd::getInstance()->conn->query('SELECT * FROM users WHERE approuve = 0 ORDER BY id DESC');
     $produits = Bdd::getInstance()->conn->query('SELECT * FROM produits WHERE confirme = 0 ORDER BY id DESC');

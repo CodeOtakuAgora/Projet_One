@@ -1,6 +1,6 @@
 <?php
 // on définit notre balise title
-$titleContact = "Page Contact";
+$title = "Page Contact";
 // on inclut notre package (librairie) qui s'occupe de charger toutes les pages dont on a besoin
 require_once('include/require.php');
 

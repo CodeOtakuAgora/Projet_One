@@ -211,7 +211,8 @@ p {
 }
 
 
-/**********FORMLOGIN**********/
+/**********FORM LOGIN**********/
+
 .pageconnection {
     width: 50%;
     margin: auto;
@@ -285,7 +286,7 @@ input {
     justify-content: space-between;
 }
 
-/**********FORMREGISTERR**********/
+/**********FORM REGISTER**********/
 .registerr {
     margin: auto;
     display: flex;
@@ -378,7 +379,7 @@ input {
     font-size: 11px;
 }
 
-/**********COOKIES**********/
+/**********BANNIERE COOKIES**********/
 .cookie-alert {
     position: fixed;
     bottom: 20px;

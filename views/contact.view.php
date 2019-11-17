@@ -36,7 +36,7 @@
             <p id="message"></p>
         </form>
 
-        <!-- si il y a un message à afficher alors affiche le -->
+        <!-- si il y a un message d'echec ou de réussite à afficher alors affiche le -->
         <?php if (isset($msg)) {
             echo $msg;
         }

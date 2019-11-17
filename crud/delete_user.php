@@ -1,5 +1,6 @@
 <?php
-// on retiend l’envoi de données
+// on retiend l’envoi de données afin d'éviter d'avoir un erreur 
+// par rapport à la surcharge de l'envoie de donnée
 ob_start();
 // on inclut notre package (librairie) qui s'occupe de charger toutes les pages dont on a besoin
 require_once("../include/require.php");

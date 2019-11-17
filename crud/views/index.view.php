@@ -29,6 +29,7 @@
                         else
                             $classname = "oddRow";
                         ?>
+                        <!-- on affiche toutes les infos des utilisateurs -->
                         <tr class="<?php if (isset($classname)) echo $classname; ?>">
                             <td><?php echo $row["id"] ?></td>
                             <td><?php echo $row["nom"]; ?></td>
@@ -79,6 +80,7 @@
                         else
                             $classname = "oddRow";
                         ?>
+                        <!-- on affiche toutes les infos des catégories -->
                         <tr class="<?php if (isset($classname)) echo $classname; ?>">
                             <td><?php echo $row["id"]; ?></td>
                             <td><?php echo $row["nom"]; ?></td>
@@ -124,6 +126,7 @@
                         else
                             $classname = "oddRow";
                         ?>
+                        <!-- on affiche toutes les infos des sous catégories -->
                         <tr class="<?php if (isset($classname)) echo $classname; ?>">
                             <td><?php echo $row['id'] ?></td>
                             <td><?php echo $row["nom"]; ?></td>
@@ -172,6 +175,7 @@
                         else
                             $classname = "oddRow";
                         ?>
+                        <!-- on affiche toutes les infos des produits -->
                         <tr class="<?php if (isset($classname)) echo $classname; ?>">
                             <td><?php echo $row['id']; ?></td>
                             <td><img src="../ressources/vetements/<?php echo $row['logo']; ?>" 

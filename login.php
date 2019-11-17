@@ -1,7 +1,7 @@
 <?php
 
 // on définit notre balise title
-$titleLogin = "Page de Connection";
+$title = "Page de Connection";
 // on inclut notre package (librairie) qui s'occupe de charger toutes les pages dont on a besoin
 require_once('include/require.php');
 

@@ -53,7 +53,7 @@ class User extends Bdd
     // fonction publique (visible et utilisable partout dans le projet) 
     // statique (qui garde la meme signature partout dans le projet)
     // qui retourne le user dont les informations 
-    // viennent d'etre mis à jour une fois la requete executé
+    // viennent d'etre mise à jour une fois la requete executé
     public static function updateUser($mail, $password, $nom, $prenom, $rue, $code_postal, $ville, $telephone, $id)
     {
         $sql = "UPDATE `users` SET `mail` = ?, `password` = ?, `nom` = ?, `prenom` = ?,`rue` = ?, `code_postal` = ?, `ville` = ?, `telephone` = ? WHERE `id` = ?";

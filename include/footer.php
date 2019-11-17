@@ -5,6 +5,8 @@
         vous en acceptez l'utilisation.
         <?php if(!isset($titleAdminCrud)) { ?>
             <a href="include/accept_cookie.php">OK</a></p>
+        <!-- si on se trouve dans le répertoire du crud alors il faut sortir du dossier crud -->
+        <!-- c'est pourquoi on utilise le ../ pour revenir à la racine du site -->
         <?php } else { ?>
             <a href="../include/accept_cookie.php">OK</a></p>
         <?php } ?>

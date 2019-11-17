@@ -7,12 +7,11 @@ require_once("../include/require.php");
 
 // on vérifie si le formulaire à été validé
 if (count($_POST) > 0) {
-	// on apelle la fonction setUser qui appartient à la classe User en lui passant en paramettre 
+	// on apelle la fonction setCategorie qui appartient à la classe Categorie en lui passant en paramettre 
 	// les valeurs de ce qui a été rentré dans les inputs
     $user = Categorie::setCategorie($_POST["nom"]);
-
-    // on vérifie que le mail qui à été ajouté correspond bien au mail passé dans l'input
-        $message = "Nouvelle Catégorie Ajouté Avec Succès";
+    // puis on affiche le message de succès
+    $message = "Nouvelle Catégorie Ajouté Avec Succès";
 }
 
 // on inclut la vue (partie visible => front) de la page

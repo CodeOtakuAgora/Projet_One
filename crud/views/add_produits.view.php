@@ -40,8 +40,8 @@
                 <tr><td>
                         <select name="souscategory">
                         <?php
-                        // on boucle afin de récupérer toutes les catégories 
-                        // afin de proposer à l'utilisateur de choisir la catégorie de son produit
+                        // on boucle afin de récupérer toutes les sous catégories 
+                        // afin de proposer à l'utilisateur de choisir la sous catégorie de son produit
                         foreach (Bdd::getInstance()->conn->query('SELECT * FROM sous_categories') as $row) {
                             echo '<option value="' . $row['id'] . '">' . $row['nom'] . '</option>';;
                         }

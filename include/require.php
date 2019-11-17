@@ -2,13 +2,14 @@
 // on active l'affichage des erreurs
 ini_set('display_errors', 'on');
 // on stocke dans une variable le chemin absolu (complet) du fichier sur lequel on se trouve
+// au moment ou cette page est apellé
 $base = dirname(__FILE__);
     // on inclut le démarrage de la session et qui définit le menu 
-    //si il est connecté en user ou en admin ou si il n'est pas connecté
+    // si il est connecté en user ou en admin ou si il n'est pas connecté
     require_once($base . "/session.php");
 
     // on inclut toutes les class qui contienent toutes les fonctions 
-    // qui s'occupent de faire toutes les requetes nescessaires qui composent la class
+    // qui s'occupent de faire toutes les requetes nescessaires sur la database
     require_once($base . "/class/Db.php");
     require_once($base . "/class/Util.php");
     require_once($base . "/class/Panier.php");

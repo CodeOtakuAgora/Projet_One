@@ -7,7 +7,7 @@ require_once('include/require.php');
 // on vérifie que c'est bien le user qui est connecté
 if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
 
-    // fonction qui retourne le nombre de users en sécurisant les données
+    // fonction qui retourne le fichier en sécurisant les données envoyées
     function checkInput($data)
     {
         $data = trim($data);
@@ -16,7 +16,8 @@ if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
         return $data;
     }
 
-    // on définit le chemin du dossier pour stocker l'image 
+    // on définit le chemin du dossier pour stocker l'image
+    // puis on stocke le nom, l'extension de l'image ainsi que le chemin relatif de l'endroit ou l'image doit etre stocké
     $image = '';
     $imagePath = '';
     $imageExtension = '';
@@ -36,7 +37,7 @@ if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
 
     if ($image != '' && $image2 != '') 
     {
-        // on vérifie l'extension,taille,nom du fichier envoyé
+        // on vérifie l'extension,taille,nom du fichier envoyé pour les 2 images
         $isUploadSuccess = true;
         if ($imageExtension != "jpg" && $imageExtension != "png" && $imageExtension != "jpeg" && $imageExtension != "gif") {
             $erreur = "Les fichiers autorises sont: .jpg, .jpeg, .png, .gif";

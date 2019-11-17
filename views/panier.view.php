@@ -24,6 +24,7 @@
             $article = Bdd::getInstance()->conn->query(sprintf('SELECT * FROM `produits`, `panier_produit` WHERE `id` = %s', $produit['id_produit']))->fetchObject();
             ?>
         <tbody>
+            <!-- on affiche toutes les infos du produits qui à été ajouter au panier -->
             <tr>
                 <td><img src="ressources/vetements/<?php echo $article->logo ?>"
                          width=40 heigh=35>
@@ -31,6 +32,7 @@
                 <td><?php echo $article->nom ?></td>
                 <td><?php echo $article->description ?></td>
                 <td><?php echo number_format($article->prix, 2, '.', '') . ' € ' ?></td>
+                <!-- on récupére le prix total actuel et on l'augmente si une nouvelle quantité est defini -->
                 <?php
                 $prix = $article->prix * $produit['quantity'];
                 $total = $total + $prix;
@@ -40,6 +42,8 @@
                     <input name="number" id="quantity<?php echo $article->id ?>" style="width:50px" type="number"
                            value="<?php echo $produit['quantity'] ?>" min=1>
                 </td>
+                <!-- on défini l'attribut quantityValid afin de pouvoir cibler cet element en javascript -->
+                <!-- en sachant que le contenu de cet attribut contient la quantité actuelle -->
                 <td name="validator">
                     <a href="#" id="<?php echo $article->id ?>" quantityValid="quantity<?php echo $article->id ?>">Valider</a>
                 </td>
@@ -65,6 +69,8 @@
                     <a href="panier.php?action=sup&id=<?php echo $user->id; ?>">Vider le Panier</a>
                 </td>
                 
+                <!-- on affiche le prix total qui de base est une string c'est pourquoi on utilise le -->
+                <!-- number format afin de le convertir en un nombre à virgule -->
                 <td align="center">Prix Total</td>
                 <td><?php echo number_format($total, 2, '.', '') . ' € ' ?></td>
                 
@@ -83,6 +89,7 @@
     </table>
 
     <!-- petit script javascript afin de récupérer dans le DOM (document object model) -->
+    <!-- donc du côté client la nouvelle quantité du produit qui à été modifié et mettre à jour le prix total -->
     <!-- c'est à dire dire le récupérer grace au navigateur le valeur de la balise a -->
     <!-- avec l'attribut quantityValid une fois que le user à clické sur valider -->
     <!-- pour qu'ensuite cette valeur soit passer dans l'url -->
@@ -91,8 +98,10 @@
     <!-- pour que la quantite du produit selectionner soit modifiable -->
     <!-- et mette à jour la prix total à payer et pour cela on definit l'action add --> 
     <!-- ainsi que l'id du produit qui a ete clicker et la quantite defini -->
-    <!-- afin d'apeller la faire appel a plusieurs fonctions permettant --> 
-    <!-- d'effectuer la fonctionnalite --> 
+    <!-- afin d'apeller ou de faire appel a plusieurs fonctions permettant --> 
+    <!-- d'effectuer la fonctionnalite de mise à jour de la quantité sachant que le but est de récupérer -->
+    <!-- la valeur qui se trouve dans l'input est de la passer dans l'url afi qu'en php on puisse --> 
+    <!-- récupérer cette quantité --> 
     <script type="text/javascript">
         document.querySelectorAll('a[quantityValid]').forEach(function (el) {
             el.addEventListener('click', function (event) {
@@ -105,7 +114,7 @@
         });
 
     // fonction qui retourne une alerte afin d'afficher un message 
-    //dans une boite de dialogue
+    // dans une boite de dialogue
     // une fois que l'utilisateur à clické sur payer
     function payment() {
         var x = document.getElementById("payment");
@@ -117,11 +126,10 @@
     function maFonction() {
         alert("Votre panier est vide");
     }
-    
     </script>
     
     
-    <!-- si le panier est vide on affiche une alerte dialogue puis on sort de la boucle-->
+    <!-- si le panier est vide alors on affiche une alerte dialogue pour nous l'informer -->
     <?php if (!isset($article)) { ?>
         <script type="text/javascript">
             maFonction();

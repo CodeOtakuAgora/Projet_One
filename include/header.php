@@ -26,7 +26,7 @@ if (isset($_GET['search']) AND !empty($_GET['search'])) {
     <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">
-            <!-- si l'une des ces 3 variables à été défini celà signifie que l'on se trouve -->
+            <!-- si cette variable à été défini celà signifie que l'on se trouve -->
             <!-- sur l'une des pages du dossier crud il faut donc par conséquent sortir avec ../ -->
             <!-- du dossier crud afin d'être à la racine du projet -->
             <?php if (isset($titleAdminCrud)) { ?>
@@ -44,7 +44,7 @@ if (isset($_GET['search']) AND !empty($_GET['search'])) {
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <!-- si l'une des ces 3 variables à été défini celà signifie que l'on se trouve -->
+                <!-- si cette variable à été défini celà signifie que l'on se trouve -->
                 <!-- sur l'une des pages du dossier crud il faut donc par conséquent -->
                 <!-- sortir avec ../ du dossier crud afin d'être à la racine du projet -->
                 <?php if (isset($titleAdminCrud)) { ?>
@@ -103,7 +103,7 @@ if (isset($_GET['search']) AND !empty($_GET['search'])) {
                     // alors on lui affiche un menu qui est en accord avec les pages 
                     // avec lesquelles il a le droit d'accès
                     // PS : on met un anti slash (\) afin d'echapper l'apostrophe 
-                    // afin qu'il puisse être affiche sur le site
+                    // afin qu'il puisse être afficher sur le site et qu'il ne soit pas interpreter en php 
                     else {
                         echo '
                         <li class="nav-item">
@@ -134,8 +134,12 @@ if (isset($_GET['search']) AND !empty($_GET['search'])) { ?>
             <div class="row" style="display: flex;justify-content: center;">
                 <div class="card" style="width: 18rem;">
                     <!-- on boucle sur chaque produits en l'affectant -->
-                    <!-- à chaque tour de boucle à une variale temporaire -->
-                    <?php foreach ($produits as $articleTrouve) { 
+                    <!-- à chaque tour de boucle à une variable temporaire -->
+                    <!-- et on affiche le produit ou les produits qui ont été trouvés -->
+                    <?php foreach ($produits as $articleTrouve) {
+                        /* si cette variable à été défini celà signifie que l'on se trouve */
+                        /* sur l'une des pages du dossier crud il faut donc par conséquent */
+                        /* sortir avec ../ du dossier crud afin d'être à la racine du projet */
                         if(!isset($titleAdminCrud)) { ?>
                             <a style="text-decoration: none;" href="articles.php?id=<?php echo $articleTrouve['id'] ?>">
                                 <img class="card-img-top"

@@ -7,12 +7,13 @@ require_once("../include/require.php");
 
 // on vérifie si le formulaire à été validé
 if (count($_POST) > 0) {	
-	// on apelle la fonction setUser qui appartient à la classe User en lui passant en paramettre 
+	// on apelle la fonction setProduit qui appartient à la classe Produit en lui passant en paramettre 
 	// les valeurs de ce qui a été rentré dans les inputs
     $produit = Produit::setProduit($_POST["nom"], $_POST["description"], $_POST["prix"], 
     	$_POST["category"], $_POST["souscategory"]);
 
-    // on vérifie que le mail qui à été ajouté correspond bien au mail passé dans l'input
+    // on vérifie que le nom qui à été ajouté correspond bien au nom passé dans l'input
+    // et on affiche le message de succès ou d'echec
     if ($_POST["nom"] === $_POST["nom"]) {
         $message = "Nouveau Produit Ajouté Avec Succès";
     } else {

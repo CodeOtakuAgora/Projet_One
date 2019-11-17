@@ -13,6 +13,7 @@ if (count($_POST) > 0) {
     	$_POST["code_postal"], $_POST["ville"], $_POST["telephone"]);
 
     // on vérifie que le mail qui à été ajouté correspond bien au mail passé dans l'input
+    // et on affiche le message de succès ou d'echec
     if ($user->mail === $_POST["mail"]) {
         $message = "Nouvel Utilisateur Ajouté Avec Succès";
     } else {

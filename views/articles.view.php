@@ -35,16 +35,16 @@
  <!-- si il y un message à afficher alors affiche le --> 
  <?php if(isset($c_msg)) { echo $c_msg; } ?>
   <!-- on boucle sur chaque commentaires en l'affectant -->
-  <!-- à chaque tour de boucle à une variale temporaire -->
+  <!-- à chaque tour de boucle à une variable temporaire -->
  <?php foreach($commentaires as $c) { ?>
      <p align="center"><b>Pseudo : <?php echo $c['pseudo'] ?> 
      / Commentaire : <?php echo $c['message'] ?> 
-     / fait le : <?php echo $c['date_creation']; ?></b></p>
+     / Fait le : <?php echo $c['date_creation']; ?></b></p>
  <?php } } ?>
   
 
-  <!-- script javascript qui fait un slider avec les 2 images qui cache la deuxième image -->
-  <!-- et l'affiche après 3 secondes -->
+  <!-- script javascript qui fait un slider avec les 2 images pour un produit qui cache la deuxième image -->
+  <!-- et l'affiche après 3 secondes automatiquement -->
  <script>
     var myIndex = 0;
     carousel();

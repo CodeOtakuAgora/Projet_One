@@ -76,8 +76,8 @@ class Categorie extends Bdd
 
     // fonction publique (visible et utilisable partout dans le projet) 
     // statique (qui garde la meme signature partout dans le projet)
-    // qui retourne le user dont les informations 
-    // viennent d'etre mis à jour une fois la requete executé
+    // qui retourne la categorie dont les informations 
+    // viennent d'etre mise à jour une fois la requete executé
     public static function updateCat($nom, $id)
     {
         $sql = "UPDATE `categories` SET `nom` = ? WHERE `id` = ?";
@@ -91,8 +91,8 @@ class Categorie extends Bdd
 
     // fonction publique (visible et utilisable partout dans le projet) 
     // statique (qui garde la meme signature partout dans le projet)
-    // qui retourne le user dont les informations 
-    // viennent d'etre mis à jour une fois la requete executé
+    // qui retourne la sous categorie dont les informations 
+    // viennent d'etre mise à jour une fois la requete executé
     public static function updateSousCat($nom, $idCat ,$id)
     {
         $sql = "UPDATE `sous_categories` SET `nom` = ?, `id_categorie` = ?  WHERE `id` = ?";

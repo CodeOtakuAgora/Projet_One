@@ -29,8 +29,8 @@ elseif (!isset($_SESSION['login'])) {
     $menuadmin = false;
 }
 
-// si il n'est pas connecté et qu'il essaye d'accéder à la page panier,user,admin 
-// qui sont propre à quelqu'un qui est connecté à travers l'url 
+// si il n'est pas connecté et qu'il essaye d'accéder à la page panier,user 
+// qui sont propre à quelqu'un qui est connecté en tant que user à travers l'url 
 // alors on le redirige vers la page connection
 if (isset($titlePanier) || isset($titleUser) || isset($titleAdmin)) {
     if (!isset($_SESSION['login'])) {
@@ -41,6 +41,9 @@ if (isset($titlePanier) || isset($titleUser) || isset($titleAdmin)) {
     }
 }
 
+// si il n'est pas connecté et qu'il essaye d'accéder aux pages du crud (back office)
+// qui sont propre à quelqu'un qui est connecté en tant que admin à travers l'url 
+// alors on le redirige vers la page connection
 if (isset($titleAdminCrud)) {
     if (!isset($_SESSION['login'])) {
         echo '
@@ -50,6 +53,9 @@ if (isset($titleAdminCrud)) {
     }
 }
 
+// si un user qui est connecté essaye d'accéder aux pages du crud (back office) 
+// qui sont propre à l'administrateur à travers l'url 
+// alors on le redirige vers la page connection
 if (isset($titleAdminCrud)) {
     if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
         echo '
@@ -59,9 +65,9 @@ if (isset($titleAdminCrud)) {
     }
 }
 
-// si le user essaye d'accéder à la page admin 
-// qui est propre à l'administrateur à travers l'url 
-// alors on le redirige vers la page connection qui est propre à l'admin
+// si un user essaye qui est connecté essaye d'accéder à la page admin 
+// qui sont propre à l'administrateur à travers l'url 
+// alors on le redirige vers la page connection
 if (isset($titleAdmin)) {
     if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
         echo '

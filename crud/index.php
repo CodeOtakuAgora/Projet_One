@@ -4,8 +4,9 @@ $titleAdminCrud = "Accueil du CRUD";
 // on inclut notre package (librairie) qui s'occupe de charger toutes les pages dont on a besoin
 require_once("../include/require.php");
 
-// on apelle la fonction updateUser qui appartient à la classe User 
-// en ne lui passant aucun parametre
+// on apelle à chaque fois une fonction qui nous retourne la liste de toutes les 
+// utilisateurs, catégories, sous catégories, et produits qui appartient à leur classes respective 
+// et on les stocke à chaque fois dans une variable qui leur est approprié
 $result = User::getAllUser();
 $result2 = Categorie::getAllCategories();
 $result3 = Categorie::getAllSousCategories();
