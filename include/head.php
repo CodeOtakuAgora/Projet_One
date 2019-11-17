@@ -100,7 +100,8 @@
     <!-- on définit le titre de chaque page car en fait chaque page possede une variable -->
     <!-- qui se nomme générallement title  + le titre de la page en camelCase-->
     <!-- qui contient le titre de la page et donc on vérifit si elle est définit -->
-    <!-- et si c'est le cas le contenu de cette variable sera alors le contenu de la balise !-- title ce qui nous permet d'avoirun titre dynamique propre à chaque page -->
+    <!-- et si c'est le cas le contenu de cette variable sera alors le contenu de la balise title ce qui nous permet -->
+    <!-- d'avoir un titre dynamique propre à chaque page -->
     <title><?php
         if (isset($titleIndex)) {
             echo $titleIndex;

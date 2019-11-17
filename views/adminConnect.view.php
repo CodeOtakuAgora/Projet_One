@@ -9,7 +9,7 @@
                     <tr>
                         <td>
                             <div class="connexion">
-                                <h1>Administraion</h1>
+                                <h1>Administration</h1>
                                 <form action="" id="myform" method="POST" enctype="multipart/form-data">
                                     <p>Login:</p>
                                     <input name="login" type="text" value="" size="30"/>

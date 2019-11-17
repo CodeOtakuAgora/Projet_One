@@ -16,7 +16,7 @@ class Categorie extends Bdd
 
     // fonction publique (visible et utilisable partout dans le projet) 
     // statique (qui garde la meme signature partout dans le projet)
-    // qui retourne tous les users ou l'id est égale à l'id passé en parametre
+    // qui retourne toutes les catégories ou l'id est égale à l'id passé en parametre
     public static function getCat($idCat)
     {
         return Bdd::getInstance()->conn->query('SELECT * FROM `categories` WHERE `id` = "' . $idCat . '"')->fetchObject();
@@ -41,7 +41,7 @@ class Categorie extends Bdd
 
     // fonction publique (visible et utilisable partout dans le projet) 
     // statique (qui garde la meme signature partout dans le projet)
-    // qui retourne tous les users ou l'id est égale à l'id passé en parametre
+    // qui retourne toutes les sous catégorie ou l'id est égale à l'id passé en parametre
     public static function getSousCat($idSousCat)
     {
         return Bdd::getInstance()->conn->query('SELECT * FROM `sous_categories` WHERE `id` = "' . $idSousCat . '"')->fetchObject();

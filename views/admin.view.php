@@ -38,6 +38,8 @@
                 <td><p>
                         <img src="ressources/vetements/<?php echo $c['logo']; ?>" 
                         width="100" height="75">
+                        <img src="ressources/vetements/<?php echo $c['logo2']; ?>" 
+                        width="100" height="75">
                         : <b><?php echo $c['nom'] ?></b>
                         : <?php echo $c['description'] ?> (<?php echo number_format($c['prix'], 2, '.', '') . ' € ' ?>
                         )<?php if ($c['confirme'] == 0) { ?> - <a

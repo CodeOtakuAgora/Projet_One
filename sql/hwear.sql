@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 11 nov. 2019 à 15:10
+-- Généré le :  Dim 17 nov. 2019 à 13:32
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -33,7 +33,6 @@ SET time_zone = "+00:00";
 DROP DATABASE IF EXISTS `hwear`;
 CREATE DATABASE IF NOT EXISTS `hwear`;
 USE `hwear`;
-
 
 -- --------------------------------------------------------
 
@@ -150,6 +149,7 @@ CREATE TABLE IF NOT EXISTS `produits` (
   `description` varchar(255) NOT NULL,
   `prix` float NOT NULL,
   `logo` varchar(255) NOT NULL DEFAULT 'default.png',
+  `logo2` varchar(255) NOT NULL DEFAULT 'default.png',
   `id_categorie` int(11) NOT NULL,
   `id_sous_categorie` int(11) NOT NULL,
   `id_admin` int(11) NOT NULL DEFAULT '1',
@@ -163,16 +163,16 @@ CREATE TABLE IF NOT EXISTS `produits` (
 -- Déchargement des données de la table `produits`
 --
 
-INSERT INTO `produits` (`id`, `nom`, `description`, `prix`, `logo`, `id_categorie`, `id_sous_categorie`, `id_admin`, `confirme`) VALUES
-(1, 'T-shirt blanc', 'Taille : M', 15.9, 'tshirt-blanc.png', 1, 1, 1, 1),
-(2, 'T-shirt noir et blanc', 'Taille : M ', 15.8, 'tshirt-blanc-noir.png', 1, 1, 1, 1),
-(3, 'T-shirt rouge', 'Taille : M', 16.8, 'tshirt-rouge.png', 1, 1, 1, 1),
-(4, 'Pull noir', 'Taille : M', 14.9, 'pull-noir.png', 1, 3, 1, 1),
-(5, 'Pull blanc', 'Taille : M', 15.1, 'pull-blanc.png', 1, 3, 1, 1),
-(6, 'Pull jaune', 'Taille : M', 14.5, 'pull-jaune.png', 1, 3, 1, 1),
-(7, 'Pantalon gris foncé', 'Taille : 42', 18.9, 'pantalon-gris-f.png', 1, 2, 1, 1),
-(8, 'Pantalon gris clair', 'Taille : 42', 19.8, 'pantalon-gris-c.jpg', 1, 2, 1, 1),
-(9, 'Pantalon bleu ciel', 'Taille : 42', 17.9, 'pantalon-bleu-c.jpg', 1, 2, 1, 1);
+INSERT INTO `produits` (`id`, `nom`, `description`, `prix`, `logo`, `logo2`, `id_categorie`, `id_sous_categorie`, `id_admin`, `confirme`) VALUES
+(1, 'T-shirt blanc', 'Taille : M', 15.9, 'tshirt-blanc.png', 'default.png', 1, 1, 1, 1),
+(2, 'T-shirt noir et blanc', 'Taille : M ', 15.8, 'tshirt-blanc-noir.png', 'default.png', 1, 1, 1, 1),
+(3, 'T-shirt rouge', 'Taille : M', 16.8, 'tshirt-rouge.png', 'default.png', 1, 1, 1, 1),
+(4, 'Pull noir', 'Taille : M', 14.9, 'pull-noir.png', 'default.png', 1, 3, 1, 1),
+(5, 'Pull blanc', 'Taille : M', 15.1, 'pull-blanc.png', 'default.png', 1, 3, 1, 1),
+(6, 'Pull jaune', 'Taille : M', 14.5, 'pull-jaune.png', 'default.png', 1, 3, 1, 1),
+(7, 'Pantalon gris foncé', 'Taille : 42', 18.9, 'pantalon-gris-f.png', 'default.png', 1, 2, 1, 1),
+(8, 'Pantalon gris clair', 'Taille : 42', 19.8, 'pantalon-gris-c.jpg', 'default.png', 1, 2, 1, 1),
+(9, 'Pantalon bleu ciel', 'Taille : 42', 17.9, 'pantalon-bleu-c.jpg', 'default.png', 1, 2, 1, 1);
 
 -- --------------------------------------------------------
 

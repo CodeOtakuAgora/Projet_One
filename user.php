@@ -20,13 +20,21 @@ if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
     $image = '';
     $imagePath = '';
     $imageExtension = '';
+
+    $image2 = '';
+    $imagePath2 = '';
+    $imageExtension2 = '';
     if (isset($_POST['bouton'])) {
         $image = checkInput($_FILES["logo"]["name"]);
         $imagePath = 'ressources/vetements/' . basename($image);
         $imageExtension = pathinfo($imagePath, PATHINFO_EXTENSION);
+
+        $image2 = checkInput($_FILES["logo2"]["name"]);
+        $imagePath2 = 'ressources/vetements/' . basename($image2);
+        $imageExtension2 = pathinfo($imagePath2, PATHINFO_EXTENSION);
     }
 
-    if ($image != '') 
+    if ($image != '' && $image2 != '') 
     {
         // on vérifie l'extension,taille,nom du fichier envoyé
         $isUploadSuccess = true;
@@ -34,25 +42,45 @@ if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
             $erreur = "Les fichiers autorises sont: .jpg, .jpeg, .png, .gif";
             $isUploadSuccess = false;
         }
+
+        if ($imageExtension2 != "jpg" && $imageExtension2 != "png" && $imageExtension2 != "jpeg" && $imageExtension2 != "gif") {
+            $erreur = "Les fichiers autorises sont: .jpg, .jpeg, .png, .gif";
+            $isUploadSuccess = false;
+        }
+
         if (file_exists($imagePath)) {
-            $erreur = "Le fichier existe deja";
+            $erreur = "Le fichier 1 existe deja";
+            $isUploadSuccess = false;
+        }
+
+        if (file_exists($imagePath2)) {
+            $erreur = "Le fichier 2 existe deja";
             $isUploadSuccess = false;
         }
 
         if (!empty($_FILES["logo"]) && $_FILES["logo"]["size"] > 500000) {
-            $erreur = "Le fichier ne doit pas depasser les 500KB";
+            $erreur = "Le fichier 1 ne doit pas depasser les 500KB";
+            $isUploadSuccess = false;
+        }
+
+        if (!empty($_FILES["logo2"]) && $_FILES["logo2"]["size"] > 500000) {
+            $erreur = "Le fichier 2 ne doit pas depasser les 500KB";
             $isUploadSuccess = false;
         }
         // on vérifie si le fichier à bien été déplacé dans le chemin spécifié
         if ($isUploadSuccess) {
             if (!move_uploaded_file($_FILES["logo"]["tmp_name"], $imagePath)) {
-                $erreur = "Il y a eu une erreur lors de l'upload";
+                $erreur = "Il y a eu une erreur lors de l'upload pour le logo 1";
+                $isUploadSuccess = false;
+            }
+            if (!move_uploaded_file($_FILES["logo2"]["tmp_name"], $imagePath2)) {
+                $erreur = "Il y a eu une erreur lors de l'upload pour le logo 2";
                 $isUploadSuccess = false;
             }
         }
     }  
 
-    // on check l'input pour le nom, description, prix, logo
+    // on check l'input pour le nom, description, prix, logo, logo2
     // si il y une erreur on affecte le problème dans le variable d'erreur
     if (!isset($_REQUEST['nom']) || trim($_REQUEST['nom']) === '') {
         if (isset($erreur)) {
@@ -76,11 +104,19 @@ if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
             $erreur = "Le prix est manquant";
         }
     }
-    if (!isset($_REQUEST['logo']) || trim($_REQUEST['logo']) === '') {
+    if (!isset($_FILES['logo'])) {
         if (isset($erreur)) {
             $erreur = $erreur . " \\n Le logo est manquant";
         } else {
             $erreur = "Le logo est manquant";
+        }
+    }
+
+    if (!isset($_FILES['logo2'])) {
+        if (isset($erreur)) {
+            $erreur = $erreur . " \\n Le logo 2 est manquant";
+        } else {
+            $erreur = "Le logo 2 est manquant";
         }
     }
 
@@ -92,6 +128,7 @@ if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
         $description = '\'' . $_REQUEST['description'] . '\'';
         $prix = '\'' . $_REQUEST['prix'] . '\'';
         $logo = '\'' . basename($image) . '\'';
+        $logo2 = '\'' . basename($image2) . '\'';
         $category = '\'' . $_REQUEST['category'] . '\'';
         $souscategory = '\'' . $_REQUEST['souscategory'] . '\'';
         $id_admin = 1;
@@ -102,8 +139,9 @@ if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
         // on éxecute l'insert des données pour l'ajout du produit avec confirme = 0
         // pour info un produit avec le champ confirme = 0 n'est pas encore disponible
         // à la vente, car il faut que l'admin passe cette valeur à 1
-        Bdd::getInstance()->conn->exec('INSERT INTO produits (nom,description,prix,logo,id_categorie,id_sous_categorie,id_admin,confirme) 
-    VALUES (' . $nom . ',' . $description . ',' . $prix . ',' . $logo . ',' . $category . ',' . $souscategory . ',' . $id_admin . ',' . $confirme . ')');
+        Bdd::getInstance()->conn->exec('INSERT INTO produits (nom,description,prix,logo,logo2,id_categorie,id_sous_categorie,id_admin,confirme) 
+            VALUES (' . $nom . ',' . $description . ',' . $prix . ',' . $logo . ',' . $logo2 . ',' .
+                     $category . ',' . $souscategory . ',' . $id_admin . ',' . $confirme . ')');
 
         //On teste si le produit à bien été inséré
         $result = Bdd::getInstance()->conn->query('SELECT * FROM `produits` WHERE `nom` LIKE "' . $nom . '"');
@@ -124,9 +162,9 @@ if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
     if (isset($erreur) && isset($_POST['bouton'])) {
     // on lance l'animation d'erreur affichant la liste de toute les erreurs
         echo '
-                <script type="text/javascript">
-                sweetAlert("Echec","' . $erreur . '","error");
-                </script>';
+        <script type="text/javascript">
+        sweetAlert("Echec","' . $erreur . '","error");
+        </script>';
     }
 
 }

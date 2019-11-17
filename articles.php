@@ -16,6 +16,7 @@ if ($bdArticle->rowCount() == 1) {
 	// on passe dans des vairables toutes les infos du produit qui à été selectionné
     $article = $bdArticle->fetch();
     $logo = $article['logo'];
+    $logo2 = $article['logo2'];
     $nom = $article['nom'];
     $description = $article['description'];
     $prix = $article['prix'];

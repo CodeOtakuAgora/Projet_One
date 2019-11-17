@@ -14,6 +14,7 @@
 			<input name="description" type="text" placeholder="description du produit">
 			<input name="prix" step="0.01" type="number" placeholder="prix du produit">
 			<input name="logo" type="file" placeholder="logo du produit">
+			<input name="logo2" type="file" placeholder="logo2 du produit">
 			<select name="category">
 				<?php
 				// on boucle afin de récupérer toutes les catégories 

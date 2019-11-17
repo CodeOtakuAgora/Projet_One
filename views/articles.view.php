@@ -6,6 +6,8 @@
             <form align="center" action="panier.php">
                 <img class="card-img-top" src="ressources/vetements/<?php echo $logo ?>" 
                 width="250px" height="250px">
+                <img class="card-img-top" src="ressources/vetements/<?php echo $logo2 ?>" 
+                width="250px" height="250px">
                 <div class="card-body">
                     <h1 class="card-title"><?php echo $nom ?></h1>
                     <p class="card-text"><?php echo $description ?>
@@ -39,6 +41,34 @@
      / Commentaire : <?php echo $c['message'] ?> 
      / fait le : <?php echo $c['date_creation']; ?></b></p>
  <?php } } ?>
+  
+
+  <!-- script javascript qui fait un slider avec les 2 images qui cache la deuxième image -->
+  <!-- et l'affiche après 3 secondes -->
+ <script>
+    var myIndex = 0;
+    carousel();
+
+    function carousel() {
+      var i;
+      var x = document.getElementsByClassName("card-img-top");
+      
+      for (i = 0; i < x.length; i++) 
+      {
+        x[i].style.display = "none";  
+      }
+      
+      myIndex++;
+      
+      if (myIndex > x.length) 
+      {
+         myIndex = 1
+      }    
+      
+      x[myIndex-1].style.display = "block";  
+      setTimeout(carousel, 3000);
+    }
+</script>
 
  <div style="position: relative; bottom:0;padding-top: 50px">
     <!-- on inclut le footer du site tout à la fin car le but est de le charger en dernier-->

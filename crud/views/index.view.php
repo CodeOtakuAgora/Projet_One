@@ -14,7 +14,6 @@
                     <td>Nom</td>
                     <td>Prenom</td>
                     <td>Mail</td>
-                    <td>Password</td>
                     <td>Rue</td>
                     <td>Code Postal</td>
                     <td>Ville</td>
@@ -35,7 +34,6 @@
                             <td><?php echo $row["nom"]; ?></td>
                             <td><?php echo $row["prenom"]; ?></td>
                             <td><?php echo $row["mail"]; ?></td>
-                            <td><?php echo $row["password"]; ?></td>
                             <td><?php echo $row["rue"]; ?></td>
                             <td><?php echo $row["code_postal"]; ?></td>
                             <td><?php echo $row["ville"]; ?></td>
@@ -152,11 +150,12 @@
             <div align="right" style="padding-bottom:5px;"><a href="add_produits.php" class="link"><img alt='Add'
                  title='Add' src='images/add.png' width='15px' height='15px'/> Add
                     Produits</a></div>
-            <table style="width: 750px;" border="0" cellpadding="10" cellspacing="1" width="650"
+            <table style="width: 800px;" border="0" cellpadding="10" cellspacing="1" width="650"
                    class="tblListForm">
                 <tr class="listheader">
                     <td>Id</td>
                     <td>Logo</td>
+                    <td>Logo2</td>
                     <td>Nom</td>
                     <td>Description</td>
                     <td>Prix</td>
@@ -176,6 +175,9 @@
                         <tr class="<?php if (isset($classname)) echo $classname; ?>">
                             <td><?php echo $row['id']; ?></td>
                             <td><img src="../ressources/vetements/<?php echo $row['logo']; ?>" 
+                                width="35" height="35">
+                            </td>
+                            <td><img src="../ressources/vetements/<?php echo $row['logo2']; ?>" 
                                 width="35" height="35">
                             </td>
                             <td><?php echo $row["nom"]; ?></td>

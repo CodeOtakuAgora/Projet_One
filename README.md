@@ -49,15 +49,27 @@ Arborescence de la Base de donnée hwear :
  	* Un panier doit avoir comme champ statut 1
 	* Un produit doit avoir comme champ confirme 1
 	* Un utilisateur doit avoir comme champ approuve 1
+- Fonctionnalités finalisées et fonctionnel qui ont été demandés dans le cachier des charges
+	* Les usagers doivent s’identifier par un couple login/mot de passe pour bénéficier des fonctionnalités d’achat et de vente. Un utilisateur non connecté ne peut que parcourir la liste des articles disponible
+	* Les articles proposés à la vente sont stocké dans une base de données. Les usagers authentifiés peuvent ajouter de nouveaux articles à cette base de donné.
+	* A chaque article correspond une fiche contenant les informations détaillées de celui-ci.
+	* Lorsqu’un article est ajouté à la base de donné, il est directement disponible à la vente.
+	Les administrateurs vérifient la fiche descriptive et la valide. Une fois cette fiche validé, les information renseignées ne sont plus modifiables.
+	* Lorsqu’un usager désire mettre un article en vente, il le sélectionne dans la base de données et indique qu’il posséde un exemplaire à vendre ainsi que son prix de vente.
+	* Une fonction de recherche doit permette aux usagers de localiser un article par son nom ou par des tags associés.
+	* Un système de back-office doit permettre aux sociétés clientes la gestion des comptes utilisateurs, des articles présents en base de données et de catégories d’articles.
+	* Un système de panier doit permettre aux usagers d’acheter plusieurs articles simultanément
+	* Un système de contact doit permettre l’envoi de mails de la part des usagers aux administrateurs du site.
+
 - Fonctionnalités à rajouter qui pourraient être demandé lors de l'épreuve e4
     * Permettre à l'admin de pouvoir passer un utilisateur en admin afin qu'il ait accès au back office
+    	* 
+	* Un usager acheteur doit se voir la liste des vendeurs pour un article et les prix demandés par chacun
     * Obliger un visiteur qui s'incrit à avoir un mot de passe de plus de 8 charactères et un chiffre, une majuscule et un charactère spécial
     * Créer un bon de commande lorqu'un achat est effectué afin d'en garder la trace
     * Corriger le problème avec l'envoi des mails qui sont bloqués par Google
-    * Mettre plusieurs images pour un même produit
     * Permetre à un utilisateur de pouvoir modifier ses informations et de pouvoir avoir un avatar
     * Rajouter une classe formulaire et utilisateur pour éviter le duplicate content
-    * Utiliser le Package VS Live Share pour travailler à plusieurs sur un même fichier
 
 --- 
 ## Commencement  
