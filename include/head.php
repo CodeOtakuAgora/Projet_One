@@ -21,21 +21,23 @@
 <html>
 <head>
     <meta charset="utf-8">
-
-    <!-- IMPORT DE BOOTSTRAP POUR LE MENU RESPONSIVE -->
-    <!-- afin d'avoir le style de bootstrap dans toutes les pages --> 
-    <!-- ainsi que le menu hamburger fonctionnel -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
-    </script>
+    <!-- on defini la configuration pour le site s'adapte -->
+    <!-- à la taille d'un ecran de telephone -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- si cette variable à été défini celà signifie que l'on se trouve -->
     <!-- sur l'une des pages du dossier crud il faut donc par conséquent sortir avec ../ -->
     <!-- du dossier crud afin d'être à la racine du projet -->
     <?php if (isset($titleAdminCrud)) { ?>
+
+        <!-- IMPORT DE BOOTSTRAP POUR LE MENU RESPONSIVE -->
+        <!-- afin d'avoir le style de bootstrap dans toutes les pages --> 
+        <!-- ainsi que le menu hamburger fonctionnel -->
+        <link rel="stylesheet" href="../lib/bootstrap/bootstrap.min.css">
+        <script src="../lib/autres/jquery-3.3.1.slim.min.js"></script>
+        <script src="../lib/autres/popper.min.js"></script>
+        <script src="../lib/bootstrap/bootstrap.min.js"></script>
+
         <!-- on importe le favicon qui est propre au logo hwear ainsi que le style.css -->
         <!-- On specifi qu'on charge un certain favicon en fonction de la taille de l'écran -->
         <link rel="apple-touch-icon" sizes="57x57" href="../ressources/favicon/apple-icon-57x57.png">
@@ -58,8 +60,28 @@
 
         <link type="text/css" rel="stylesheet" href="../include/style.css">
 
+        <!-- on importe la police de tous nos elements -->
+        <link rel="stylesheet" href="lib/autres/gck5swo.css">
+
+        <!-- IMPORT LIBRAIRIE SWEETALERT -->
+        <!-- elle permet de déclencher des animations de reussites et d'echec --> 
+        <!-- pour les boites de dialogues -->
+
+        <script src="lib/sweetalert/sweetalert-dev.js"></script>
+        <link rel="stylesheet" href="lib/sweetalert/sweetalert.css">
+
     <!-- si on ne trouve pas dans dans le crud alors ce sera ce chemin la par défaut -->
     <?php } else { ?>
+
+        <!-- IMPORT DE BOOTSTRAP POUR LE MENU RESPONSIVE -->
+        <!-- afin d'avoir le style de bootstrap dans toutes les pages --> 
+        <!-- ainsi que le menu hamburger fonctionnel -->
+        <link rel="stylesheet" href="lib/bootstrap/bootstrap.min.css">
+        <script src="lib/autres/jquery-3.3.1.slim.min.js"></script>
+        <script src="lib/autres/popper.min.js"></script>
+        <script src="lib/bootstrap/bootstrap.min.js"></script>
+
+
         <!-- on importe le favicon qui est propre au logo hwear ainsi que le style.css -->
         <!-- On specifi qu'on charge un certain favicon en fonction de la taille de l'écran -->
         <link rel="apple-touch-icon" sizes="57x57" href="ressources/favicon/apple-icon-57x57.png">
@@ -81,21 +103,18 @@
         <meta name="theme-color" content="#ffffff">
 
         <link type="text/css" rel="stylesheet" href="include/style.css">
+
+        <!-- on importe la police de tous nos elements -->
+        <link rel="stylesheet" href="lib/autres/gck5swo.css">
+
+        <!-- IMPORT LIBRAIRIE SWEETALERT -->
+        <!-- elle permet de déclencher des animations de reussites et d'echec --> 
+        <!-- pour les boites de dialogues -->
+
+        <script src="lib/sweetalert/sweetalert-dev.js"></script>
+        <link rel="stylesheet" href="lib/sweetalert/sweetalert.css">
+
     <?php } ?>
-
-    <!-- on defini la configuration pour le site s'adapte -->
-    <!-- à la taille d'un ecran de telephone -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- on importe la police de tous nos elements -->
-    <link rel="stylesheet" href="https://use.typekit.net/gck5swo.css">
-
-    <!-- IMPORT LIBRAIRIE SWEETALERT -->
-    <!-- elle permet de déclencher des animations de reussites et d'echec --> 
-    <!-- pour les boites de dialogues -->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js">
-    </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
     
     <!-- on définit le titre de chaque page car en fait chaque page possede une variable -->
     <!-- qui se nomme générallement title  + le titre de la page en camelCase-->
