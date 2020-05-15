@@ -118,8 +118,7 @@ if (isset($_POST['bouton'])) {
     $reponse = Bdd::getInstance()->conn->query('SELECT mail FROM users WHERE mail = "' . $_POST['email'] . '" ');
     $mail = $reponse->fetch();
 
-    if (strtolower($_POST['email']) == strtolower($mail['mail']))
-    {
+    if (strtolower($_POST['email']) == strtolower($mail['mail'])) {
         $erreur = "Cette adresse de mail est déjà utilisée";
     }
 }
@@ -139,7 +138,7 @@ if (isset($_POST['bouton']) && !isset($erreur)) {
     // en utilisant une signature de 12 characteres afin d'éviter qu'un hacker puisse remonter 
     // à son mot de passe en clair
     $password = $_REQUEST['password'];
-    $hashPassword = password_hash($password, PASSWORD_BCRYPT, array('cost'=>12));
+    $hashPassword = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
     $hashedPassword = '\'' . $hashPassword . '\'';
 
     $nom = '\'' . $_REQUEST['nom'] . '\'';

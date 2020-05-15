@@ -2,8 +2,11 @@
     <div class="contenupage">
         <div class="container">
             <div class="row formulaireconnect">
-                <table width="100%">
-                    <thead>
+                <table style="width: 100%;" aria-describedby="espace admin">
+                    <thead style="display: none">
+                        <tr>
+                            <th scope="col"></th>
+                        </tr>
                     </thead>
                     <tbody>
                     <tr>
@@ -26,7 +29,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- on inclut le footer du site tout à la fin car le but est de le charger en dernier-->
     <?php require_once('include/footer.php'); ?>
 

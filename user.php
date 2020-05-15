@@ -12,8 +12,7 @@ if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
     {
         $data = trim($data);
         $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
+        return htmlspecialchars($data);
     }
 
     // on définit le chemin du dossier pour stocker l'image
@@ -35,8 +34,7 @@ if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
         $imageExtension2 = pathinfo($imagePath2, PATHINFO_EXTENSION);
     }
 
-    if ($image != '' && $image2 != '') 
-    {
+    if ($image != '' && $image2 != '') {
         // on vérifie l'extension,taille,nom du fichier envoyé pour les 2 images
         $isUploadSuccess = true;
         if ($imageExtension != "jpg" && $imageExtension != "png" && $imageExtension != "jpeg" && $imageExtension != "gif") {
@@ -79,7 +77,7 @@ if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
                 $isUploadSuccess = false;
             }
         }
-    }  
+    }
 
     // on check l'input pour le nom, description, prix, logo, logo2
     // si il y une erreur on affecte le problème dans le variable d'erreur
@@ -136,13 +134,12 @@ if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
         $confirme = 0;
 
 
-
         // on éxecute l'insert des données pour l'ajout du produit avec confirme = 0
         // pour info un produit avec le champ confirme = 0 n'est pas encore disponible
         // à la vente, car il faut que l'admin passe cette valeur à 1
         Bdd::getInstance()->conn->exec('INSERT INTO produits (nom,description,prix,logo,logo2,id_categorie,id_sous_categorie,id_admin,confirme) 
             VALUES (' . $nom . ',' . $description . ',' . $prix . ',' . $logo . ',' . $logo2 . ',' .
-                     $category . ',' . $souscategory . ',' . $id_admin . ',' . $confirme . ')');
+            $category . ',' . $souscategory . ',' . $id_admin . ',' . $confirme . ')');
 
         //On teste si le produit à bien été inséré
         $result = Bdd::getInstance()->conn->query('SELECT * FROM `produits` WHERE `nom` LIKE "' . $nom . '"');
@@ -161,7 +158,7 @@ if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
 
     // si il y a des erreur et que le formulaire à été validé
     if (isset($erreur) && isset($_POST['bouton'])) {
-    // on lance l'animation d'erreur affichant la liste de toute les erreurs
+        // on lance l'animation d'erreur affichant la liste de toute les erreurs
         echo '
         <script type="text/javascript">
         sweetAlert("Echec","' . $erreur . '","error");

@@ -48,14 +48,13 @@ if (!isset($erreur) && isset($_POST['bouton'])) {
     // précedmemment depuis la database en utilisant la fonction password_verify de php
     $verify = password_verify($_REQUEST['password'], $res);
     // si la vérification ne correspond pas on lui génère une erreur
-    if ($verify === false)
-    {
+    if ($verify === false) {
         if (isset($erreur)) {
             $erreur = $erreur . " \\n Couple adresse mail/mot de passe erroné";
         } else {
             $erreur = "Couple adresse mail/mot de passe erroné";
         }
-    }                                                 
+    }
 
     // si la vérification est correcte
     if ($verify === true) {

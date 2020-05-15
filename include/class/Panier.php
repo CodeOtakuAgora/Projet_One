@@ -39,7 +39,7 @@ if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
         // qui retourne le produit qui à été selectionné grace à son id 
         public static function getPanierProduit($idPanier, $idProduit)
         {
-            $req = sprintf('SELECT * FROM `panier_produit` WHERE `id_panier` = "%s" AND `id_produit` = "%s"',$idPanier,$idProduit);
+            $req = sprintf('SELECT * FROM `panier_produit` WHERE `id_panier` = "%s" AND `id_produit` = "%s"', $idPanier, $idProduit);
             return Bdd::getInstance()->conn->query($req)->fetchObject();
         }
 
@@ -48,7 +48,7 @@ if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
         // qui retourne le l'id du panier du user actuellement connecte
         public static function getSpecificPanier($idPanier)
         {
-            $req = sprintf('SELECT * FROM `panier_produit` WHERE `id_panier` = "%s"',$idPanier);
+            $req = sprintf('SELECT * FROM `panier_produit` WHERE `id_panier` = "%s"', $idPanier);
             return Bdd::getInstance()->conn->query($req)->fetchObject();
         }
 
@@ -71,7 +71,7 @@ if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
         {
             $sql = 'UPDATE `panier_produit` SET `quantity` = ? WHERE `id_panier` = ? AND `id_produit` = ?';
             $stmt = Bdd::getInstance()->conn->prepare($sql);
-            $v = $stmt->execute([$quantity, $idPanier, $idProduit]);
+            $stmt->execute([$quantity, $idPanier, $idProduit]);
         }
 
         // fonction publique (visible et utilisable partout dans le projet) 

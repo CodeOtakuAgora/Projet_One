@@ -16,12 +16,12 @@ $menuadmin = "";
 // a true pour afficher le menu qui est prore à utilisateur
 if (isset($_SESSION['login']) && $_SESSION['login'] != 'admin') {
     $menuuser = true;
-} 
+}
 // sinon si l'utilisateur est loggé et qu'il est admin, on met la variable menuadmin a true 
 // pour afficher le menu qui est propre à l'administrateur
 elseif (isset($_SESSION['login']) && $_SESSION['login'] == 'admin') {
     $menuadmin = true;
-} 
+}
 // si il n'est pas connecté, on met la variable menuuser et menuadmin a false
 // pour afficher le menu de base lorsque l'on se rend sur le site pour la première fois
 elseif (!isset($_SESSION['login'])) {

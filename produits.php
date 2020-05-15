@@ -11,7 +11,7 @@ $requeteSubCategories = Bdd::getInstance()->conn->prepare('SELECT * FROM sous_ca
 $requeteSousCategories = Bdd::getInstance()->conn->query('SELECT * FROM sous_categories ORDER BY id');
 $products = Bdd::getInstance()->conn->prepare('SELECT * FROM produits WHERE id_sous_categorie = ? AND confirme = 1 ORDER BY id');
 
- // on définit notre compteur pour effectuer des action à un tour spécifique de la boucle
+// on définit notre compteur pour effectuer des action à un tour spécifique de la boucle
 $compteur = 0;
 
 // on inclut la vue (partie visible => front) de la page

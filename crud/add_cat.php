@@ -7,8 +7,8 @@ require_once("../include/require.php");
 
 // on vérifie si le formulaire à été validé
 if (count($_POST) > 0) {
-	// on apelle la fonction setCategorie qui appartient à la classe Categorie en lui passant en paramettre 
-	// les valeurs de ce qui a été rentré dans les inputs
+    // on apelle la fonction setCategorie qui appartient à la classe Categorie en lui passant en paramettre
+    // les valeurs de ce qui a été rentré dans les inputs
     $user = Categorie::setCategorie($_POST["nom"]);
     // puis on affiche le message de succès
     $message = "Nouvelle Catégorie Ajouté Avec Succès";

@@ -5,7 +5,7 @@
 // récupère et donc à accès à toutes les fonction de sa class mère (Db)
 class Produit extends Bdd
 {
-    
+
     // fonction publique (visible et utilisable partout dans le projet) 
     // statique (qui garde la meme signature partout dans le projet)
     // qui retourne tout les produits trier par id
@@ -33,12 +33,12 @@ class Produit extends Bdd
 
     }
 
-     // fonction publique (visible et utilisable partout dans le projet) 
+    // fonction publique (visible et utilisable partout dans le projet)
     // statique (qui garde la meme signature partout dans le projet)
     // qui retourne les produits qui viennent d'etre créer une fois la requete executé
-    public static function setProduit($nom, $description, $prix, $category, $souscategory) 
+    public static function setProduit($nom, $description, $prix, $category, $souscategory)
     {
-        $prix = (float) $prix;
+        $prix = (float)$prix;
         $sql = "INSERT INTO `produits` (nom, description, prix, id_categorie, id_sous_categorie) VALUES (?, ?, ?, ?, ?)";
         $stmt = Bdd::getInstance()->conn->prepare($sql);
         $stmt->execute([

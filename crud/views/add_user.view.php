@@ -1,4 +1,14 @@
-<style>label { display: block;padding: 0 100px 0 0; font-size: 18px; }</style>
+<style>
+    label {
+        display: block;
+        padding: 0 100px 0 0;
+        font-size: 18px;
+    }
+
+    td  {
+        padding: 10px;
+    }
+</style>
 
 <div class="content">
     <form name="frmUser" method="post" action="">
@@ -6,10 +16,15 @@
             <div class="message"><?php if (isset($message)) {
                     echo $message;
                 } ?></div>
-            <div align="right" style="padding-bottom:5px;"><a href="index.php" class="link"><img alt='List' title='List'
-                 src='images/list.png' width='15px' height='15px'/> List
+            <div style="padding-bottom:5px;">
+                <a style="display: block; text-align: right" href="index.php" class="link">
+                    <img alt='List' title='List'
+                         src='images/list.png' width='15px' height='15px'/> List
                     User</a></div>
-            <table border="0" cellpadding="10" cellspacing="0" width="500" align="center" class="tblSaveForm">
+            <table border="0" style="width: 500px;" class="tblSaveForm" aria-describedby="mes users">
+                <tr style="display: none">
+                    <th scope="col"></th>
+                </tr>
                 <tr class="tableheader">
                     <td colspan="2">Add New User</td>
                 </tr>

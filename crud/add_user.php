@@ -7,10 +7,10 @@ require_once("../include/require.php");
 
 // on vérifie si le formulaire à été validé
 if (count($_POST) > 0) {
-	// on apelle la fonction setUser qui appartient à la classe User en lui passant en paramettre 
-	// les valeurs de ce qui a été rentré dans les inputs
-    $user = User::setUser($_POST["mail"], $_POST["password"], $_POST["nom"], $_POST["prenom"], $_POST["rue"], 
-    	$_POST["code_postal"], $_POST["ville"], $_POST["telephone"]);
+    // on apelle la fonction setUser qui appartient à la classe User en lui passant en paramettre
+    // les valeurs de ce qui a été rentré dans les inputs
+    $user = User::setUser($_POST["mail"], $_POST["password"], $_POST["nom"], $_POST["prenom"], $_POST["rue"],
+        $_POST["code_postal"], $_POST["ville"], $_POST["telephone"]);
 
     // on vérifie que le mail qui à été ajouté correspond bien au mail passé dans l'input
     // et on affiche le message de succès ou d'echec

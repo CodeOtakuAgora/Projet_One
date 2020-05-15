@@ -9,7 +9,7 @@ if (count($_POST) > 0) {
 
     // on apelle la fonction updateProduit qui appartient à la classe Produit 
     // en lui passant en paramettre les valeurs de ce qui a été rentré dans les inputs
-    $prod = Produit::updateProduit($_POST["nom"], $_POST['description'], $_POST['prix'], 
+    $prod = Produit::updateProduit($_POST["nom"], $_POST['description'], $_POST['prix'],
         $_POST['category'], $_POST['souscategory'], $_GET["id"]);
 
     // on vérifie que le nom qui à été ajouté correspond bien au nom passé dans l'input

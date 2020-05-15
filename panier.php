@@ -34,8 +34,7 @@ if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
     // tout en vérifiant si il y a bien un produit dans le panier afin 
     // d'eviter d'effectuer la fonction dans le vide 
 
-    // on utilise les switch afin de nous simplifier la tache 
-    // c'est exactement comme si tu faisais : if ($action == 'add') {} 
+    // on utilise les switch afin de nous simplifier la tache celà fait la meme chose qu'un if
     // pour le case 'add' par exemple
     // donc ce qu'on fait ce qu'on check le contenu de la variable $action 
     // et on apelle des actions specifiques en fonctions de l'action defini
@@ -68,6 +67,8 @@ if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
             if ($product) {
                 Panier::deletePanier($panier->id);
             }
+            break;
+        default:
             break;
     }
 

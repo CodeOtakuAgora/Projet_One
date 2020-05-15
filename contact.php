@@ -6,8 +6,8 @@ require_once('include/require.php');
 
 // si le formulaire à bien été validé et que les inputs ne sont pas vides 
 if (isset($_POST['mailform'])) {
-    if (!empty($_POST['nom']) AND !empty($_POST['prenom']) AND !empty($_POST['mail']) AND !empty($_POST['message'])) {
-    	// on définit l'entete du mail en spécifiant certains configuration 
+    if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['mail']) && !empty($_POST['message'])) {
+        // on définit l'entete du mail en spécifiant certains configuration
         $header = "MIME-Version: 1.0\r\n";
         $header .= 'From:"nom_d\'expediteur"hfief1806@gmail.com' . "\n";
         $header .= 'Content-Type:text/html; charset="uft-8"' . "\n";
@@ -17,7 +17,7 @@ if (isset($_POST['mailform'])) {
         $message = '
 	      <html>
 	         <body>
-	            <div align="center">
+	            <div>
 	               <img src="http://www.primfx.com/mailing/banniere.png"/>
 	               <br />
 	               <u>Nom de l\'expediteur :</u>' . $_POST['nom'] . '<br />
@@ -31,8 +31,8 @@ if (isset($_POST['mailform'])) {
 	         </body>
 	      </html>
 	      ';
-	    // on définit les destinataires du mail, le sujet, message, et l'entete car le mot clé mail 
-	    //qui avec toutes les infos présents dand les vairables va s'occuper d'envoyer le mail
+        // on définit les destinataires du mail, le sujet, message, et l'entete car le mot clé mail
+        //qui avec toutes les infos présents dand les vairables va s'occuper d'envoyer le mail
         mail("mailto:boutonnet.arthur@gmail.com,hfief1806@gmail.com,bastian.peire@gmail.com",
             "Sujet du message", $message, $header);
         $msg = "Votre message a bien été envoyé !";

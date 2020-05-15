@@ -10,7 +10,7 @@
                         <input name="password" placeholder="Mot de Passe*" type="password" value="" size="30"/>
                         <div class="forgotadminn">
                             <a style="text-align:center;font-family:Roboto;font-size:16px;text-decoration: none;color: #C2C2C2;"
-                               href="#">Mot de passe oublié</a>
+                               href="index.php">Retour à l'Accueil</a>
                             <a style="text-align:center;font-family:Roboto;font-size:16px;text-decoration: none;color: #C2C2C2;"
                                href="adminConnect.php">Espace Admin</a>
                         </div>

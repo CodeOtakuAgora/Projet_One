@@ -1,5 +1,12 @@
 <style>
-    label { display: block;padding: 0 100px 0 0; font-size: 18px; } 
+    label {
+        display: block;
+        padding: 0 100px 0 0;
+        font-size: 18px;
+    }
+    td {
+        padding: 10px;
+    }
 </style>
 
 <div class="content">
@@ -8,10 +15,15 @@
             <div class="message"><?php if (isset($message)) {
                     echo $message;
                 } ?></div>
-            <div align="right" style="padding-bottom:5px;"><a href="index.php" class="link"><img alt='List' title='List'
+            <div style="padding-bottom:5px;">
+                <a style="display: block; text-align: right" href="index.php" class="link">
+                    <img alt='List' title='List'
                  src='images/list.png' width='15px' height='15px'/> List
                     Produits</a></div>
-            <table border="0" cellpadding="10" cellspacing="0" width="500" align="center" class="tblSaveForm">
+            <table border="0" style="width: 500px;" class="tblSaveForm" aria-describedby="mes produits">
+                <tr style="display: none">
+                    <th scope="col"></th>
+                </tr>
                 <tr class="tableheader">
                     <td colspan="2">Add New Produits</td>
                 </tr>
@@ -32,7 +44,7 @@
                 // on boucle afin de récupérer toutes les catégories 
                 // afin de proposer à l'utilisateur de choisir la catégorie de son produit
                 foreach (Bdd::getInstance()->conn->query('SELECT * FROM categories') as $row) {
-                    echo '<option value="' . $row['id'] . '">' . $row['nom'] . '</option>';;
+                    echo '<option value="' . $row['id'] . '">' . $row['nom'] . '</option>';
                 }
                 ?>
                 </select></td>
@@ -43,7 +55,7 @@
                         // on boucle afin de récupérer toutes les sous catégories 
                         // afin de proposer à l'utilisateur de choisir la sous catégorie de son produit
                         foreach (Bdd::getInstance()->conn->query('SELECT * FROM sous_categories') as $row) {
-                            echo '<option value="' . $row['id'] . '">' . $row['nom'] . '</option>';;
+                            echo '<option value="' . $row['id'] . '">' . $row['nom'] . '</option>';
                         }
                         ?>
                     </select></td>

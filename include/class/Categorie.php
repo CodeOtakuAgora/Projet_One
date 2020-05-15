@@ -93,7 +93,7 @@ class Categorie extends Bdd
     // statique (qui garde la meme signature partout dans le projet)
     // qui retourne la sous categorie dont les informations 
     // viennent d'etre mise à jour une fois la requete executé
-    public static function updateSousCat($nom, $idCat ,$id)
+    public static function updateSousCat($nom, $idCat, $id)
     {
         $sql = "UPDATE `sous_categories` SET `nom` = ?, `id_categorie` = ?  WHERE `id` = ?";
         $stmt = Bdd::getInstance()->conn->prepare($sql);
