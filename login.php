@@ -13,7 +13,7 @@ date_default_timezone_set('Europe/Paris');
 // qui s'occupe d'aficher dans une pop-up toutes les erreurs si il y en a
 if ((isset($_REQUEST['email'])) && (trim($_REQUEST['email']) !== '') && (!filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL))) {
     if (isset($erreur)) {
-        $erreur = $erreur . " \\n L'email n'est pas au bon format";
+        $erreur = $erreur . " <br/> L'email n'est pas au bon format";
     } else {
         $erreur = "L'email n'est pas au bon format";
     }
@@ -21,7 +21,7 @@ if ((isset($_REQUEST['email'])) && (trim($_REQUEST['email']) !== '') && (!filter
 
 if (!isset($_REQUEST['email']) || trim($_REQUEST['email']) === '') {
     if (isset($erreur)) {
-        $erreur = $erreur . " \\n L'email est manquant";
+        $erreur = $erreur . " <br/> L'email est manquant";
     } else {
         $erreur = "L'email est manquant";
     }
@@ -29,7 +29,7 @@ if (!isset($_REQUEST['email']) || trim($_REQUEST['email']) === '') {
 
 if (!isset($_REQUEST['password']) || trim($_REQUEST['password']) === '') {
     if (isset($erreur)) {
-        $erreur = $erreur . " \\n Le password est manquant";
+        $erreur = $erreur . " <br/> Le password est manquant";
     } else {
         $erreur = "Le password est manquant";
     }
@@ -50,7 +50,7 @@ if (!isset($erreur) && isset($_POST['bouton'])) {
     // si la vérification ne correspond pas on lui génère une erreur
     if ($verify === false) {
         if (isset($erreur)) {
-            $erreur = $erreur . " \\n Couple adresse mail/mot de passe erroné";
+            $erreur = $erreur . " <br/> Couple adresse mail/mot de passe erroné";
         } else {
             $erreur = "Couple adresse mail/mot de passe erroné";
         }
@@ -69,11 +69,12 @@ if (!isset($erreur) && isset($_POST['bouton'])) {
         if (isset($_SESSION['login'])) { ?>
             <!-- on lance l'animation de success puis on redirige sur la page de connection-->
             <script type="text/javascript">
-                swal({
+                Swal.fire({
                     title: "Succès!",
-                    text: "Votre compte à bien été créé",
-                    type: "success",
-                }, function () {
+                    icon: "success",
+                    text: "Connection Réussi",
+
+                }).then(function () {
                     window.location.href = "index.php";
                 });
             </script>
@@ -87,7 +88,11 @@ if (!isset($erreur) && isset($_POST['bouton'])) {
 if (isset($erreur) && isset($_POST['bouton'])) {
     echo '
         <script type="text/javascript">
-            sweetAlert("Echec","' . $erreur . '","error");
+            Swal.fire({
+              title: "Erreur",
+              icon: "error",
+              html: " ' . $erreur . ' ",
+            })
         </script>';
 }
 

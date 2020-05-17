@@ -11,7 +11,7 @@ require_once('include/require.php');
 // qui s'occupe d'aficher dans une pop-up toutes les erreurs si il y en a
 if ((isset($_REQUEST['email'])) && (trim($_REQUEST['email']) !== '') && (!filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL))) {
     if (isset($erreur)) {
-        $erreur = $erreur . " \\n Le champ email n'est pas au bon format";
+        $erreur = $erreur . " <br/> Le champ email n'est pas au bon format";
     } else {
         $erreur = "Le champ email n'est pas au bon format";
     }
@@ -20,15 +20,24 @@ if ((isset($_REQUEST['email'])) && (trim($_REQUEST['email']) !== '') && (!filter
 
 if (!isset($_REQUEST['email']) || trim($_REQUEST['email']) === '') {
     if (isset($erreur)) {
-        $erreur = $erreur . " \\n L'email est manquant";
+        $erreur = $erreur . " <br/> L'email est manquant";
     } else {
         $erreur = "L'email est manquant";
     }
 }
 
+if (!empty($_REQUEST['email'])) {
+    $reponse = Bdd::getInstance()->conn->query('SELECT mail FROM users WHERE mail = "' . $_POST['email'] . '" ');
+    $mail = $reponse->fetch();
+
+    if (strtolower($_POST['email']) == strtolower($mail['mail'])) {
+        $erreur = "Cette adresse de mail est déjà utilisée";
+    }
+}
+
 if (!isset($_REQUEST['password']) || trim($_REQUEST['password']) === '') {
     if (isset($erreur)) {
-        $erreur = $erreur . " \\n Le champ password est incomplet";
+        $erreur = $erreur . " <br/> Le champ password est incomplet";
     } else {
         $erreur = "Le champ password est incomplet";
     }
@@ -37,7 +46,7 @@ if (!isset($_REQUEST['password']) || trim($_REQUEST['password']) === '') {
 
 if (!isset($_REQUEST['confirm']) || trim($_REQUEST['confirm']) === '') {
     if (isset($erreur)) {
-        $erreur = $erreur . " \\n Le mot de passe de confirmation est incomplet";
+        $erreur = $erreur . " <br/> Le mot de passe de confirmation est incomplet";
     } else {
         $erreur = "Le mot de passe de confirmation est incomplet";
     }
@@ -46,7 +55,7 @@ if (!isset($_REQUEST['confirm']) || trim($_REQUEST['confirm']) === '') {
 
 if (isset($_REQUEST['confirm']) && isset($_REQUEST['password']) && ($_REQUEST['confirm']) != ($_REQUEST['password'])) {
     if (isset($erreur)) {
-        $erreur = $erreur . " \\n Les deux mots de passe ne correspondent pas";
+        $erreur = $erreur . " <br/> Les deux mots de passe ne correspondent pas";
     } else {
         $erreur = "Les deux mots de passe ne correspondent pas";
     }
@@ -55,7 +64,7 @@ if (isset($_REQUEST['confirm']) && isset($_REQUEST['password']) && ($_REQUEST['c
 
 if (!isset($_REQUEST['nom']) || trim($_REQUEST['nom']) === '') {
     if (isset($erreur)) {
-        $erreur = $erreur . " \\n Le champ nom est incomplet";
+        $erreur = $erreur . " <br/> Le champ nom est incomplet";
     } else {
         $erreur = "Le champ nom est incomplet";
     }
@@ -64,7 +73,7 @@ if (!isset($_REQUEST['nom']) || trim($_REQUEST['nom']) === '') {
 
 if (!isset($_REQUEST['prenom']) || trim($_REQUEST['prenom']) === '') {
     if (isset($erreur)) {
-        $erreur = $erreur . " \\n Le  champ prenom est incomplet";
+        $erreur = $erreur . " <br/> Le  champ prenom est incomplet";
     } else {
         $erreur = "Le champ prenom est incomplet";
     }
@@ -73,7 +82,7 @@ if (!isset($_REQUEST['prenom']) || trim($_REQUEST['prenom']) === '') {
 
 if (!isset($_REQUEST['rue']) || trim($_REQUEST['rue']) === '') {
     if (isset($erreur)) {
-        $erreur = $erreur . " \\n Le champ adresse est incomplet";
+        $erreur = $erreur . " <br/> Le champ adresse est incomplet";
     } else {
         $erreur = "Le champ adresse est incomplet";
     }
@@ -82,7 +91,7 @@ if (!isset($_REQUEST['rue']) || trim($_REQUEST['rue']) === '') {
 
 if (!isset($_REQUEST['cp']) || trim($_REQUEST['cp']) === '') {
     if (isset($erreur)) {
-        $erreur = $erreur . " \\n Le champ code postal est incomplet";
+        $erreur = $erreur . " <br/> Le champ code postal est incomplet";
     } else {
         $erreur = "Le champ code postal est incomplet";
     }
@@ -91,7 +100,7 @@ if (!isset($_REQUEST['cp']) || trim($_REQUEST['cp']) === '') {
 
 if (!isset($_REQUEST['ville']) || trim($_REQUEST['ville']) === '') {
     if (isset($erreur)) {
-        $erreur = $erreur . " \\n Le champ ville est incomplet";
+        $erreur = $erreur . " <br/> Le champ ville est incomplet";
     } else {
         $erreur = "Le champ ville est incomplet";
     }
@@ -100,27 +109,18 @@ if (!isset($_REQUEST['ville']) || trim($_REQUEST['ville']) === '') {
 
 if (!isset($_REQUEST['telportable']) || trim($_REQUEST['telportable']) === '') {
     if (isset($erreur)) {
-        $erreur = $erreur . " \\n Veuillez renseigner un numéro de télphone";
+        $erreur = $erreur . " <br/> Veuillez renseigner un numéro de télphone";
     } else {
         $erreur = "Veuillez renseigner un numéro de télphone";
     }
 
 } else if (!preg_match("#(\+[0-9]{2}\([0-9]\))?[0-9]{10}#", $_REQUEST['telportable']) && $_REQUEST['telportable'] != NULL) {
     if (isset($erreur)) {
-        $erreur = $erreur . " \\n Le numéro de téléphone renseigné n'est pas au bon format";
+        $erreur = $erreur . " <br/> Le numéro de téléphone renseigné n'est pas au bon format";
     } else {
         $erreur = "Le numéro de téléphone portable n'est pas au bon format";
     }
 
-}
-
-if (isset($_POST['bouton'])) {
-    $reponse = Bdd::getInstance()->conn->query('SELECT mail FROM users WHERE mail = "' . $_POST['email'] . '" ');
-    $mail = $reponse->fetch();
-
-    if (strtolower($_POST['email']) == strtolower($mail['mail'])) {
-        $erreur = "Cette adresse de mail est déjà utilisée";
-    }
 }
 
 
@@ -165,11 +165,12 @@ if (isset($_POST['bouton']) && !isset($erreur)) {
 
     <!-- on lance l'animation de success puis on redirige sur la page de connection-->
     <script type="text/javascript">
-        swal({
+        Swal.fire({
             title: "Succès!",
+            icon: "success",
             text: "Votre compte à bien été créé",
-            type: "success",
-        }, function () {
+
+        }).then(function () {
             window.location.href = "login.php";
         });
     </script>
@@ -181,9 +182,13 @@ if (isset($_POST['bouton']) && !isset($erreur)) {
 // on lance l'animation d'erreur affichant la liste de toute les erreurs
 if (isset($_POST['bouton']) && isset($erreur)) {
     echo '
-                    <script type="text/javascript">
-                        sweetAlert("Echec","' . $erreur . '","error");
-                    </script>';
+        <script type="text/javascript">
+            Swal.fire({
+              title: "Erreur",
+              icon: "error",
+              html: " ' . $erreur . ' ",
+            })
+        </script>';
 }
 
 // on inclut la vue (partie visible => front) de la page

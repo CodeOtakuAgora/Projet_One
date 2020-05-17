@@ -67,8 +67,8 @@
         <!-- elle permet de déclencher des animations de reussites et d'echec -->
         <!-- pour les boites de dialogues -->
 
-        <script src="lib/sweetalert/sweetalert-dev.js"></script>
-    <link rel="stylesheet" href="lib/sweetalert/sweetalert.css">
+        <script src="lib/sweetalert/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="lib/sweetalert/sweetalert.min.css">
 
         <!-- si on ne trouve pas dans dans le crud alors ce sera ce chemin la par défaut -->
     <?php } else { ?>
@@ -111,8 +111,8 @@
         <!-- elle permet de déclencher des animations de reussites et d'echec -->
         <!-- pour les boites de dialogues -->
 
-        <script src="lib/sweetalert/sweetalert-dev.js"></script>
-    <link rel="stylesheet" href="lib/sweetalert/sweetalert.css">
+        <script src="lib/sweetalert/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="lib/sweetalert/sweetalert.min.css">
 
     <?php } ?>
 

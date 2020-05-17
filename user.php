@@ -83,14 +83,14 @@ if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
     // si il y une erreur on affecte le problème dans le variable d'erreur
     if (!isset($_REQUEST['nom']) || trim($_REQUEST['nom']) === '') {
         if (isset($erreur)) {
-            $erreur = $erreur . " \\n Le nom est manquant";
+            $erreur = $erreur . " <br/> Le nom est manquant";
         } else {
             $erreur = "Le nom est manquant";
         }
     }
     if (!isset($_REQUEST['description']) || trim($_REQUEST['description']) === '') {
         if (isset($erreur)) {
-            $erreur = $erreur . " \\n La description est manquante";
+            $erreur = $erreur . " <br/> La description est manquante";
         } else {
             $erreur = "La description est manquante";
         }
@@ -98,14 +98,14 @@ if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
 
     if (!isset($_REQUEST['prix']) || trim($_REQUEST['prix']) === '') {
         if (isset($erreur)) {
-            $erreur = $erreur . " \\n Le prix est manquant";
+            $erreur = $erreur . " <br/> Le prix est manquant";
         } else {
             $erreur = "Le prix est manquant";
         }
     }
     if (!isset($_FILES['logo'])) {
         if (isset($erreur)) {
-            $erreur = $erreur . " \\n Le logo est manquant";
+            $erreur = $erreur . " <br/> Le logo est manquant";
         } else {
             $erreur = "Le logo est manquant";
         }
@@ -113,7 +113,7 @@ if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
 
     if (!isset($_FILES['logo2'])) {
         if (isset($erreur)) {
-            $erreur = $erreur . " \\n Le logo 2 est manquant";
+            $erreur = $erreur . " <br/> Le logo 2 est manquant";
         } else {
             $erreur = "Le logo 2 est manquant";
         }
@@ -147,10 +147,10 @@ if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
 
         <!-- on lance l'animation de success -->
         <script type="text/javascript">
-            swal({
+            Swal.fire({
                 title: "Succès!",
+                icon: "success",
                 text: "Envoie Réussi",
-                type: "success",
             });
         </script>
         <?php
@@ -160,9 +160,13 @@ if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
     if (isset($erreur) && isset($_POST['bouton'])) {
         // on lance l'animation d'erreur affichant la liste de toute les erreurs
         echo '
-        <script type="text/javascript">
-        sweetAlert("Echec","' . $erreur . '","error");
-        </script>';
+            <script type="text/javascript">
+                Swal.fire({
+                  title: "Erreur",
+                  icon: "error",
+                  html: " ' . $erreur . ' ",
+                })
+            </script>';
     }
 
 }
