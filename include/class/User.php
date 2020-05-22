@@ -30,6 +30,18 @@ class User extends Bdd
         return Bdd::getInstance()->conn->query('SELECT * FROM `users` WHERE `mail` = "' . $mail . '"')->fetchObject();
     }
 
+    public static function getHashPassword($mail) {
+        return Bdd::getInstance()->conn->query('SELECT password AS password FROM `users` WHERE `mail` = "' . $mail . '"')->fetchObject();
+    }
+
+    public static function isItUserExist($mail) {
+        return Bdd::getInstance()->conn->query('SELECT COUNT(*) AS res FROM `users` WHERE `mail` = "' . $mail . '"')->fetchObject();
+    }
+
+    public static function checkInformation($mail, $password) {
+        return Bdd::getInstance()->conn->query('SELECT * FROM `users` WHERE `mail` = "' . $mail . '" AND `password` = "' . $password . '"')->fetchObject();
+    }
+
     // fonction publique (visible et utilisable partout dans le projet) 
     // statique (qui garde la meme signature partout dans le projet)
     // qui retourne le user qui vient d'etre créer une fois la requete executé
