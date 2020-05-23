@@ -69,7 +69,9 @@ Arborescence de la Base de donnée hwear :
     * Créer un bon de commande lorqu'un achat est effectué afin d'en garder la trace
     * Corriger le problème avec l'envoi des mails qui sont bloqués par Google
     * Permetre à un utilisateur de pouvoir modifier ses informations et de pouvoir avoir un avatar
-    * Rajouter une classe formulaire et utilisateur pour éviter le duplicate content
+    * Rajouter une classe formulaire et utilisateur pour éviter le duplicate content **#TODO**
+    * Refaire entierrement tout le CRUD du site et l'optimiser **#TODO**
+    * Créer des classes et des fonctions pour tous les fichiers **#TODO**
 
 --- 
 ## Commencement  
