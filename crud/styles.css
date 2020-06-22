@@ -1,84 +1,131 @@
 body {
-    font-family: Arial;
+    background: url(bg.png);
 }
 
-input {
-    font-family: Arial;
-    font-size: 14px;
+.site {
+    font-family: 'Holtwood One SC', sans-serif;
 }
 
-label {
-    font-family: Arial;
-    font-size: 14px;
-    color: #999999;
-}
-
-.tblSaveForm {
-    border-top: 2px #999999 solid;
-    background-color: #f8f8f8;
-}
-
-.tableheader {
-    background-color: #fedc4d;
-}
-
-.tablerow {
-    background-color: #A7D6F1;
-    color: white;
-}
-
-.btnSubmit {
-    background-color: #fd9512;
-    padding: 5px;
-    border-color: #FF6600;
-    border-radius: 4px;
-    color: white;
-}
-
-.message {
-    color: #FF0000;
+.text-logo {
+    font-family: 'Holtwood One SC', sans-serif;
+    color: #e7480f;
+    text-shadow: 2px 2px #ffd301;
+    font-size: 50px;
+    padding: 40px 0px;
     text-align: center;
+}
+
+.text-logo .glyphicon {
+    color: #ffd301;
+    text-shadow: 0px 0px #ffd301;
+}
+
+.nav {
+    margin-bottom: 40px;
+}
+
+.thumbnail img {
+    background: #ffd301;
+}
+
+.price {
+    background: #5cb85c;
+    box-shadow: 0 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 1px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 1px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-shadow: 2px 2px #333;
+    position: absolute;
+    right: 6px;
+    top: 20px;
+    padding: 5px 10px;
+    font-size: 20px;
+    border-radius: 3px;
+}
+
+.price:before {
+    border: 4px solid transparent;
+    border-bottom: 4px solid #4a934a;
+    border-left: 4px solid #4a934a;
+    content: "";
+    position: absolute;
+    right: 1px;
+    top: -8px;
+}
+
+.caption > h4 {
+    color: #e7480f;
+    font-size: 18px;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+    background: #e7480f;
+}
+
+.nav > li > a:focus, .nav > li > a:hover {
+    color: #e7480f;
+    background-color: #eee;
+}
+
+.nav > li > a {
+    color: #eee;
+    font-size: 18px;
+    text-shadow: 2px 2px #333;
+}
+
+.btn-order {
     width: 100%;
-}
-
-.txtField {
-    padding: 5px;
-    border: #fedc4d 1px solid;
-    border-radius: 4px;
-}
-
-.evenRow {
-    background-color: #E2EDF9;
-    font-size: 12px;
-    color: #101010;
-}
-
-.evenRow:hover {
-    background-color: #ffef46;
-}
-
-.oddRow {
-    background-color: #B3E8FF;
-    font-size: 12px;
-    color: #101010;
-}
-
-.oddRow:hover {
-    background-color: #ffef46;
-}
-
-.tblListForm {
-    border-top: 2px #999999 solid;
-}
-
-.listheader {
-    background-color: #fedc4d;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-.link {
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #e7480f;
     text-decoration: none;
-    color: #5e8fc7;
-    font-size: 11px;
+    text-shadow: 2px 2px #333;
+}
+
+.btn-order:hover, .btn-order:focus {
+    color: #fff;
+    background-color: #c13c0d;
+}
+
+/*  ADMIN */
+
+.admin {
+    background: #fff;
+    padding: 50px;
+    border-radius: 10px;
+}
+
+.help-inline {
+    color: red;
+}
+
+/* SLIDER */
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 35%;
+    left: -50px;
+    width: 30px;
+    height: 30px;
+    padding: 16px;
+    margin-top: -22px;
+    color: white !important;
+    font-weight: bold;
+    font-size: 30px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.next {
+    left: inherit;
+    right: -50px;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    text-decoration: none;
+    color: red;
 }

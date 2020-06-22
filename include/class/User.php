@@ -2,7 +2,7 @@
 
 // class User qui définit toute les charactéristiques d'un user avec pleins de fonctions 
 // qui le définissent et qui lui sont propres
-// récupère et donc à accès à toutes les fonction de sa class mère (Db)
+// récupère et donc à accès à toutes les fonction de sa class mère (Bdd)
 class User extends Bdd
 {
 

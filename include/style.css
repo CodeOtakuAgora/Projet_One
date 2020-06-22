@@ -219,7 +219,7 @@ p {
     margin-top: 70px;
 }
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=number] {
     background-color: #CBCBCB;
     color: white;
     border-style: none;

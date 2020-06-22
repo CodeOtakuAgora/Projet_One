@@ -36,17 +36,23 @@ class Produit extends Bdd
     // fonction publique (visible et utilisable partout dans le projet)
     // statique (qui garde la meme signature partout dans le projet)
     // qui retourne les produits qui viennent d'etre créer une fois la requete executé
-    public static function setProduit($nom, $description, $prix, $category, $souscategory)
+    public static function setProduit($nom, $description, $prix, $logo, $logo2, $category, $souscategory, $id_admin, $confirme)
     {
         $prix = (float)$prix;
-        $sql = "INSERT INTO `produits` (nom, description, prix, id_categorie, id_sous_categorie) VALUES (?, ?, ?, ?, ?)";
+
+        $sql = "INSERT INTO `produits` (nom, description, prix, logo, logo2, id_categorie, id_sous_categorie, id_admin, 
+                confirme) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = Bdd::getInstance()->conn->prepare($sql);
         $stmt->execute([
             $nom,
             $description,
             $prix,
+            $logo,
+            $logo2,
             $category,
-            $souscategory
+            $souscategory,
+            $id_admin,
+            $confirme
         ]);
         return Produit::getAllProduits();
     }

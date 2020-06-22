@@ -17,6 +17,7 @@ require_once($base . "/class/Categorie.php");
 require_once($base . "/class/Produit.php");
 require_once($base . "/class/User.php");
 require_once ($base . "/class/Formulaire.php");
+require_once ($base . "/class/Admin.php");
 
 // on inclut tout le head du site ainsi que le menu qui est le même qu'importe la page
 // sur laquelle on se trouve ce qui nous permet d'avoir un menu dynamique

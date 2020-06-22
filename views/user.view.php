@@ -9,12 +9,11 @@
     <div class="container">
 
 
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data" action="user.php">
             <input name="nom" type="text" placeholder="nom du produit">
             <input name="description" type="text" placeholder="description du produit">
             <input name="prix" step="0.01" type="number" placeholder="prix du produit">
-            <input name="logo" type="file" placeholder="logo du produit">
-            <input name="logo2" type="file" placeholder="logo2 du produit">
+            <input name="logo[]" type="file" placeholder="logo du produit" multiple>
             <select name="category">
                 <?php
                 // on boucle afin de récupérer toutes les catégories

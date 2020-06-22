@@ -5,89 +5,64 @@ $title = "Connection Admin";
 // on inclut notre package (librairie) qui s'occupe de charger toutes les pages dont on a besoin
 require_once('include/require.php');
 
+$erreur = '';
+
+if (isset($_POST['bouton'])) {
+    $erreur = Formulaire::inputIsItEmpty('login', $erreur);
+    $erreur .= Formulaire::inputIsItEmpty('password', $erreur);
+}
+
 // on check l'input pour le login,password
 // si il y une erreur on affecte le problème dans la variable d'erreur 
 // qui s'occupe d'aficher dans une pop-up toutes les erreurs si il y en a
-if (!isset($_REQUEST['login']) || trim($_REQUEST['login']) === '') {
-    if (isset($erreur)) {
-        $erreur = $erreur . " <br/> Le login est manquant";
-    } else {
-        $erreur = "Le login est manquant";
-    }
-}
-
-if (!isset($_REQUEST['password']) || trim($_REQUEST['password']) === '') {
-    if (isset($erreur)) {
-        $erreur = $erreur . " <br/> Le password est manquant";
-    } else {
-        $erreur = "Le password est manquant";
-    }
-}
 
 // si il n'y a pas d'erreur et que le formulaire à été validé
-if (!isset($erreur) && isset($_POST['bouton'])) {
+if (empty($erreur) && isset($_POST['bouton'])) {
 
-    // on récupère depuis la database le password uniquement de celui qui a le meme login 
-    // que le login qui vient d'être rentré par le visiteur
-    $resultQuery = Bdd::getInstance()->conn->query('SELECT * FROM admin WHERE login LIKE "' . $_REQUEST['login'] . '"');
-    $res = "";
-    foreach ($resultQuery as $value) {
-        $res = $value['password'];
-    }
-    // on vérifie que le mot de passe qu'il à rentré correspond bien avec le mot de passe hashé qui à été récupéré 
-    // précedmemment depuis la database en utilisant la fonction password_verify de php
-    $verify = password_verify($_REQUEST['password'], $res);
-    // si la vérification ne correspond pas on lui génère une erreur
-    if ($verify === false) {
-        if (isset($erreur)) {
-            $erreur = $erreur . " <br/> Couple adresse mail/mot de passe erroné";
-        } else {
-            $erreur = "Couple adresse mail/mot de passe erroné";
+    // on récupère depuis la database le password uniquement de celui qui a le meme mail
+    // que le mail qui vient d'être rentré par le visiteur
+    $exist = Admin::isItAdminExist($_REQUEST['login']);
+    $exist = $exist->res;
+    $verify = false;
+
+    if ($exist != '0') {
+        // on récupère depuis la database le password uniquement de celui qui a le meme login
+        // que le login qui vient d'être rentré par le visiteur
+        $res = Admin::getHashAdminPassword($_REQUEST['login']);
+        $res = $res->password;
+
+        //  on vérifie que le mot de passe qu'il à rentré correspond bien avec le mot de passe hashé qui à été récupéré
+        // précedmemment depuis la database en utilisant la fonction password_verify de php
+        $verify = password_verify($_REQUEST['password'], $res);
+
+        // si la vérifiquation est correcte
+        if ($verify === true) {
+
+            // on vérifie en sql que le login et le password correpondent bien à ce qui a été rentré dans les inputs
+            // Si c'est bon on crée une variable session pour l'admin
+            $result = Admin::checkAdminInformation($_REQUEST['login'], $res);
+            $result = $result->login;
+
+            // Si c'est bon on crée une variable session pour le user
+            $_SESSION['login'] = $result;
+
+            //  on lance l'animation de success puis on redirige sur la page principale
+            Formulaire::triggerSuccessAnimation('login', 'Connection Réussi', 'index.php');
         }
+
+        // si la vérification ne correspond pas on lui génère une erreur
+        $erreur = Formulaire::checkFields($verify, $erreur);
+
     }
 
-    // si la vérifiquation est correcte
-    if ($verify === true) {
-
-        // on vérifie en sql que le login et le password correpondent bien à ce qui a été rentré dans les inputs
-        $result = Bdd::getInstance()->conn->query('SELECT * FROM `admin` WHERE `login` LIKE "' . $_REQUEST['login'] . '" AND `password` LIKE "' . $res . '"');
-
-        // Si c'est bon on crée une variable session pour l'admin
-        foreach ($result as $row) {
-            $_SESSION['login'] = $row['login'];
-        }
-        // on check que l'utilisateur à bien une session propre à lui 
-        if (isset($_SESSION['login'])) {
-            ?>
-
-            <!-- on lance l'animation de success puis on redirige sur la page principale -->
-            <script type="text/javascript">
-                Swal.fire({
-                    title: "Succès!",
-                    icon: "success",
-                    text: "Connection Réussi",
-
-                }).then(function () {
-                    window.location.href = "index.php";
-                });
-            </script>
-            <?php
-        }
-    }
+    $erreur = Formulaire::checkFields($verify, $erreur);
 
 }
 
 // si il y a des erreur et que le formulaire à été validé
 // on lance l'animation d'erreur affichant la liste de toute les erreurs
-if (isset($erreur) && isset($_POST['bouton'])) {
-    echo '
-        <script type="text/javascript">
-            Swal.fire({
-              title: "Erreur",
-              icon: "error",
-              html: " ' . $erreur . ' ",
-            })
-        </script>';
+if (isset($_POST['bouton']) && !empty($erreur)) {
+    Formulaire::triggerErrorsAnimation($erreur, 'bouton');
 }
 
 // on inclut la vue (partie visible => front) de la page

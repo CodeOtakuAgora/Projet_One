@@ -2,7 +2,7 @@
 
 // class Categorie qui définit toute les charactéristiques d'une categorie avec pleins de fonctions
 // qui le définissent et qui lui sont propres
-// récupère et donc à accès à toutes les fonction de sa class mère (Db)
+// récupère et donc à accès à toutes les fonction de sa class mère (Bdd)
 class Formulaire extends Bdd
 {
     public static function checkEmailFomat($inputEmail, $erreur) {
@@ -28,6 +28,13 @@ class Formulaire extends Bdd
         return $erreur;
     }
 
+    public static function inputFileIsItEmpty($inputFileElement, $erreur) {
+        if (empty($_FILES[$inputFileElement]["name"]["0"])) {
+            $erreur = "Le champ $inputFileElement est manquant <br/>";
+        }
+        return $erreur;
+    }
+
     public static function checkConfirmPassword($password, $confirm, $erreur) {
         if (!empty($confirm) && !empty($password) && ($confirm) != ($password)) {
             $erreur = "Les deux mots de passe ne correspondent pas <br/>";
@@ -45,6 +52,44 @@ class Formulaire extends Bdd
     public static function checkFields($verify, $erreur) {
         if ($verify === false) {
             $erreur = "Couple adresse mail/mot de passe erroné <br/>";
+        }
+        return $erreur;
+    }
+
+    // fonction qui retourne le fichier en sécurisant les données envoyées
+    public static function checkSecureInput($data)
+    {
+        $data = trim($data);
+        $data = stripslashes($data);
+        return htmlspecialchars($data);
+    }
+
+    public static function verifyExtensionFile($inputFileElement, $imageExtension, $erreur) {
+        if ($imageExtension != "jpg" && $imageExtension != "png" && $imageExtension != "jpeg" && $imageExtension != "gif") {
+            $erreur = "Les fichiers autorises sont: .jpg, .jpeg, .png, .gif pour le champ $inputFileElement";
+        }
+        return $erreur;
+    }
+
+    public static function verifyAlreadyFileExist($inputFileElement, $imagePath, $erreur) {
+        if (file_exists($imagePath)) {
+            $erreur = "Le fichier du champ $inputFileElement existe deja";
+        }
+        return $erreur;
+    }
+
+    public static function verifySizeFile($fileName, $fileSize, $inputFileElement, $erreur) {
+        if (!empty($fileName) && ($fileSize > 500000)) {
+            $erreur = "Le fichier du champ $inputFileElement ne doit pas depasser les 500KB";
+        }
+        return $erreur;
+    }
+
+    public static function verifyUploadFile($fileTmp, $isUploadSuccess, $inputFileElement, $imagePath, $erreur) {
+        if ($isUploadSuccess) {
+            if (!move_uploaded_file($fileTmp, $imagePath)) {
+                $erreur = "Il y a eu une erreur lors de l'upload pour le champ $inputFileElement";
+            }
         }
         return $erreur;
     }

@@ -4,171 +4,87 @@ $titleUser = "Page Profil";
 // on inclut notre package (librairie) qui s'occupe de charger toutes les pages dont on a besoin
 require_once('include/require.php');
 
+$erreur = '';
+$base = dirname(__FILE__);
+
 // on vérifie que c'est bien le user qui est connecté
 if (isset($_SESSION['login']) && $_SESSION['login'] != "admin") {
-
-    // fonction qui retourne le fichier en sécurisant les données envoyées
-    function checkInput($data)
-    {
-        $data = trim($data);
-        $data = stripslashes($data);
-        return htmlspecialchars($data);
-    }
-
     // on définit le chemin du dossier pour stocker l'image
     // puis on stocke le nom, l'extension de l'image ainsi que le chemin relatif de l'endroit ou l'image doit etre stocké
-    $image = '';
-    $imagePath = '';
-    $imageExtension = '';
-
-    $image2 = '';
-    $imagePath2 = '';
-    $imageExtension2 = '';
     if (isset($_POST['bouton'])) {
-        $image = checkInput($_FILES["logo"]["name"]);
-        $imagePath = 'ressources/vetements/' . basename($image);
+        $image = Formulaire::checkSecureInput($_FILES["logo"]["name"]["0"]);
+        $imagePath = $base . '/ressources/vetements/' . basename($image);
         $imageExtension = pathinfo($imagePath, PATHINFO_EXTENSION);
 
-        $image2 = checkInput($_FILES["logo2"]["name"]);
-        $imagePath2 = 'ressources/vetements/' . basename($image2);
-        $imageExtension2 = pathinfo($imagePath2, PATHINFO_EXTENSION);
+        if (!empty($_FILES["logo"]["name"]["1"])) {
+            $image2 = Formulaire::checkSecureInput($_FILES["logo"]["name"]["1"]);
+            $imagePath2 = $base . '/ressources/vetements/' . basename($image2);
+            $imageExtension2 = pathinfo($imagePath2, PATHINFO_EXTENSION);
+        }
     }
 
-    if ($image != '' && $image2 != '') {
+    if (!empty($image) && !empty($image2)) {
         // on vérifie l'extension,taille,nom du fichier envoyé pour les 2 images
         $isUploadSuccess = true;
-        if ($imageExtension != "jpg" && $imageExtension != "png" && $imageExtension != "jpeg" && $imageExtension != "gif") {
-            $erreur = "Les fichiers autorises sont: .jpg, .jpeg, .png, .gif";
-            $isUploadSuccess = false;
-        }
 
-        if ($imageExtension2 != "jpg" && $imageExtension2 != "png" && $imageExtension2 != "jpeg" && $imageExtension2 != "gif") {
-            $erreur = "Les fichiers autorises sont: .jpg, .jpeg, .png, .gif";
-            $isUploadSuccess = false;
-        }
+        //$erreur = Formulaire::countPictures()
 
-        if (file_exists($imagePath)) {
-            $erreur = "Le fichier 1 existe deja";
-            $isUploadSuccess = false;
-        }
+        if (!empty($erreur)) {
 
-        if (file_exists($imagePath2)) {
-            $erreur = "Le fichier 2 existe deja";
-            $isUploadSuccess = false;
-        }
+            $erreur = Formulaire::verifyExtensionFile("logo", $imageExtension, $erreur);
+            $erreur = Formulaire::verifyExtensionFile("logo", $imageExtension2, $erreur);
 
-        if (!empty($_FILES["logo"]) && $_FILES["logo"]["size"] > 500000) {
-            $erreur = "Le fichier 1 ne doit pas depasser les 500KB";
-            $isUploadSuccess = false;
-        }
+            $erreur = Formulaire::verifyAlreadyFileExist("logo", $imagePath, $erreur);
+            $erreur = Formulaire::verifyAlreadyFileExist("logo", $imagePath2, $erreur);
 
-        if (!empty($_FILES["logo2"]) && $_FILES["logo2"]["size"] > 500000) {
-            $erreur = "Le fichier 2 ne doit pas depasser les 500KB";
-            $isUploadSuccess = false;
-        }
-        // on vérifie si le fichier à bien été déplacé dans le chemin spécifié
-        if ($isUploadSuccess) {
-            if (!move_uploaded_file($_FILES["logo"]["tmp_name"], $imagePath)) {
-                $erreur = "Il y a eu une erreur lors de l'upload pour le logo 1";
+            $erreur = Formulaire::verifySizeFile($_FILES["logo"]["name"]["0"], $_FILES["logo"]["size"]["0"], "logo", $erreur);
+            $erreur = Formulaire::verifySizeFile($_FILES["logo"]["name"]["1"], $_FILES["logo"]["size"]["1"], "logo", $erreur);
+
+            if (!empty($erreur)) {
                 $isUploadSuccess = false;
             }
-            if (!move_uploaded_file($_FILES["logo2"]["tmp_name"], $imagePath2)) {
-                $erreur = "Il y a eu une erreur lors de l'upload pour le logo 2";
-                $isUploadSuccess = false;
-            }
+
+            // on vérifie si le fichier à bien été déplacé dans le chemin spécifié
+            $erreur = Formulaire::verifyUploadFile($_FILES["logo"]["tmp_name"]["0"], $isUploadSuccess, "logo", $imagePath, $erreur);
+            $erreur = Formulaire::verifyUploadFile($_FILES["logo"]["tmp_name"]["1"], $isUploadSuccess, "logo", $imagePath2, $erreur);
+            $isUploadSuccess = false;
         }
     }
 
-    // on check l'input pour le nom, description, prix, logo, logo2
-    // si il y une erreur on affecte le problème dans le variable d'erreur
-    if (!isset($_REQUEST['nom']) || trim($_REQUEST['nom']) === '') {
-        if (isset($erreur)) {
-            $erreur = $erreur . " <br/> Le nom est manquant";
-        } else {
-            $erreur = "Le nom est manquant";
-        }
+    if (empty($erreur)) {
+        $erreur = Formulaire::inputIsItEmpty('nom', $erreur);
+        $erreur .= Formulaire::inputIsItEmpty('description', $erreur);
+        $erreur .= Formulaire::inputIsItEmpty('prix', $erreur);
+        $erreur .= Formulaire::inputFileIsItEmpty('logo', $erreur);
     }
-    if (!isset($_REQUEST['description']) || trim($_REQUEST['description']) === '') {
-        if (isset($erreur)) {
-            $erreur = $erreur . " <br/> La description est manquante";
-        } else {
-            $erreur = "La description est manquante";
-        }
-    }
-
-    if (!isset($_REQUEST['prix']) || trim($_REQUEST['prix']) === '') {
-        if (isset($erreur)) {
-            $erreur = $erreur . " <br/> Le prix est manquant";
-        } else {
-            $erreur = "Le prix est manquant";
-        }
-    }
-    if (!isset($_FILES['logo'])) {
-        if (isset($erreur)) {
-            $erreur = $erreur . " <br/> Le logo est manquant";
-        } else {
-            $erreur = "Le logo est manquant";
-        }
-    }
-
-    if (!isset($_FILES['logo2'])) {
-        if (isset($erreur)) {
-            $erreur = $erreur . " <br/> Le logo 2 est manquant";
-        } else {
-            $erreur = "Le logo 2 est manquant";
-        }
-    }
-
 
     // si il n'y a pas d'erreur et que le formulaire a été validé 
-    if (!isset($erreur) && isset($_POST['bouton'])) {
-        // on passe dans des variables les valeurs rentré dand les input
-        $nom = '\'' . $_REQUEST['nom'] . '\'';
-        $description = '\'' . $_REQUEST['description'] . '\'';
-        $prix = '\'' . $_REQUEST['prix'] . '\'';
-        $logo = '\'' . basename($image) . '\'';
-        $logo2 = '\'' . basename($image2) . '\'';
-        $category = '\'' . $_REQUEST['category'] . '\'';
-        $souscategory = '\'' . $_REQUEST['souscategory'] . '\'';
+    if (isset($_POST['bouton']) && empty($erreur)) {
+        // on passe dans des variables les valeurs rentré dans les input
+        $nom = $_REQUEST['nom'];
+        $description = $_REQUEST['description'];
+        $prix = $_REQUEST['prix'];
+        $logo = basename($image);
+        $logo2 = basename($image2);
+        $category = $_REQUEST['category'];
+        $souscategory = $_REQUEST['souscategory'];
         $id_admin = 1;
         $confirme = 0;
-
 
         // on éxecute l'insert des données pour l'ajout du produit avec confirme = 0
         // pour info un produit avec le champ confirme = 0 n'est pas encore disponible
         // à la vente, car il faut que l'admin passe cette valeur à 1
-        Bdd::getInstance()->conn->exec('INSERT INTO produits (nom,description,prix,logo,logo2,id_categorie,id_sous_categorie,id_admin,confirme) 
-            VALUES (' . $nom . ',' . $description . ',' . $prix . ',' . $logo . ',' . $logo2 . ',' .
-            $category . ',' . $souscategory . ',' . $id_admin . ',' . $confirme . ')');
+        //Produit::setProduit($nom, $description, $prix, $logo, $logo2, $category, $souscategory, $id_admin, $confirme);
 
-        //On teste si le produit à bien été inséré
-        $result = Bdd::getInstance()->conn->query('SELECT * FROM `produits` WHERE `nom` LIKE "' . $nom . '"');
-        ?>
-
-        <!-- on lance l'animation de success -->
-        <script type="text/javascript">
-            Swal.fire({
-                title: "Succès!",
-                icon: "success",
-                text: "Envoie Réussi",
-            });
-        </script>
-        <?php
+        // on lance l'animation de success
+        //Formulaire::triggerSuccessAnimation('login', 'Envoie Réussi', 'user.php');
     }
 
     // si il y a des erreur et que le formulaire à été validé
-    if (isset($erreur) && isset($_POST['bouton'])) {
-        // on lance l'animation d'erreur affichant la liste de toute les erreurs
-        echo '
-            <script type="text/javascript">
-                Swal.fire({
-                  title: "Erreur",
-                  icon: "error",
-                  html: " ' . $erreur . ' ",
-                })
-            </script>';
+    // on lance l'animation d'erreur affichant la liste de toute les erreurs
+    if (isset($_POST['bouton']) && !empty($erreur)) {
+        Formulaire::triggerErrorsAnimation($erreur, 'bouton');
     }
-
 }
 
 // on inclut la vue (partie visible => front) de la page
